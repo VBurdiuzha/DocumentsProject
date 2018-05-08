@@ -13,7 +13,6 @@ public class classTest extends WebDriverTestBase {
 
     @BeforeClass
     public void initPages() {
-        loginPage = PageFactory.initElements(browser, LoginPage.class);
         System.out.println("Jira Pages Initialized");
     }
 
