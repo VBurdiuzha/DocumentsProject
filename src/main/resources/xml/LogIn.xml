@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="LogIn Suite" verbose="0" group-by-instances="true">
+    <test name="LogIn" verbose="1" group-by-instances="true">
+        <packages>
+            <package name="uiTest"/>
+        </packages>
+    </test>
+</suite>
+
+        <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/LogIn.xml -->
