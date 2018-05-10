@@ -1,1 +1,11 @@
-test
+-- Working with Git --
+
+1. Create branch (name should be like name task)
+2. Commit it
+3. git checkout dev
+4. git pull
+5. git checkout [name of branch]
+6. git merge dev
+7. git checkout dev
+8. git merge [name of branch]
+9. git push
