@@ -8,4 +8,4 @@
 6. git merge dev
 7. git checkout dev
 8. git merge [name of branch]
-9. git push
+9. git push origin dev
