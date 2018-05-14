@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="UI tests">
-    <test name="LogIn">
+<suite name="Profile Suite">
+    <test name="Profile">
         <classes>
-            <class name="uiTest.LogIn"/>
+            <class name="uiTest.Profile"/>
         </classes>
     </test>
 </suite>
+
 
         <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/LogIn.xml -->

@@ -43,5 +43,4 @@ public class LoginPage {
         WebDriverTools.clearAndFill(inputUsername, Vars.username);
         WebDriverTools.clearAndFill(inputPassword, password).submit();
     }
-
 }
