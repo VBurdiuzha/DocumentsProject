@@ -4,8 +4,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public interface Vars {
-    static final String baseURL = "https://stage.servicedoc.ua/ru";
-    static final String username = "regularUserAutoTest@email.ua";
-    static final String password = "123456";
+    String baseURL = "https://stage.servicedoc.ua/ru";
+
+    String badPassword = "Bad Password";
+
+    String regularUser = "regularUserAutoTest@email.ua";
+    String regularUserPassword = "123456";
+
+    String adminUser = "admnAutoTest@email.ua";
+    String adminUserPassword = "123456";
+
+    String operatorUser = "operatorAutoTest@email.ua";
+    String operatorUserPassword = "123456";
+
+    String doperUser = "doperAutoTest@email.ua";
+    String doperUserPassword = "123456";
 
 }
