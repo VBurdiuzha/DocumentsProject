@@ -7,6 +7,7 @@ public interface Vars {
     String baseURL = "https://stage.servicedoc.ua/ru";
 
     String badPassword = "Bad Password";
+    String correctPassword = "123456";
 
     String regularUser = "regularUserAutoTest@email.ua";
     String regularUserPassword = "123456";
@@ -20,4 +21,7 @@ public interface Vars {
     String doperUser = "doperAutoTest@email.ua";
     String doperUserPassword = "123456";
 
+    String OSS = "https://mail.ossystem.ua/";
+    String OSSlogin = "v.burdiuzha";
+    String OSSpass = "1c264ec95143b";
 }

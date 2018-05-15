@@ -9,4 +9,4 @@
 </suite>
 
 
-        <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/LogIn.xml -->
+        <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/Profile.xml -->

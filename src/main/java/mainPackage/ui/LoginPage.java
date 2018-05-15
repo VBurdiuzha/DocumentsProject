@@ -29,7 +29,6 @@ public class LoginPage {
     private void login(String user, String password) {
         browser.get(Vars.baseURL);
         browser.findElement(loginBotton).click();
-        System.out.println("Button click");
         WebDriverTools.clearAndFill(inputUsername, user);
         WebDriverTools.clearAndFill(inputPassword, password).submit();
     }
