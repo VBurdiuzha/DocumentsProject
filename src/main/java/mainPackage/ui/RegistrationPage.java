@@ -40,23 +40,23 @@ public class RegistrationPage {
         this.browser = browser;
     }
 
-    @Test (dataProvider = "provider1")
-    public void verifyEmail(String n1, boolean n2)  {
+    @Test (dataProvider = "email address")
+    public void verifyEmail(String email, boolean n2)  {
         browser.get(Vars.baseURL);
         enterButton.click();
         registrationButton.click();
 
-        WebDriverTools.clearAndFill(inputUsername, n1);
+        WebDriverTools.clearAndFill(inputUsername, email);
         WebDriverTools.clearAndFill(inputPassword, Vars.correctPassword).submit();
         icon.click();
         Assert.assertFalse(errorEmail.size() != 0);
 
     }
 
-    @Test (dataProvider = "provider2")
-    public void verifyPassw(String n1, boolean n2)  {
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUserPassword);
-        WebDriverTools.clearAndFill(inputPassword, n1).submit();
+    @Test (dataProvider = "password")
+    public void verifyPassw(String password, boolean n2)  {
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, password).submit();
         icon.click();
         checkbox.click();
         Assert.assertFalse(errorPassw.size() != 0);
