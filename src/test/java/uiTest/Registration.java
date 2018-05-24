@@ -27,7 +27,7 @@ public class Registration extends WebDriverTestBase{
 
 
     @Test (description = "check different passw cases" ,dataProviderClass = DataProviderParameters.class, dataProvider = "password", groups = {"Reg.Password"})
-    public void verifyPassw(String password, boolean n2){
+    public void verifyPassw(String password, boolean n2) throws InterruptedException {
 
         registrationPage.verifyPassw(password, n2);
     }
