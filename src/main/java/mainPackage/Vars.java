@@ -5,6 +5,7 @@ import java.util.Date;
 
 public interface Vars {
     String baseURL = "https://stage.servicedoc.ua/ru";
+    String baseAdminURL = "https://stage.servicedoc.ua/admin/";
 
     String badPassword = "Bad Password";
     String correctPassword = "123456";
@@ -24,4 +25,8 @@ public interface Vars {
     String OSS = "https://mail.ossystem.ua/";
     String OSSlogin = "v.burdiuzha";
     String OSSpass = "1c264ec95143b";
+    String OSSEmail = "v.burdiuzha@ossystem.com.ua";
+
+    String personalUser = "taras.myza.84@gmail.com";
+    String personalUserPassword = "123456";
 }

@@ -14,7 +14,7 @@ public class LogIn extends WebDriverTestBase {
 
     @BeforeClass
     public void initPages() {
-        loginPage = PageFactory.initElements(browser, LoginPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
         System.out.println("Login page init");
     }
 

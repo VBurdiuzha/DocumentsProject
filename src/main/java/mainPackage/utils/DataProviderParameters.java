@@ -27,7 +27,41 @@ public class DataProviderParameters {
                 { "парольнарусском", false},
                 { "0123456789012345678901234", true },
                 { "  ", true},
-                { Vars.regularUser, true},
+                { Vars.regularUserPassword, true},
+        };
+    }
+    @DataProvider(name = "surName")
+    public Object[][] surNameInputData() {
+        return new Object[][]{
+                {"    ", true},
+                {" !@#$%^&*()_+=-|/\\'\"<>,.`~", true},
+                {"Иванов", false},
+                {"01234567890", true},
+                {"Иван.нов", true},
+                {"Иванов123@@@1", true},
+        };
+    }
+
+    @DataProvider(name = "name")
+    public Object[][] nameInputData() {
+        return new Object[][]{
+                {"  1  ", true},
+                {" !@#$%^&*()_+=-|/\\'\"<>,.`~", true},
+                {"Иван", true},
+                {"01234567890", true},
+                {"Иван.нов", true},
+                {"Иванов123", true},
+        };
+    }
+    @DataProvider(name = "lastName")
+    public Object[][] lastNameInputData() {
+        return new Object[][]{
+                {"    ", true},
+                {" !@#$%^&*()_+=-|/\\'\"<>,.`~", true},
+                {"Иванович", false},
+                {"01234567890", true},
+                {"Иван.нович", true},
+                {"Иванов123ич", true},
         };
     }
 }

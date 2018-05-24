@@ -5,14 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class WebDriverTools {
-    private static WebDriver browser;
+    private static WebDriver driver;
 
-    public static void setDriver(WebDriver browser) {
-        WebDriverTools.browser = browser;
+    public static void setDriver(WebDriver driver) {
+        WebDriverTools.driver = driver;
     }
 
     public static WebElement clearAndFill(By selector, String data) {
-        WebElement element = browser.findElement(selector);
+        WebElement element = driver.findElement(selector);
         element.clear();
         element.sendKeys(data);
 

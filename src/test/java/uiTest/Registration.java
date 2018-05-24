@@ -1,12 +1,10 @@
 package uiTest;
 
-import mainPackage.Vars;
 import mainPackage.ui.RegistrationPage;
 import mainPackage.utils.DataProviderParameters;
 import mainPackage.utils.WebDriverTestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
@@ -16,8 +14,8 @@ public class Registration extends WebDriverTestBase{
 
     @BeforeClass
     public void initPages() {
-        registrationPage = PageFactory.initElements(browser, RegistrationPage.class);
-        dataProviderParameters = PageFactory.initElements(browser, DataProviderParameters.class);
+        registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
+        dataProviderParameters = PageFactory.initElements(driver, DataProviderParameters.class);
         System.out.println("Initialized");
     }
 
@@ -33,9 +31,17 @@ public class Registration extends WebDriverTestBase{
 
         registrationPage.verifyPassw(password, n2);
     }
-    @Test
-    public void enterEmail(){
-        registrationPage.enterEmail();
+    @Test(description = "confirmEmail", priority = 3)
+    public void enterEmail() throws InterruptedException {
+
+        registrationPage.confirmAccountWithEmail();
     }
+
+    @Test (description = "delete user from admin", priority = 4)
+    public void deleteUser() throws InterruptedException {
+
+        registrationPage.deleteUser();
+    }
+
 
 }
