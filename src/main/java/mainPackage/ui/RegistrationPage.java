@@ -89,15 +89,15 @@ public class RegistrationPage {
 
 
 
-    private final WebDriver browser;
+    private final WebDriver driver;
 
     public RegistrationPage(WebDriver browser){
-        this.browser = browser;
+        this.driver = browser;
     }
 
     @Test (dataProvider = "provider1")
     public void verifyEmail(String n1, boolean n2)  {
-        browser.get(Vars.baseURL);
+        driver.get(Vars.baseURL);
         enterButton.click();
         registrationButton.click();
 
@@ -110,8 +110,8 @@ public class RegistrationPage {
 
     @Test (dataProvider = "provider2")
     public void verifyPassw(String n1, boolean n2) throws InterruptedException {
-        browser.manage().deleteAllCookies();
-        browser.navigate().refresh();
+        driver.manage().deleteAllCookies();
+        driver.navigate().refresh();
         enterButton.click();
         registrationButton.click();
         WebDriverTools.clearAndFill(inputUsernameReg, Vars.OSSEmail);
@@ -121,7 +121,7 @@ public class RegistrationPage {
         Regbutton.click();
         Thread.sleep(2000);
         Assert.assertFalse(errorPassw.size() != 0);
-        new FluentWait<WebDriver>(browser).withTimeout(7, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
+        new FluentWait<WebDriver>(driver).withTimeout(7, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
                 .ignoring(InvalidElementStateException.class).until(new Function<WebDriver, WebElement>() {
             public WebElement apply(WebDriver browser) {
                 return OKbutton;
@@ -131,46 +131,46 @@ public class RegistrationPage {
     }
 
     public void confirmAccountWithEmail() throws InterruptedException {
-        browser.get(Vars.OSS);
+        driver.get(Vars.OSS);
         OSSinputEmail.sendKeys(Vars.OSSlogin);
         OSSinputPass.sendKeys(Vars.OSSpass);
         OSSSignIn.click();
         Thread.sleep(5000);
-        browser.navigate().refresh();
+        driver.navigate().refresh();
         Thread.sleep(2000);
-        browser.navigate().refresh();
+        driver.navigate().refresh();
         sortMenu.click();
         Thread.sleep(2000);
         unread.click();
         Thread.sleep(2000);
         WebDriverTools.clearAndFill(cssSelector("#quicksearchbox"), "Confirmation of authorization").click();
-        browser.findElement(By.linkText("Confirmation of authorization")).click();
+        driver.findElement(By.linkText("Confirmation of authorization")).click();
         Assert.assertNotNull(messageList);
-        browser.switchTo().frame("messagecontframe");
-        browser.findElement(By.linkText("ссылке")).click();
+        driver.switchTo().frame("messagecontframe");
+        driver.findElement(By.linkText("ссылке")).click();
 
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String originalWindow = browser.getWindowHandle();
+        String originalWindow = driver.getWindowHandle();
         String newWindow;
-        Set<String> windowHandles = browser.getWindowHandles();
+        Set<String> windowHandles = driver.getWindowHandles();
         Iterator<String> stringIterator = windowHandles.iterator();
 
         while (stringIterator.hasNext()) {
             newWindow = stringIterator.next();
             if (!originalWindow.equalsIgnoreCase(newWindow)) {
-                browser.switchTo().window(newWindow);
+                driver.switchTo().window(newWindow);
             }
 
         }
-        browser.close(); ///In here I should close the new window
+        driver.close(); ///In here I should close the new window
 
-        browser.switchTo().window(originalWindow);//In here I should switch back to the old window
+        driver.switchTo().window(originalWindow);//In here I should switch back to the old window
 
-        browser.get(Vars.baseURL);
+        driver.get(Vars.baseURL);
         enterButton.click();
         WebDriverTools.clearAndFill(inputUsername, Vars.OSSEmail);
         WebDriverTools.clearAndFill(inputPassword, Vars.adminUserPassword).submit();
@@ -179,7 +179,7 @@ public class RegistrationPage {
 
     public void deleteUser () throws InterruptedException {
 
-        browser.get(Vars.baseAdminURL);
+        driver.get(Vars.baseAdminURL);
         WebDriverTools.clearAndFill(By.xpath("//*[@id=\"textfield-1012-inputEl\"]"), Vars.adminUser);
         adminPassField.sendKeys(Vars.adminUserPassword);
         toolbarSignIn.click();

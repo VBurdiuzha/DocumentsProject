@@ -19,6 +19,7 @@ public class LoginPage {
     private final WebDriver driver;
 
     public LoginPage(WebDriver driver) {
+
         this.driver = driver;
     }
 

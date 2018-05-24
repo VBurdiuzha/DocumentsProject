@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class WebDriverTools {
-    private static WebDriver driver;
+    public static WebDriver driver;
 
     public static void setDriver(WebDriver driver) {
         WebDriverTools.driver = driver;
