@@ -33,6 +33,15 @@ public class ExpertiseUserPage {
     private WebElement expertiseModule;
     @FindBy(css = "#maincolumn > div > div.tabContainer > span:nth-child(1) > div > a")
     private WebElement tabNewDoc;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.ReviewIntroFooter > button > div > span")
+    private WebElement createApplication;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div.Knowledges > div.Content > ul > li > ul > li:nth-child(2) > div > svg")
+    private WebElement typeDoc;
+    @FindBy(css = "#\\35 aafce473a24c926d01797ba")
+    private WebElement testCategoryType;
+    @FindBy(xpath = "//*[@id=\"5508b46d-33e5-4858-b197-f6dc78428b75\"]")  // #\35 508b46d-33e5-4858-b197-f6dc78428b75
+    private By roleInDoc;
+
 
 
     private final WebDriver driver;
@@ -52,7 +61,23 @@ public class ExpertiseUserPage {
         profile.click();
         expertiseModule.click();
         Assert.assertNotNull(tabNewDoc);
+    }
+
+    public void validData() throws InterruptedException {
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
 
 
+        new FluentWait<WebDriver>(driver).withTimeout(7, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
+                .ignoring(InvalidElementStateException.class).until(new Function<WebDriver, WebElement>() {
+            public WebElement apply(WebDriver browser) {
+                return WebDriverTools.clearAndFill(roleInDoc, "test user");
+            }
+        }).click();
+
+
+
+      //  WebDriverTools.clearAndFill(roleInDoc, "test user").click();
     }
 }
