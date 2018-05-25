@@ -41,9 +41,10 @@ public class ExpertiseUserPage {
     private WebElement testCategoryType;
     @FindBy(css = "#frontfc57de6a29ea1e8f6ee07fda4f548cc8")
     private WebElement radioButton3;
-
-    @FindBy(xpath = "//*[@id=\"ea88063a-1346-46ae-ff11-b025989a8431\"]/label")
+    @FindBy(css = "#ea88063a-1346-46ae-ff11-b025989a8431")
     private WebElement attachFile;
+    @FindBy(css = "#front930d0de3b569e900ece1ea62969151de")
+    private WebElement nextButton;
 
 
 
@@ -74,27 +75,19 @@ public class ExpertiseUserPage {
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
-      //  attachFile.click();
-
-
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileName);
 
 
+        WebElement linkAttachment = new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS)
+                .pollingEvery(2, TimeUnit.SECONDS).ignoring(NoSuchElementException.class)
+                .until(new Function<WebDriver, WebElement>() {
+                    public WebElement apply(WebDriver browser) {
+                        return nextButton;
+                    }
+                });
 
-//        WebElement linkAttachment = new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS)
-//                .pollingEvery(2, TimeUnit.SECONDS).ignoring(NoSuchElementException.class)
-//                .until(new Function<WebDriver, WebElement>() {
-//                    public WebElement apply(WebDriver browser) {
-//                        return linkAttachmentName;
-//                    }
-//                });
-//
-//        //  Assert.assertEquals(JiraVars.attachmentFileName, linkAttachment.getText());
-//
-//        attachmentLink = linkAttachment.getText();
-//        return ExpertiseVars.attachmentFileName.equals(linkAttachment.getText());
-
-
+            nextButton.click();
     }
 
 
