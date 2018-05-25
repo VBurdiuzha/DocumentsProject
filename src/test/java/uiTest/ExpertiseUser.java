@@ -1,8 +1,6 @@
 package uiTest;
 
-import mainPackage.Vars;
 import mainPackage.ui.ExpertiseUserPage;
-import mainPackage.ui.LoginPage;
 import mainPackage.utils.WebDriverTestBase;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.support.PageFactory;

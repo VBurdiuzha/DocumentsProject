@@ -1,6 +1,6 @@
 package uiTest;
 
-import mainPackage.Vars;
+import mainPackage.interfaceFolder.Vars;
 import mainPackage.ui.LoginPage;
 import mainPackage.utils.WebDriverTestBase;
 import mainPackage.utils.WebDriverTools;

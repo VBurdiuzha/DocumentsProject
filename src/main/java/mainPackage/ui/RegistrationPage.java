@@ -1,6 +1,6 @@
 package mainPackage.ui;
 
-import mainPackage.Vars;
+import mainPackage.interfaceFolder.Vars;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
