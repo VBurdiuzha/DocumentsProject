@@ -15,8 +15,12 @@ public class WebDriverTools {
         WebElement element = driver.findElement(selector);
         element.clear();
         element.sendKeys(data);
-
         return element;
     }
+//    public static WebElement fillFild(By selector, String data){
+//        WebElement element = driver.findElement(selector);
+//        element.sendKeys(data);
+//        return element;
+//    }
 
 }

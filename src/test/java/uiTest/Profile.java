@@ -33,10 +33,24 @@ public class Profile extends WebDriverTestBase{
         System.out.println("Profile page open");
     }
 
-    @Test (description = "check different surname", dataProviderClass = DataProviderParameters.class, dataProvider = "surName", groups = {"Profile"})
+    @Test (description = "check different Surname", dataProviderClass = DataProviderParameters.class, dataProvider = "surName", groups = {"Profile"})
     public void verifySurName(String surName, boolean n2) throws InterruptedException {
         profilePage.verifyEmail(surName, n2);
     }
 
+    @Test (description = "check different Name", dataProviderClass = DataProviderParameters.class, dataProvider = "name", groups = {"Profile"})
+    public void verifyName(String name, boolean n2) throws InterruptedException {
+        profilePage.verifyName(name, n2);
+    }
+
+    @Test (description = "check different Lastname", dataProviderClass = DataProviderParameters.class, dataProvider = "lastName", groups = {"Profile"})
+    public void verifyLastName(String lastName, boolean n2) throws InterruptedException {
+        profilePage.verifylastName(lastName, n2);
+    }
+
+    @Test (description = "check change password", dataProviderClass = DataProviderParameters.class, dataProvider = "changePassword", groups = {"Profile"})
+    public void verifyChangePassword(String changePassword, boolean n2) throws InterruptedException {
+        profilePage.verifyChangePassword(changePassword, n2);
+    }
 }
 

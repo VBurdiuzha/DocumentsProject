@@ -33,7 +33,7 @@ public class DataProviderParameters {
     @DataProvider(name = "surName")
     public Object[][] surNameInputData() {
         return new Object[][]{
-                {"    ", true},
+                {"Qwe", true},
                 {" !@#$%^&*()_+=-|/\\'\"<>,.`~", true},
                 {"Иванов", false},
                 {"01234567890", true},
@@ -62,6 +62,18 @@ public class DataProviderParameters {
                 {"01234567890", true},
                 {"Иван.нович", true},
                 {"Иванов123ич", true},
+        };
+    }
+
+    @DataProvider(name = "changePassword")
+    public Object[][] passInputData(){
+        return new Object[][]{
+                {"123456", true},
+                {"123456", true},
+                {"123456", true},
+                {"123456", true},
+                {"123456", true},
+                {"123456", true},
         };
     }
 }
