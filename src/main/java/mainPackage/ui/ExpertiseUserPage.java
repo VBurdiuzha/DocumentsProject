@@ -1,19 +1,25 @@
 package mainPackage.ui;
 
 
+import javafx.scene.web.WebView;
 import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
+import mainPackage.utils.WebDriverTestBase;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.sql.Driver;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
@@ -33,18 +39,26 @@ public class ExpertiseUserPage {
     private WebElement expertiseModule;
     @FindBy(css = "#maincolumn > div > div.tabContainer > span:nth-child(1) > div > a")
     private WebElement tabNewDoc;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.ReviewIntroFooter > button > div > span")
+    @FindBy(css = "#frontb5fbbf28a9f06b537b590d5f3b4ff32d > div")
     private WebElement createApplication;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div.Knowledges > div.Content > ul > li > ul > li:nth-child(2) > div > svg")
+    @FindBy(css = "#front868dfaedd842b532f770504a740cbf47 > svg")
     private WebElement typeDoc;
     @FindBy(css = "#\\35 aafce473a24c926d01797ba")
     private WebElement testCategoryType;
     @FindBy(css = "#frontfc57de6a29ea1e8f6ee07fda4f548cc8")
     private WebElement radioButton3;
-    @FindBy(css = "#ea88063a-1346-46ae-ff11-b025989a8431")
+    @FindBy(css = "input[type=file]")
     private WebElement attachFile;
-    @FindBy(css = "#front930d0de3b569e900ece1ea62969151de")
+    @FindBy(xpath = "//*[@id=\"front930d0de3b569e900ece1ea62969151de\"]/div/span")
     private WebElement nextButton;
+    @FindBy(css = "#front404d0ca4b994575eec4661a031a130a8")
+    private WebElement payAndGo;
+    @FindBy(xpath = "//*[@id=\"maincolumn\"]/div/div[2]/div/div/div[2]/div/button")
+    private WebElement continueWork;
+    @FindBy(xpath = "//*[@id=\"maincolumn\"]/div/div[2]/div/div[1]/span")
+    private WebElement errorMessageTypeDoc;
+    @FindBy(xpath = "//*[@id=\"sidemenu\"]/li[2]/a")
+    private WebElement sideBarExpertise;
 
 
 
@@ -62,13 +76,14 @@ public class ExpertiseUserPage {
         WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
         WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        Thread.sleep(3000);
         profile.click();
         expertiseModule.click();
         Assert.assertNotNull(tabNewDoc);
     }
 
     public void validData() throws InterruptedException {
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
         testCategoryType.click();
@@ -76,19 +91,50 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileName);
+        Thread.sleep(1000);
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        nextButton.click();
+        WebDriverTools.FluentWaitFunction(payAndGo);
+        payAndGo.click();
+        WebDriverTools.FluentWaitFunction(continueWork);
+        continueWork.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
+    }
 
-
-        WebElement linkAttachment = new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS)
-                .pollingEvery(2, TimeUnit.SECONDS).ignoring(NoSuchElementException.class)
-                .until(new Function<WebDriver, WebElement>() {
-                    public WebElement apply(WebDriver browser) {
-                        return nextButton;
-                    }
-                });
-
-            nextButton.click();
+    public void doubleAttachment(){
+        expertiseModule.click();
+        createApplication.click();
+        typeDoc.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNameDOCX);
+        WebDriverTools.FluentWaitFunction(nextButton);
+        nextButton.click();
+        WebDriverTools.FluentWaitFunction(payAndGo);
+        payAndGo.click();
+        WebDriverTools.FluentWaitFunction(continueWork);
+        continueWork.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
     }
 
 
-}
+    public void emptyTypeField(){
+        expertiseModule.click();
+        createApplication.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        nextButton.click();
+
+        Assert.assertTrue(driver.findElement(By.cssSelector("#frontefe13855ecb4f08c893b82990641b449")).isDisplayed());
+    }
+
+    }
+
+
+

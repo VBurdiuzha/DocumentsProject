@@ -23,9 +23,19 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.expertiseModule();
 
     }
-    @Test (description = "delete user from admin", priority = 2)
-    public void createDoc() throws InterruptedException {
+    @Test (description = "test case with valid data", priority = 2)
+    public void validData() throws InterruptedException {
 
         expertiseUserPage.validData();
+    }
+
+    @Test(description =  "test case with empty first field", groups = {"Expertise"}, priority = 3)
+    public void doubleAttachment(){
+        expertiseUserPage.doubleAttachment();
+    }
+
+    @Test(description =  "test case with empty first field", groups = {"Expertise"}, priority = 4)
+    public void emptyTypeField(){
+        expertiseUserPage.emptyTypeField();
     }
 }
