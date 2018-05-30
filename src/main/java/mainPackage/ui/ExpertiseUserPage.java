@@ -179,6 +179,25 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front8c5a7f84a773a7e92820274c5740a8a7\"]")).isDisplayed());
     }
 
+    public void emptyRequisiteField() {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        nextButton.click();
+        WebDriverTools.FluentWaitFunction(payAndGo);
+        payAndGo.click();
+        WebDriverTools.FluentWaitFunction(continueWork);
+        continueWork.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
+    }
+
 
 }
 
