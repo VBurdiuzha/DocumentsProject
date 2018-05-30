@@ -70,7 +70,7 @@ public class ExpertiseUserPage {
     }
 
 
-    public void expertiseModule() throws InterruptedException {
+    public void expertiseModule() {
         driver.get(Vars.baseURL);
         driver.findElement(loginBotton).click();
         WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
@@ -81,7 +81,7 @@ public class ExpertiseUserPage {
         Assert.assertNotNull(tabNewDoc);
     }
 
-    public void validData() throws InterruptedException {
+    public void validData() {
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -91,7 +91,6 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        Thread.sleep(1000);
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
         WebDriverTools.FluentWaitFunction(payAndGo);
@@ -146,6 +145,38 @@ public class ExpertiseUserPage {
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front3dd6d39ab46cf734a1a23794bcc6a2dd\"]")).isDisplayed());
+    }
+
+    public void incorrectSecondField(){
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "1234").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        nextButton.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front3dd6d39ab46cf734a1a23794bcc6a2dd\"]")).isDisplayed());
+
+    }
+
+    public void requisitesField()  {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        nextButton.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front8c5a7f84a773a7e92820274c5740a8a7\"]")).isDisplayed());
     }
 
 

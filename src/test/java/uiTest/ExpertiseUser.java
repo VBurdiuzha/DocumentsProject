@@ -43,4 +43,17 @@ public class ExpertiseUser extends WebDriverTestBase {
     public void emptyWhoYouAreField(){
         expertiseUserPage.emptyWhoYouAreField();
     }
+
+    @Test(description =  "test case with empty second field", groups = {"Expertise"}, priority = 6)
+    public void incorrectSecondField(){
+        expertiseUserPage.incorrectSecondField();
+    }
+
+    @Test(description =  "test case with empty third field", groups = {"Expertise"}, priority = 7)
+    public void requisitesField(){
+        expertiseUserPage.requisitesField();
+    }
+
+
+
 }
