@@ -59,5 +59,10 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.emptyRequisiteField();
     }
 
+    @Test(description =  "test case with empty third text area", groups = {"Expertise"}, priority = 9)
+    public void emptyAttachmentField(){
+        expertiseUserPage.emptyAttachmentField();
+    }
+
 
 }

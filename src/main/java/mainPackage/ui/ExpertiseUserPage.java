@@ -198,6 +198,24 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
     }
 
+    public void emptyAttachmentField()  {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        nextButton.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front393917ab1b5b784ed233b208744263f8\"]")).isDisplayed());
+    }
+
+
+
+
+
 
 }
 
