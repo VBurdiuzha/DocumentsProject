@@ -133,8 +133,23 @@ public class ExpertiseUserPage {
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.cssSelector("#frontefe13855ecb4f08c893b82990641b449")).isDisplayed());
     }
-
+    public void emptyWhoYouAreField()  {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        nextButton.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front3dd6d39ab46cf734a1a23794bcc6a2dd\"]")).isDisplayed());
     }
+
+
+}
 
 
 
