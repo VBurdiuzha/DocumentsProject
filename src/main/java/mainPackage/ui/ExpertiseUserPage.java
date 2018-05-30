@@ -82,6 +82,7 @@ public class ExpertiseUserPage {
     }
 
     public void validData() {
+        driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -101,6 +102,7 @@ public class ExpertiseUserPage {
     }
 
     public void doubleAttachment(){
+        driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
         typeDoc.click();
@@ -122,6 +124,7 @@ public class ExpertiseUserPage {
 
 
     public void emptyTypeField(){
+        driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
@@ -212,10 +215,33 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front393917ab1b5b784ed233b208744263f8\"]")).isDisplayed());
     }
 
+    public void attachment21 () throws InterruptedException {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
 
+        int count = 11;
+        for (int i = 0; i <= count; i++) {
+            attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+            attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
+        }
 
+        WebDriverTools.FluentWaitFunction(nextButton);
+        nextButton.click();
+        Thread.sleep(8000);
+        WebDriverTools.FluentWaitFunction(payAndGo);
+        payAndGo.click();
+        WebDriverTools.FluentWaitFunction(continueWork);
+        continueWork.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
 
-
+    }
 
 }
 

@@ -38,12 +38,14 @@ public class WebDriverTools {
 
 
     public static void FluentWaitFunction(WebElement element) {
-        WebElement linkAttachment = new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS)
-                .pollingEvery(4, TimeUnit.SECONDS).ignoring(org.openqa.selenium.NoSuchElementException.class)
+        WebElement linkAttachment = new FluentWait<WebDriver>(driver).withTimeout(60, TimeUnit.SECONDS)
+                .pollingEvery(1, TimeUnit.SECONDS).ignoring(org.openqa.selenium.NoSuchElementException.class)
                 .until(new Function<WebDriver, WebElement>() {
                     public WebElement apply(WebDriver driver) {
                         return element;
                     }
                 });
     }
+
+
 }

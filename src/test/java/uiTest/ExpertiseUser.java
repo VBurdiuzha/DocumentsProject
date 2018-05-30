@@ -64,5 +64,9 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.emptyAttachmentField();
     }
 
+    @Test(description =  "test case with empty third text area", groups = {"Expertise"}, priority = 10)
+    public void attachment21() throws InterruptedException {
+        expertiseUserPage.attachment21();
+    }
 
 }
