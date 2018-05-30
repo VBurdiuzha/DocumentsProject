@@ -29,7 +29,7 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.validData();
     }
 
-    @Test(description =  "test case with empty first field", groups = {"Expertise"}, priority = 3)
+    @Test(description =  "test case with double attachment", groups = {"Expertise"}, priority = 3)
     public void doubleAttachment(){
         expertiseUserPage.doubleAttachment();
     }

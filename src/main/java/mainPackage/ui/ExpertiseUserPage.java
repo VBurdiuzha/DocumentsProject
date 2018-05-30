@@ -105,6 +105,7 @@ public class ExpertiseUserPage {
         expertiseModule.click();
         createApplication.click();
         typeDoc.click();
+        testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
@@ -130,7 +131,6 @@ public class ExpertiseUserPage {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
-
         Assert.assertTrue(driver.findElement(By.cssSelector("#frontefe13855ecb4f08c893b82990641b449")).isDisplayed());
     }
 
