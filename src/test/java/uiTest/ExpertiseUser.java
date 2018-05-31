@@ -44,29 +44,41 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.emptyWhoYouAreField();
     }
 
-    @Test(description =  "test case with empty second field", groups = {"Expertise"}, priority = 6)
+    @Test(description =  "test case with incorrect second field", groups = {"Expertise"}, priority = 6)
     public void incorrectSecondField(){
         expertiseUserPage.incorrectSecondField();
     }
 
-    @Test(description =  "test case with empty third field", groups = {"Expertise"}, priority = 7)
+    @Test(description =  "test case with requisites field", groups = {"Expertise"}, priority = 7)
     public void requisitesField(){
         expertiseUserPage.requisitesField();
     }
 
-    @Test(description =  "test case with empty third text area", groups = {"Expertise"}, priority = 8)
+    @Test(description =  "test case with empty requisite field", groups = {"Expertise"}, priority = 8)
     public void emptyRequisiteField(){
         expertiseUserPage.emptyRequisiteField();
     }
 
-    @Test(description =  "test case with empty third text area", groups = {"Expertise"}, priority = 9)
+    @Test(description =  "test case with empty attachment field", groups = {"Expertise"}, priority = 9)
     public void emptyAttachmentField(){
         expertiseUserPage.emptyAttachmentField();
     }
 
-    @Test(description =  "test case with empty third text area", groups = {"Expertise"}, priority = 10)
+    @Test(description =  "test case with 21 attachments", groups = {"Expertise"}, priority = 10)
     public void attachment21() throws InterruptedException {
-        expertiseUserPage.attachment21();
+        expertiseUserPage.attachment21();}
+
+    @Test(description =  "test case with file more than 50 MB", groups = {"Expertise"}, priority = 11)
+    public void fileMoreThen50MB() throws InterruptedException {
+        expertiseUserPage.fileMoreThen50MB();
     }
+
+    @Test(description =  "test case with delete One Of Uploaded Files", groups = {"Expertise"}, priority = 11)
+    public void deleteOneOfUploudedFiles() throws InterruptedException {
+        expertiseUserPage.deleteOneOfUploadedFiles();
+    }
+
+
+
 
 }

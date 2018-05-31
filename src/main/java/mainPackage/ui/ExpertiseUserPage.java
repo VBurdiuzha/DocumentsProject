@@ -90,7 +90,7 @@ public class ExpertiseUserPage {
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         radioButton3.click();
-        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
@@ -109,7 +109,7 @@ public class ExpertiseUserPage {
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         radioButton3.click();
-        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNameDOCX);
@@ -129,7 +129,7 @@ public class ExpertiseUserPage {
         createApplication.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         radioButton3.click();
-        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
@@ -143,7 +143,7 @@ public class ExpertiseUserPage {
         typeDoc.click();
         testCategoryType.click();
         radioButton3.click();
-        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
@@ -159,7 +159,7 @@ public class ExpertiseUserPage {
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "1234").click();
         radioButton3.click();
-        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
@@ -175,7 +175,7 @@ public class ExpertiseUserPage {
         typeDoc.click();
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
-        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
@@ -210,7 +210,7 @@ public class ExpertiseUserPage {
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         radioButton3.click();
-        WebDriverTools.clearAndFill(textarea, "This is my automation test").click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front393917ab1b5b784ed233b208744263f8\"]")).isDisplayed());
     }
@@ -223,7 +223,7 @@ public class ExpertiseUserPage {
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         radioButton3.click();
-        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
+        WebDriverTools.clearAndFill(textarea, "This automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
 
         int count = 11;
@@ -241,7 +241,59 @@ public class ExpertiseUserPage {
         continueWork.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
 
+
+                                       /* need fix bug */
+
+
+
     }
+
+
+    public void fileMoreThen50MB () {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileName50MB);
+        nextButton.click();
+        //Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front393917ab1b5b784ed233b208744263f8\"]")).isDisplayed());
+
+
+                                      /* need fix bug */
+    }
+
+    public void deleteOneOfUploadedFiles () {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+
+        int count = 1;
+        for (int i = 0; i <= count; i++) {
+            attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        }
+
+        WebDriverTools.FluentWaitFunction(nextButton);
+        nextButton.click();
+        WebDriverTools.FluentWaitFunction(payAndGo);
+        payAndGo.click();
+        WebDriverTools.FluentWaitFunction(continueWork);
+        continueWork.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
+
+    }
+
 
 }
 
