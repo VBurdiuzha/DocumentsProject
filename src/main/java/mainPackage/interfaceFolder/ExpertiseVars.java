@@ -9,8 +9,6 @@ public interface ExpertiseVars {
     String attachmentFileNamePDF = "checklist-mobile-app-testen.pdf";
     String attachmentFileNameDOCX = "Adobe Illustrator CS6 на Linux.docx";
     String attachmentFileName50MB = "50мб+ copy.jpg";
-
-
 }
 
 

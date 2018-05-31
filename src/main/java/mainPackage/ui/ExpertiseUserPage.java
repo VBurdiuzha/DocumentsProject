@@ -59,6 +59,13 @@ public class ExpertiseUserPage {
     private WebElement errorMessageTypeDoc;
     @FindBy(xpath = "//*[@id=\"sidemenu\"]/li[2]/a")
     private WebElement sideBarExpertise;
+    @FindBy(css = "#front96c67a9f92654c30aec8dd319d49623a")
+    private WebElement deleteFile;
+    @FindBy(css = "#front96c67a9f92654c30aec8dd319d49623a")
+    private WebElement reestablis;
+    @FindBy(linkText = "expertise.png")
+    private WebElement fileExpertise;
+
 
 
 
@@ -82,6 +89,17 @@ public class ExpertiseUserPage {
     }
 
     public void validData() {
+
+
+        driver.get(Vars.baseURL);
+        driver.findElement(loginBotton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
+
+
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -99,6 +117,13 @@ public class ExpertiseUserPage {
         WebDriverTools.FluentWaitFunction(continueWork);
         continueWork.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
+
+
+        WebDriverTools.addMoneyPOSTrequest(1000);
+
+
+
+
     }
 
     public void doubleAttachment(){
@@ -199,6 +224,7 @@ public class ExpertiseUserPage {
         WebDriverTools.FluentWaitFunction(continueWork);
         continueWork.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
+
     }
 
     public void emptyAttachmentField()  {
@@ -278,12 +304,10 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-
-        int count = 1;
-        for (int i = 0; i <= count; i++) {
-            attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
-        }
-
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
+        driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/div/span/div[2]/div/ul[2]/li[2]/ul/li/div[2]")).click();
+        WebDriverTools.clickOnInvisibleElement(deleteFile);
         WebDriverTools.FluentWaitFunction(nextButton);
         nextButton.click();
         WebDriverTools.FluentWaitFunction(payAndGo);
@@ -293,6 +317,49 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
 
     }
+
+
+    public void reestablishUploadedFiles () {
+
+        driver.get(Vars.baseURL);
+        driver.findElement(loginBotton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
+
+
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
+        fileExpertise.click();
+        WebDriverTools.clickOnInvisibleElement(deleteFile);
+        reestablis.click();
+        WebDriverTools.FluentWaitFunction(nextButton);
+        nextButton.click();
+        WebDriverTools.FluentWaitFunction(payAndGo);
+        payAndGo.click();
+        WebDriverTools.FluentWaitFunction(continueWork);
+        continueWork.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
+
+
+                                /* need add key for file */
+
+
+    }
+
+
 
 
 }

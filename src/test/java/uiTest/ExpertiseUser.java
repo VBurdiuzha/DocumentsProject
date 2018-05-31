@@ -73,11 +73,15 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.fileMoreThen50MB();
     }
 
-    @Test(description =  "test case with delete One Of Uploaded Files", groups = {"Expertise"}, priority = 11)
+    @Test(description =  "test case with delete One Of Uploaded Files", groups = {"Expertise"}, priority = 12)
     public void deleteOneOfUploudedFiles() throws InterruptedException {
         expertiseUserPage.deleteOneOfUploadedFiles();
     }
 
+    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 12)
+    public void reestablishUploadedFiles() throws InterruptedException {
+        expertiseUserPage.reestablishUploadedFiles();
+    }
 
 
 

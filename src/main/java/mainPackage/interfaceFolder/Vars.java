@@ -29,4 +29,6 @@ public interface Vars {
 
     String personalUser = "taras.myza.84@gmail.com";
     String personalUserPassword = "123456";
+
+
 }
