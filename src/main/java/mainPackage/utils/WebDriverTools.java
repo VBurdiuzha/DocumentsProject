@@ -1,6 +1,8 @@
 package mainPackage.utils;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import org.junit.Assert;
@@ -64,20 +66,25 @@ public class WebDriverTools {
 
     public static void addMoneyPOSTrequest(int money)
     {
-        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1/payment/replenishacc";
+        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1/payment/replenishaccount";
         RequestSpecification request = RestAssured.given();
         JSONObject requestParams = new JSONObject();
-        requestParams.put("change", money);
+        requestParams.put("change", 1000);
         request.header("Content-Type", "application/json");
         request.header("Authorization", "Bearer b71c0688d16d574a17dde2b85f8258fd3c295043951a5640f123f8bb3edf41c4");
         request.body(requestParams.toJSONString());
+
+        System.out.println(requestParams.toJSONString());
         io.restassured.response.Response response = request.post("payment");
+        System.out.println("Response body: " + response.body().asString());
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
 
                 /*     http://toolsqa.com/rest-assured/post-request-using-rest-assured/    */
 
     }
+
+
 
     public static void withdrawMoneyPOSTrequest(int money)
     {

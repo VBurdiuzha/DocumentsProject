@@ -333,12 +333,12 @@ public class ExpertiseUserPage {
     }
 
     public void haveNotMoney (){
-        driver.get(Vars.baseURL);
-        driver.findElement(loginBotton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
+//        driver.get(Vars.baseURL);
+//        driver.findElement(loginBotton).click();
+//        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+//        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+//        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+//        profile.click();
 
         WebDriverTools.addMoneyPOSTrequest(1000);
     }
