@@ -78,11 +78,15 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.deleteOneOfUploadedFiles();
     }
 
-    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 12)
+    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 13)
     public void reestablishUploadedFiles() throws InterruptedException {
         expertiseUserPage.reestablishUploadedFiles();
     }
 
+    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 14)
+    public void haveNotMoney() throws InterruptedException {
+        expertiseUserPage.haveNotMoney();
+    }
 
 
 }

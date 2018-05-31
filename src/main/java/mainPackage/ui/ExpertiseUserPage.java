@@ -89,17 +89,6 @@ public class ExpertiseUserPage {
     }
 
     public void validData() {
-
-
-        driver.get(Vars.baseURL);
-        driver.findElement(loginBotton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-
-
-
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -117,11 +106,6 @@ public class ExpertiseUserPage {
         WebDriverTools.FluentWaitFunction(continueWork);
         continueWork.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
-
-
-        WebDriverTools.addMoneyPOSTrequest(1000);
-
-
 
 
     }
@@ -320,17 +304,6 @@ public class ExpertiseUserPage {
 
 
     public void reestablishUploadedFiles () {
-
-        driver.get(Vars.baseURL);
-        driver.findElement(loginBotton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-
-
-
-
         driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
@@ -359,7 +332,16 @@ public class ExpertiseUserPage {
 
     }
 
+    public void haveNotMoney (){
+        driver.get(Vars.baseURL);
+        driver.findElement(loginBotton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
 
+        WebDriverTools.addMoneyPOSTrequest(1000);
+    }
 
 
 }

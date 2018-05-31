@@ -64,27 +64,37 @@ public class WebDriverTools {
 
     public static void addMoneyPOSTrequest(int money)
     {
-        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1/payment/replenishaccount";
+        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1/payment/replenishacc";
         RequestSpecification request = RestAssured.given();
-
         JSONObject requestParams = new JSONObject();
         requestParams.put("change", money);
-
-// Add a header stating the Request body is a JSON
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer ba062360c8fa7d51ac518d5b5c2e7a0ff2d07fd69dda4f21dc35d142864d1e9f");
-
-// Add the Json to the body of the request
+        request.header("Authorization", "Bearer b71c0688d16d574a17dde2b85f8258fd3c295043951a5640f123f8bb3edf41c4");
         request.body(requestParams.toJSONString());
-
-// Post the request and check the response
         io.restassured.response.Response response = request.post("payment");
-
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
+
+                /*     http://toolsqa.com/rest-assured/post-request-using-rest-assured/    */
+
     }
 
+    public static void withdrawMoneyPOSTrequest(int money)
+    {
+        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1/payment/changeaccount";
+        RequestSpecification request = RestAssured.given();
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("change", money);
+        request.header("Content-Type", "application/json");
+        request.header("Authorization", "Bearer b71c0688d16d574a17dde2b85f8258fd3c295043951a5640f123f8bb3edf41c4");
+        request.body(requestParams.toJSONString());
+        io.restassured.response.Response response = request.post("payment");
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode, 200);
 
+                /*     http://toolsqa.com/rest-assured/post-request-using-rest-assured/    */
+
+    }
 
 
 }
