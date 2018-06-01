@@ -1,9 +1,10 @@
 package mainPackage.utils;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.ResponseBody;
+import org.json.*;
 import io.restassured.specification.RequestSpecification;
+
+import mainPackage.interfaceFolder.ExpertiseVars;
 import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -12,14 +13,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
+
 import org.openqa.selenium.support.ui.WebDriverWait;
-import javax.xml.ws.Response;
-import java.util.NoSuchElementException;
+
+
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
 
 
 public class WebDriverTools {
@@ -66,17 +68,41 @@ public class WebDriverTools {
 
     public static void addMoneyPOSTrequest(int money)
     {
-        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1/payment/replenishaccount";
-        RequestSpecification request = RestAssured.given();
+        RestAssured.baseURI ="https://stage.servicedoc.ua";
+        RequestSpecification request = given();
         JSONObject requestParams = new JSONObject();
-        requestParams.put("change", 1000);
+        requestParams.put("change", money);
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer b71c0688d16d574a17dde2b85f8258fd3c295043951a5640f123f8bb3edf41c4");
+        request.header("Authorization", ExpertiseVars.tokenUser);
         request.body(requestParams.toJSONString());
 
         System.out.println(requestParams.toJSONString());
-        io.restassured.response.Response response = request.post("payment");
+        io.restassured.response.Response response = request.post("/api/v1/payment/replenishaccount");
         System.out.println("Response body: " + response.body().asString());
+        System.out.println(response);
+        System.out.println(request);
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode, 200);
+
+                /*     http://toolsqa.com/rest-assured/post-request-using-rest-assured/    */
+    }
+
+    public static void withdrawMoneyPOSTrequest(String money)
+    {
+        RestAssured.baseURI ="https://stage.servicedoc.ua";
+        RequestSpecification request = given();
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("change", money);
+        requestParams.put("userId", "5af40ce5bb4c21029830830d");
+        requestParams.put("forAdminPanel", 1);
+        request.header("Content-Type", "application/json");
+        request.header("Authorization", ExpertiseVars.tokenAdmin);
+        request.body(requestParams.toJSONString());
+
+        System.out.println(requestParams.toJSONString());
+        io.restassured.response.Response response = request.post("/api/v1/payment/changeaccount/");
+        System.out.println("Response body: " + response.body().asString());
+        System.out.println(request);
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
 
@@ -85,22 +111,40 @@ public class WebDriverTools {
     }
 
 
-
-    public static void withdrawMoneyPOSTrequest(int money)
+    public static String authorizationGetToken(String Name, String Passw)
     {
-        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1/payment/changeaccount";
-        RequestSpecification request = RestAssured.given();
+        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
+        RequestSpecification request = given();
         JSONObject requestParams = new JSONObject();
-        requestParams.put("change", money);
+        requestParams.put("client_id", "android");
+        requestParams.put("client_secret", "SomeRandomCharsAndNumbers");
+        requestParams.put("email", Name);
+        requestParams.put("grant_type", "password");
+        requestParams.put("password", Passw);
+
+        requestParams.put("side", "front");
+
+        requestParams.put("username", Name);
         request.header("Content-Type", "application/json");
-        request.header("Authorization", "Bearer b71c0688d16d574a17dde2b85f8258fd3c295043951a5640f123f8bb3edf41c4");
         request.body(requestParams.toJSONString());
-        io.restassured.response.Response response = request.post("payment");
+
+
+        System.out.println(requestParams.toJSONString());
+        io.restassured.response.Response response = request.post("/oauth/token");
+        System.out.println("Response body: " + response.body().asString());
+
+
+        JSONObject obj = new JSONObject("{\"name\": \"Hi\"}");
+        String pageName = obj.("pageInfo").getString("pageName");
+
+
+
+
+
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
-
-                /*     http://toolsqa.com/rest-assured/post-request-using-rest-assured/    */
-
+            return
+                "test";
     }
 
 

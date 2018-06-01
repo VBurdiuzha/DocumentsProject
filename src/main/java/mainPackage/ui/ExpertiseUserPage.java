@@ -65,7 +65,8 @@ public class ExpertiseUserPage {
     private WebElement reestablis;
     @FindBy(linkText = "expertise.png")
     private WebElement fileExpertise;
-
+    @FindBy(linkText = "Пополнить")
+    private WebElement getMoney;
 
 
 
@@ -333,16 +334,41 @@ public class ExpertiseUserPage {
     }
 
     public void haveNotMoney (){
-//        driver.get(Vars.baseURL);
-//        driver.findElement(loginBotton).click();
-//        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-//        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-//        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-//        profile.click();
+        driver.get(Vars.baseURL);
+        driver.navigate().refresh();
+        driver.findElement(loginBotton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
 
-        WebDriverTools.addMoneyPOSTrequest(1000);
+        WebDriverTools.withdrawMoneyPOSTrequest("-10");
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        nextButton.click();
+        WebDriverTools.FluentWaitFunction(payAndGo);
+        payAndGo.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"app\"]/div/div[1]/div[3]/div/div/div[2]/button")).isDisplayed());
+
+
+        WebDriverTools.addMoneyPOSTrequest(10);
+
     }
 
+    public String getToken(){
+        return
+        WebDriverTools.authorizationGetToken("regularUserAutoTest@email.ua","123456");
+    }
 
 }
 
