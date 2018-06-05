@@ -365,8 +365,11 @@ public class ExpertiseUserPage {
 
     }
 
-    public void addMonyTest(){
+    public void addMoneyTest(){
         WebDriverTools.addMoneyPOSTrequest(10);
+    }
+    public void minusMoneyTest(){
+        WebDriverTools.withdrawMoneyPOSTrequest("-10");
     }
 
 }

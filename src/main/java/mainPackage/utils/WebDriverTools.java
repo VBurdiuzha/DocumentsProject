@@ -94,8 +94,8 @@ public class WebDriverTools {
         requestParams.put("userId", "5af40ce5bb4c21029830830d");
         requestParams.put("forAdminPanel", 1);
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
-                (Vars.regularUser, Vars.regularUserPassword));
+        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenAdmin
+                (Vars.adminUser, Vars.regularUserPassword));
         request.body(requestParams.toJSONString());
 
         System.out.println(requestParams.toJSONString());
@@ -143,5 +143,38 @@ public class WebDriverTools {
             return
                 tokenUI;
     }
+
+    public static String authorizationGetTokenAdmin(String Name, String Passw)
+    {
+        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
+        RequestSpecification request = given();
+        org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
+        requestParams.put("client_id", "android");
+        requestParams.put("client_secret", "SomeRandomCharsAndNumbers");
+        requestParams.put("email", Name);
+        requestParams.put("grant_type", "password");
+        requestParams.put("password", Passw);
+        requestParams.put("username", Name);
+        requestParams.put("forAdminPanel", 1);
+        request.header("Content-Type", "application/json");
+        request.body(requestParams.toJSONString());
+
+
+        System.out.println(requestParams.toJSONString());
+        io.restassured.response.Response response = request.post("/oauth/token");
+        System.out.println("Response body: " + response.body().asString());
+        java.lang.String responseSTR = response.body().asString();
+
+        org.json.JSONObject obj = new JSONObject(responseSTR);
+        String tokenAdmin = obj.getString("access_token");
+
+        System.out.println("This is my token : " + tokenAdmin);
+
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode, 200);
+        return
+                tokenAdmin;
+    }
+
 
 }
