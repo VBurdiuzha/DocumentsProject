@@ -1,25 +1,14 @@
 package mainPackage.ui;
 
 
-import javafx.scene.web.WebView;
 import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
-import mainPackage.utils.WebDriverTestBase;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.sql.Driver;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
-
-import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
@@ -63,7 +52,7 @@ public class ExpertiseUserPage {
     private WebElement deleteFile;
     @FindBy(css = "#front96c67a9f92654c30aec8dd319d49623a")
     private WebElement reestablis;
-    @FindBy(linkText = "expertise.png")
+    @FindBy(css = "*[class^='FileName 7568fe1cc132338520598c09a4fefbef']")
     private WebElement fileExpertise;
     @FindBy(linkText = "Пополнить")
     private WebElement getMoney;
@@ -180,6 +169,8 @@ public class ExpertiseUserPage {
     }
 
     public void requisitesField() {
+
+
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -313,6 +304,13 @@ public class ExpertiseUserPage {
 
     public void reestablishUploadedFiles() {
 
+        driver.get(Vars.baseURL);
+        driver.findElement(loginBotton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
         driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
@@ -325,19 +323,15 @@ public class ExpertiseUserPage {
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
         fileExpertise.click();
+
         WebDriverTools.clickOnInvisibleElement(deleteFile);
         reestablis.click();
         WebDriverTools.FluentWaitFunction(nextButton);
         nextButton.click();
         WebDriverTools.FluentWaitFunction(payAndGo);
         payAndGo.click();
-        WebDriverTools.FluentWaitFunction(continueWork);
-        continueWork.click();
+        WebDriverTools.clickOnInvisibleElement(continueWork);
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
-
-
-                                /* need add key for file */
-
 
     }
 
