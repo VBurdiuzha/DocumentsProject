@@ -8,8 +8,11 @@ public interface ExpertiseVars {
     String attachmentFileNamePNG = "expertise.png";
     String attachmentFileNamePDF = "checklist-mobile-app-testen.pdf";
     String attachmentFileNameDOCX = "Adobe Illustrator CS6 на Linux.docx";
+    String attachmentFileNameXML = "50мб+.xml";
     String attachmentFileName50MB = "50мб+ copy.jpg";
     String typeToken = "Bearer ";
+
+
 
 
 }

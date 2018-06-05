@@ -28,7 +28,7 @@ public class ExpertiseUserPage {
     private final By inputUsername = cssSelector("#front480616263a00926a515c2aaf34b53fcc");
     private final By inputPassword = cssSelector("#front75da0a9226c31d6d56e327f558c4ccd8");
     private final By loginBotton = xpath("//*[@id=\"front64fbd75d07ec519ac1c34bbf3c93e41b\"]");
-    private final By roleInDoc = xpath ( "//*[@id=\"front15028f72ff543a7225493002142fac78\"]");
+    private final By roleInDoc = xpath("//*[@id=\"front15028f72ff543a7225493002142fac78\"]");
     private final By textarea = cssSelector("#front6cbe73215f7d646d4888d05f14810819");
 
     @FindBy(xpath = "//*[@id=\"fronta0e5a7b36e788e511ab810fb77be3bc2\"]")
@@ -67,8 +67,6 @@ public class ExpertiseUserPage {
     private WebElement fileExpertise;
     @FindBy(linkText = "Пополнить")
     private WebElement getMoney;
-
-
 
 
     private final WebDriver driver;
@@ -111,7 +109,7 @@ public class ExpertiseUserPage {
 
     }
 
-    public void doubleAttachment(){
+    public void doubleAttachment() {
         driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
@@ -133,7 +131,8 @@ public class ExpertiseUserPage {
     }
 
 
-    public void emptyTypeField(){
+    public void emptyTypeField() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
@@ -145,7 +144,9 @@ public class ExpertiseUserPage {
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.cssSelector("#frontefe13855ecb4f08c893b82990641b449")).isDisplayed());
     }
-    public void emptyWhoYouAreField()  {
+
+    public void emptyWhoYouAreField() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -160,7 +161,8 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front3dd6d39ab46cf734a1a23794bcc6a2dd\"]")).isDisplayed());
     }
 
-    public void incorrectSecondField(){
+    public void incorrectSecondField() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -177,7 +179,8 @@ public class ExpertiseUserPage {
 
     }
 
-    public void requisitesField()  {
+    public void requisitesField() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -193,6 +196,7 @@ public class ExpertiseUserPage {
     }
 
     public void emptyRequisiteField() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -208,11 +212,12 @@ public class ExpertiseUserPage {
         payAndGo.click();
         WebDriverTools.FluentWaitFunction(continueWork);
         continueWork.click();
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front8c5a7f84a773a7e92820274c5740a8a7\"]")).isDisplayed());
 
     }
 
-    public void emptyAttachmentField()  {
+    public void emptyAttachmentField() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -226,7 +231,8 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front393917ab1b5b784ed233b208744263f8\"]")).isDisplayed());
     }
 
-    public void attachment21 () throws InterruptedException {
+    public void attachment21() throws InterruptedException {
+
         driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
@@ -256,11 +262,11 @@ public class ExpertiseUserPage {
                                        /* need fix bug */
 
 
-
     }
 
 
-    public void fileMoreThen50MB () {
+    public void fileMoreThen50MB() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -279,7 +285,8 @@ public class ExpertiseUserPage {
                                       /* need fix bug */
     }
 
-    public void deleteOneOfUploadedFiles () {
+    public void deleteOneOfUploadedFiles() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
@@ -304,7 +311,8 @@ public class ExpertiseUserPage {
     }
 
 
-    public void reestablishUploadedFiles () {
+    public void reestablishUploadedFiles() {
+
         driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
@@ -333,14 +341,8 @@ public class ExpertiseUserPage {
 
     }
 
-    public void haveNotMoney (){
-        driver.get(Vars.baseURL);
+    public void haveNotMoney() {
         driver.navigate().refresh();
-        driver.findElement(loginBotton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
 
         WebDriverTools.withdrawMoneyPOSTrequest("-10");
 
@@ -365,7 +367,46 @@ public class ExpertiseUserPage {
 
     }
 
+    public void emptyAllField() {
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        WebDriverTools.FluentWaitFunction(nextButton);
+        nextButton.click();
+
+        Assert.assertTrue(driver.findElement(By.cssSelector("#frontefe13855ecb4f08c893b82990641b449")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front3dd6d39ab46cf734a1a23794bcc6a2dd\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front8c5a7f84a773a7e92820274c5740a8a7\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front393917ab1b5b784ed233b208744263f8\"]")).isDisplayed());
+
+
+                                        /* need add key for file */
+
+
+    }
+
+    public void incorrectFormatFile() {
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNameXML);
+        nextButton.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/div/span/div[2]/div/ul[2]/li/ul/li[2]")).isDisplayed());
+
+
+
+
+
+    }
+
 }
-
-
-

@@ -83,9 +83,19 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.reestablishUploadedFiles();
     }
 
-    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 14)
+    @Test(description =  "test case have not money", groups = {"Expertise"}, priority = 15)
     public void haveNotMoney() throws InterruptedException {
         expertiseUserPage.haveNotMoney();
+    }
+
+    @Test(description =  "test case with empty all fields", groups = {"Expertise"}, priority = 16)
+    public void emptyAllField() throws InterruptedException {
+        expertiseUserPage.emptyAllField();
+    }
+
+    @Test(description =  "test case with incorrect Format File", groups = {"Expertise"}, priority = 16)
+    public void incorrectFormatFile() throws InterruptedException {
+        expertiseUserPage.incorrectFormatFile();
     }
 
 }
