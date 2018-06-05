@@ -88,14 +88,4 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.haveNotMoney();
     }
 
-    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 14)
-    public void addMoneyTest() throws InterruptedException {
-        expertiseUserPage.addMoneyTest();
-    }
-
-    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 14)
-    public void minusMoneyTest() throws InterruptedException {
-        expertiseUserPage.minusMoneyTest();
-    }
-
 }
