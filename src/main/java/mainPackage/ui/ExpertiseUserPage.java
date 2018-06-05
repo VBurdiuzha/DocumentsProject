@@ -365,9 +365,8 @@ public class ExpertiseUserPage {
 
     }
 
-    public String getToken(){
-        return
-        WebDriverTools.authorizationGetToken("regularUserAutoTest@email.ua","123456");
+    public void addMonyTest(){
+        WebDriverTools.addMoneyPOSTrequest(10);
     }
 
 }

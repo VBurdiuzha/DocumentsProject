@@ -88,9 +88,11 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.haveNotMoney();
     }
 
-    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 15)
-    public void getToken() throws InterruptedException {
-        expertiseUserPage.getToken();
+    @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 14)
+    public void addMoneyTest() throws InterruptedException {
+        expertiseUserPage.addMonyTest();
     }
+
+
 
 }

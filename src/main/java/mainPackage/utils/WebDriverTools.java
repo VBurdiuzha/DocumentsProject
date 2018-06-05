@@ -1,26 +1,23 @@
 package mainPackage.utils;
 
 import io.restassured.RestAssured;
-import org.json.*;
 import io.restassured.specification.RequestSpecification;
-
 import mainPackage.interfaceFolder.ExpertiseVars;
-import org.json.simple.JSONObject;
-import org.junit.Assert;
+
+import mainPackage.interfaceFolder.Vars;
+import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-
+import org.json.*;
+//import org.json.simple.JSONObject;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 
@@ -70,10 +67,11 @@ public class WebDriverTools {
     {
         RestAssured.baseURI ="https://stage.servicedoc.ua";
         RequestSpecification request = given();
-        JSONObject requestParams = new JSONObject();
+        org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
         requestParams.put("change", money);
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.tokenUser);
+        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
+                (Vars.regularUser, Vars.regularUserPassword));
         request.body(requestParams.toJSONString());
 
         System.out.println(requestParams.toJSONString());
@@ -91,12 +89,13 @@ public class WebDriverTools {
     {
         RestAssured.baseURI ="https://stage.servicedoc.ua";
         RequestSpecification request = given();
-        JSONObject requestParams = new JSONObject();
+        org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
         requestParams.put("change", money);
         requestParams.put("userId", "5af40ce5bb4c21029830830d");
         requestParams.put("forAdminPanel", 1);
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.tokenAdmin);
+        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
+                (Vars.regularUser, Vars.regularUserPassword));
         request.body(requestParams.toJSONString());
 
         System.out.println(requestParams.toJSONString());
@@ -111,11 +110,11 @@ public class WebDriverTools {
     }
 
 
-    public static String authorizationGetToken(String Name, String Passw)
+    public static String authorizationGetTokenUI(String Name, String Passw)
     {
         RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
         RequestSpecification request = given();
-        JSONObject requestParams = new JSONObject();
+        org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
         requestParams.put("client_id", "android");
         requestParams.put("client_secret", "SomeRandomCharsAndNumbers");
         requestParams.put("email", Name);
@@ -132,20 +131,17 @@ public class WebDriverTools {
         System.out.println(requestParams.toJSONString());
         io.restassured.response.Response response = request.post("/oauth/token");
         System.out.println("Response body: " + response.body().asString());
+        java.lang.String responseSTR = response.body().asString();
 
+        org.json.JSONObject obj = new JSONObject(responseSTR);
+        String tokenUI = obj.getString("access_token");
 
-        JSONObject obj = new JSONObject("{\"name\": \"Hi\"}");
-        String pageName = obj.("pageInfo").getString("pageName");
-
-
-
-
+        System.out.println("This is my token : " + tokenUI);
 
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
             return
-                "test";
+                tokenUI;
     }
-
 
 }
