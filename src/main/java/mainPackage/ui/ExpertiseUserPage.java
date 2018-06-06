@@ -52,7 +52,7 @@ public class ExpertiseUserPage {
     private WebElement deleteFile;
     @FindBy(css = "#front96c67a9f92654c30aec8dd319d49623a")
     private WebElement reestablis;
-    @FindBy(css = "*[class^='FileName 7568fe1cc132338520598c09a4fefbef']")
+    @FindBy(css = "div[class='FileName 7568fe1cc132338520598c09a4fefbef']")
     private WebElement fileExpertise;
     @FindBy(linkText = "Пополнить")
     private WebElement getMoney;
@@ -304,13 +304,6 @@ public class ExpertiseUserPage {
 
     public void reestablishUploadedFiles() {
 
-        driver.get(Vars.baseURL);
-        driver.findElement(loginBotton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-
         driver.navigate().refresh();
         expertiseModule.click();
         createApplication.click();
@@ -321,9 +314,7 @@ public class ExpertiseUserPage {
         WebDriverTools.clearAndFill(textarea, "This automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
         fileExpertise.click();
-
         WebDriverTools.clickOnInvisibleElement(deleteFile);
         reestablis.click();
         WebDriverTools.FluentWaitFunction(nextButton);
