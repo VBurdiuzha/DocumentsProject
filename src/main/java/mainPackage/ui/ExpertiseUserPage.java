@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import static jdk.nashorn.internal.objects.NativeString.length;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
@@ -77,6 +80,15 @@ public class ExpertiseUserPage {
     }
 
     public void validData() {
+
+        driver.get(Vars.baseURL);
+        driver.findElement(loginBotton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
+
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -89,6 +101,13 @@ public class ExpertiseUserPage {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
+
+        String selector = "#front721c0f66c16e78c7120e829611dac8c8";
+        String num = selector.substring(35, selector.length());
+
+        driver.findElement(By.id(By.cssSelector("#front721c0f66c16e78c7120e829611dac8c8")+num));
+
+
         WebDriverTools.FluentWaitFunction(payAndGo);
         payAndGo.click();
         WebDriverTools.FluentWaitFunction(continueWork);
