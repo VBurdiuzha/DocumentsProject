@@ -10,3 +10,5 @@
 
 
         <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/MyApplications.xml -->
+
+                                    <!--allure serve allure-results-->
