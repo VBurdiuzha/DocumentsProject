@@ -25,7 +25,6 @@ public class RegistrationPage {
     private List<WebElement> errorEmail;
     @FindBy(xpath = "//div[contains(text(),\"Пароль должен содержать не менее 6-ти символов\")]")
 
-    //*[@id="app"]/div/div[1]/div[2]/div/div
 
     private List<WebElement> errorPassw;
     @FindBy(css = "#front64fbd75d07ec519ac1c34bbf3c93e41b > div > div > span")

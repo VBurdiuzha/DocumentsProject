@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import static jdk.nashorn.internal.objects.NativeString.length;
-import static jdk.nashorn.internal.objects.NativeString.substring;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
@@ -27,7 +25,7 @@ public class ExpertiseUserPage {
     private WebElement avatar;
     @FindBy(css = "#front3d6305e5e1809ea5588858bbcf65cc36")
     private WebElement profile;
-    @FindBy(css = "#sidemenu > li.li_review > a")
+    @FindBy(css = "#front29b36a788ae06325de5b6c50e83d6cc6")
     private WebElement expertiseModule;
     @FindBy(css = "#maincolumn > div > div.tabContainer > span:nth-child(1) > div > a")
     private WebElement tabNewDoc;
