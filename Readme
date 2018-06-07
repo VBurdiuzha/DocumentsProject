@@ -9,3 +9,15 @@
 7. git checkout dev
 8. git merge [name of branch]
 9. git push origin dev
+
+
+-- Add local branch to the dev --
+
+1. git checkout dev
+2. git merge --squash [name of branch]
+3. git commit -m "[example description]"
+4. git push
+
+
+
+
