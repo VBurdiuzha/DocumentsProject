@@ -1,0 +1,1 @@
+{"uuid":"e7dc9a06-9903-4810-b178-8f49ed13aa25","name":"uiTest.MyApplication","start":1528361499547,"stop":1528361509517,"children":["c1bda21d-85a1-4b1a-a12f-aa6a7c3cefa9"],"befores":[{"name":"initPages","status":"passed","stage":"finished","description":"","start":1528361502299,"stop":1528361502379}]}
