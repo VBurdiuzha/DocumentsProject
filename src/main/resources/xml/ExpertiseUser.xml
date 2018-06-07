@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Expertise Suite">
+    <test name="Expertise">
+        <classes>
+            <class name="uiTest.ExpertiseUser"/>
+        </classes>
+    </test>
+</suite>
+
+        <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/ExpertiseUser.xml -->

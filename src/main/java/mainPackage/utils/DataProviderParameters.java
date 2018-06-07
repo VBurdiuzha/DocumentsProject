@@ -1,6 +1,6 @@
 package mainPackage.utils;
 
-import mainPackage.Vars;
+import mainPackage.interfaceFolder.Vars;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderParameters {
