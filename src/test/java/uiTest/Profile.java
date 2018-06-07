@@ -1,6 +1,6 @@
 package uiTest;
 
-import mainPackage.Vars;
+import mainPackage.interfaceFolder.Vars;
 import mainPackage.ui.LoginPage;
 import mainPackage.ui.ProfilePage;
 import mainPackage.utils.DataProviderParameters;
