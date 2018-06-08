@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import static jdk.nashorn.internal.objects.NativeString.length;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
@@ -17,7 +19,7 @@ public class ExpertiseUserPage {
 
     private final By inputUsername = cssSelector("#front480616263a00926a515c2aaf34b53fcc");
     private final By inputPassword = cssSelector("#front75da0a9226c31d6d56e327f558c4ccd8");
-    private final By loginBotton = xpath("//*[@id=\"front64fbd75d07ec519ac1c34bbf3c93e41b\"]");
+    private final By loginButton = cssSelector("#front64fbd75d07ec519ac1c34bbf3c93e41b");
     private final By roleInDoc = xpath("//*[@id=\"front15028f72ff543a7225493002142fac78\"]");
     private final By textarea = cssSelector("#front6cbe73215f7d646d4888d05f14810819");
 
@@ -25,7 +27,7 @@ public class ExpertiseUserPage {
     private WebElement avatar;
     @FindBy(css = "#front3d6305e5e1809ea5588858bbcf65cc36")
     private WebElement profile;
-    @FindBy(css = "#front29b36a788ae06325de5b6c50e83d6cc6")
+    @FindBy(css = "#sidemenu > li.li_review > a")
     private WebElement expertiseModule;
     @FindBy(css = "#maincolumn > div > div.tabContainer > span:nth-child(1) > div > a")
     private WebElement tabNewDoc;
@@ -68,7 +70,7 @@ public class ExpertiseUserPage {
 
     public void expertiseModule() {
         driver.get(Vars.baseURL);
-        driver.findElement(loginBotton).click();
+        driver.findElement(loginButton).click();
         WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
         WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
@@ -78,14 +80,6 @@ public class ExpertiseUserPage {
     }
 
     public void validData() {
-
-        driver.get(Vars.baseURL);
-        driver.findElement(loginBotton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -100,18 +94,14 @@ public class ExpertiseUserPage {
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
 
-        String selector = "#front721c0f66c16e78c7120e829611dac8c8";
-        String num = selector.substring(35, selector.length());
-
-        driver.findElement(By.id(By.cssSelector("#front721c0f66c16e78c7120e829611dac8c8")+num));
-
+        String selector = "#front721c0f66c16e78c7120e829611dac8c8_242";
+        String num = selector.substring(39, selector.length());   // get unique value (in this case "242")
 
         WebDriverTools.FluentWaitFunction(payAndGo);
         payAndGo.click();
         WebDriverTools.FluentWaitFunction(continueWork);
         continueWork.click();
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
-
+        Assert.assertFalse(By.id(By.cssSelector("#front_rid_") + num).equals(true));
 
     }
 
@@ -212,15 +202,10 @@ public class ExpertiseUserPage {
         typeDoc.click();
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
-        radioButton3.click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
         nextButton.click();
-        WebDriverTools.FluentWaitFunction(payAndGo);
-        payAndGo.click();
-        WebDriverTools.FluentWaitFunction(continueWork);
-        continueWork.click();
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front8c5a7f84a773a7e92820274c5740a8a7\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("#front8c5a7f84a773a7e92820274c5740a8a7")).isDisplayed());
 
     }
 
