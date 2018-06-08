@@ -27,8 +27,8 @@ public interface Vars {
     String OSSpass = "1c264ec95143b";
     String OSSEmail = "v.burdiuzha@ossystem.com.ua";
 
-    String personalUser = "taras.myza.84@gmail.com";
-    String personalUserPassword = "123456";
+    String personalUser = "";
+    String personalUserPassword = "";
 
 
 }

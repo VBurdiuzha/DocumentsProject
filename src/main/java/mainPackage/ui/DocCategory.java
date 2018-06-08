@@ -1,11 +1,13 @@
 package mainPackage.ui;
 
+import com.oracle.jrockit.jfr.UseConstantPool;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import ru.yandex.qatools.allure.annotations.Step;
 
 public class DocCategory {
     private final By CATEGORYDOCUMENTS = By.xpath("//a[@href=\"/ru/doccatalog\"]");
@@ -15,7 +17,7 @@ public class DocCategory {
     private final By NEXTBUTTONFERSTSTEP = By.xpath("//button[@class=\"default-button\"]");
     private final By FIELD = By.id("35829368876455533582936887645553");
     private final By NEXTBUTTONSECONDSTEP = By.xpath("//div[@class=\"nextButton\"]");
-    private final By CALCULATEDOCUMENTTEMPLATE = By.xpath("//div/p[contains(text(), \"Калькулируемый маркер\"0)]");
+    private final By CALCULATEDOCUMENTTEMPLATE = By.xpath("//div/p[contains(text(), \"Калькулируемый маркер\")]");
 
     private final By PAYMENT_BUTTON_PDF = By.xpath("//span[@style=\"font-family: Semibold;\"]");
     private final By BUY_SUCCESS_WINDOW = By.xpath("//div[@class=\"buySuccessModalWindow\"]");
@@ -34,6 +36,7 @@ public class DocCategory {
         new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(bySelector));
     }
 
+    @Step("Document category page open")
     public void toDocCategoryPage() throws InterruptedException {
         wairForElementDisplayed(CATEGORYDOCUMENTS);
         driver.findElement(CATEGORYDOCUMENTS).click();
@@ -46,6 +49,7 @@ public class DocCategory {
         Assert.assertTrue(driver.findElement(By.xpath("//h3[contains(text(),\"Automation\")]")).isDisplayed());
     }
 
+    @Step("Create simple marker document")
     public void createSimpleMarker(){
         wairForElementDisplayed(SIMPLEMARKERTEMPLATE);
         driver.findElement(SIMPLEMARKERTEMPLATE).click();
@@ -60,11 +64,9 @@ public class DocCategory {
         Assert.assertTrue(driver.findElement(By.xpath("//div[@class=\"buySuccessModalWindow\"]")).isDisplayed());
         driver.findElement(CONTINUEM_WORK_OK_BUTTON).click();
         Assert.assertTrue(driver.findElement(By.xpath("//h1[@class=\"gratitude\"]")).isDisplayed());
-
-
-
     }
 
+    @Step("Create difficult marker document")
     public void createDifficultMarker(){
         driver.findElement(DIFFICULTMARKER).click();
         Assert.assertTrue(driver.findElement(By.xpath("//h3[contains(text(), \"Сложный маркер\")]")).isDisplayed());
@@ -73,6 +75,7 @@ public class DocCategory {
         driver.findElement(NEXTBUTTONFERSTSTEP).click();
 
     }
+
 
     public void createCalculateDocument(){
         driver.findElement(CALCULATEDOCUMENTTEMPLATE).click();
