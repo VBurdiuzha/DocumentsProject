@@ -28,7 +28,36 @@ public class MyApplicationsPage {
     private WebElement expertiseModule;
     @FindBy(css = "#front2fcf3840290d49dd8320b34367dc760f")
     private WebElement myAppTab;
-
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.Context > div > div:nth-child(2) > span.popup > div > button")
+    private WebElement actions;
+    @FindBy(css = "#front96645a8c27674b0b8bf42dc3fa9ae440")
+    private WebElement view;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > ul > li.PriceItem > div")
+    private WebElement numOfApplication;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.CreatedAt > div.Value")
+    private WebElement dateStart;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.UpdatedAt > div.Value")
+    private WebElement dateUpdate;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Status > div.Value")
+    private WebElement status;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Document > div.Value")
+    private WebElement typeOfApplication;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Ownership > div.Value")
+    private WebElement side;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Requisites > div.Value")
+    private WebElement requisiteDoc;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Text > div.Value")
+    private WebElement text;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.MultipleFileSelection > div.Value > div > div > ul > li > ul > li")
+    private WebElement attachment;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.AddButtonContainer > button")
+    private WebElement addButton;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.AddButtonContainer > div > svg")
+    private WebElement descriptionIcon;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.questionHead")
+    private WebElement messages;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.historyTitle")
+    private WebElement flowApplication;
 
 
 
@@ -49,5 +78,28 @@ public class MyApplicationsPage {
         Assert.assertNotNull(myAppTab);
 
     }
+
+    public void reviewAppInTheWork(){
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        actions.click();
+        view.click();
+        Assert.assertNotNull(numOfApplication);
+        Assert.assertNotNull(dateStart);
+        Assert.assertNotNull(dateUpdate);
+        Assert.assertNotNull(status);
+        Assert.assertNotNull(typeOfApplication);
+        Assert.assertNotNull(side);
+        Assert.assertNotNull(requisiteDoc);
+        Assert.assertNotNull(text);
+        Assert.assertNotNull(attachment);
+        Assert.assertNotNull(addButton);
+        Assert.assertNotNull(descriptionIcon);
+        Assert.assertNotNull(messages);
+        Assert.assertNotNull(flowApplication);
+    }
+
+
 
 }

@@ -24,4 +24,9 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.expertiseModule();
 
     }
+
+    @Test(description = "Detail view application in the work", groups = {"Expertise"}, priority = 2)
+    public void reviewAppInTheWork() throws InterruptedException {
+        myApplicationsPage.reviewAppInTheWork();
+    }
 }
