@@ -1,13 +1,11 @@
 package mainPackage.ui;
 
-import com.oracle.jrockit.jfr.UseConstantPool;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import ru.yandex.qatools.allure.annotations.Step;
 
 public class DocCategory {
     private final By CATEGORYDOCUMENTS = By.xpath("//a[@href=\"/ru/doccatalog\"]");
@@ -36,7 +34,6 @@ public class DocCategory {
         new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(bySelector));
     }
 
-    @Step("Document category page open")
     public void toDocCategoryPage() throws InterruptedException {
         wairForElementDisplayed(CATEGORYDOCUMENTS);
         driver.findElement(CATEGORYDOCUMENTS).click();
@@ -49,7 +46,6 @@ public class DocCategory {
         Assert.assertTrue(driver.findElement(By.xpath("//h3[contains(text(),\"Automation\")]")).isDisplayed());
     }
 
-    @Step("Create simple marker document")
     public void createSimpleMarker(){
         wairForElementDisplayed(SIMPLEMARKERTEMPLATE);
         driver.findElement(SIMPLEMARKERTEMPLATE).click();
@@ -66,7 +62,6 @@ public class DocCategory {
         Assert.assertTrue(driver.findElement(By.xpath("//h1[@class=\"gratitude\"]")).isDisplayed());
     }
 
-    @Step("Create difficult marker document")
     public void createDifficultMarker(){
         driver.findElement(DIFFICULTMARKER).click();
         Assert.assertTrue(driver.findElement(By.xpath("//h3[contains(text(), \"Сложный маркер\")]")).isDisplayed());

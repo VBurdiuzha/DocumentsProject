@@ -1,6 +1,7 @@
 package mainPackage.ui;
 
 
+import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
@@ -51,7 +52,7 @@ public class MyApplicationsPage {
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.MultipleFileSelection > div.Value > div > div > ul > li > ul > li")
     private WebElement attachment;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.AddButtonContainer > button")
-    private WebElement addButton;
+    private WebElement updateButton;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.AddButtonContainer > div > svg")
     private WebElement descriptionIcon;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.questionHead")
@@ -60,6 +61,14 @@ public class MyApplicationsPage {
     private WebElement flowApplication;
 
 
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.wrapperAddContent > div > div.addBody > textarea")
+    private WebElement textAreaUpdateDoc;
+    @FindBy(css = "input[type=file]")
+    private WebElement uploadAttach;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.wrapperAddContent > div > div.addFooter > div > button.submit")
+    private WebElement sendButton;
+    @FindBy(css = "div[class='FileName 7568fe1cc132338520598c09a4fefbef']")
+    private WebElement fileExpertise;
 
     private final WebDriver driver;
     public MyApplicationsPage(WebDriver browser){
@@ -94,12 +103,29 @@ public class MyApplicationsPage {
         Assert.assertNotNull(requisiteDoc);
         Assert.assertNotNull(text);
         Assert.assertNotNull(attachment);
-        Assert.assertNotNull(addButton);
+        Assert.assertNotNull(updateButton);
         Assert.assertNotNull(descriptionIcon);
         Assert.assertNotNull(messages);
         Assert.assertNotNull(flowApplication);
     }
 
+    public void updateAppInTheWork() {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        actions.click();
+        view.click();
+        updateButton.click();
+        WebDriverTools.FluentWaitFunction(textAreaUpdateDoc);
+        textAreaUpdateDoc.sendKeys("   Какое-то дополнение от пользователя");
+        uploadAttach.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);;
+        WebDriverTools.clickOnInvisibleElement(sendButton);
+        WebDriverTools.FluentWaitFunction(fileExpertise);
+        Assert.assertNotNull("Какое-то дополнение от пользователя");
+        Assert.assertNotNull(fileExpertise);
 
+
+                               /* need add changes to the history */
+    }
 
 }
