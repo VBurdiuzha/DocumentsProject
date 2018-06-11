@@ -57,8 +57,12 @@ public class ExpertiseUserPage {
     private WebElement reestablis;
     @FindBy(css = "div[class='FileName 7568fe1cc132338520598c09a4fefbef']")
     private WebElement fileExpertise;
-    @FindBy(linkText = "Пополнить")
-    private WebElement getMoney;
+
+
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > span > div.MultipleFileSelection > div > ul.FilesList > li:nth-child(24) > ul > li.Message")
+    private WebElement moreThan20;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > span > div.MultipleFileSelection > div > ul.FilesList > li > ul > li.Message")
+    private WebElement moreThan50MB;
 
 
     private final WebDriver driver;
@@ -249,11 +253,7 @@ public class ExpertiseUserPage {
         payAndGo.click();
         WebDriverTools.FluentWaitFunction(continueWork);
         continueWork.click();
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
-
-
-                                       /* need fix bug */
-
+        Assert.assertTrue(moreThan20.isDisplayed());
 
     }
 
@@ -272,7 +272,7 @@ public class ExpertiseUserPage {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileName50MB);
         nextButton.click();
-        //Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front393917ab1b5b784ed233b208744263f8\"]")).isDisplayed());
+        Assert.assertTrue(moreThan50MB.isDisplayed());
 
 
                                       /* need fix bug */
@@ -367,9 +367,6 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front3dd6d39ab46cf734a1a23794bcc6a2dd\"]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front8c5a7f84a773a7e92820274c5740a8a7\"]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front393917ab1b5b784ed233b208744263f8\"]")).isDisplayed());
-
-
-                                        /* need add key for file */
 
 
     }
