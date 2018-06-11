@@ -12,6 +12,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
@@ -93,6 +96,7 @@ public class MyApplicationsPage {
         expertiseModule.click();
         myAppTab.click();
         actions.click();
+        WebDriverTools.FluentWaitFunction(view);
         view.click();
         Assert.assertNotNull(numOfApplication);
         Assert.assertNotNull(dateStart);
@@ -114,7 +118,9 @@ public class MyApplicationsPage {
         expertiseModule.click();
         myAppTab.click();
         actions.click();
+        WebDriverTools.FluentWaitFunction(view);
         view.click();
+        WebDriverTools.FluentWaitFunction(updateButton);
         updateButton.click();
         WebDriverTools.FluentWaitFunction(textAreaUpdateDoc);
         textAreaUpdateDoc.sendKeys("   Какое-то дополнение от пользователя");
@@ -127,5 +133,7 @@ public class MyApplicationsPage {
 
                                /* need add changes to the history */
     }
+
+
 
 }

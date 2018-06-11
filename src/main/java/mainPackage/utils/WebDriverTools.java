@@ -14,6 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.json.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -40,6 +43,7 @@ public class WebDriverTools {
     }
 
     public static void switchToFrame(By bySelector) {
+
         driver.switchTo().frame(driver.findElement(bySelector));
     }
 
@@ -173,6 +177,12 @@ public class WebDriverTools {
         Assert.assertEquals(statusCode, 200);
         return
                 tokenAdmin;
+    }
+
+    public void dateToday(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String dayToday = sdf.format(new Date(System.currentTimeMillis()));
+        System.out.println("Today is: " + dayToday);
     }
 
 
