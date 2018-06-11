@@ -275,7 +275,6 @@ public class ExpertiseUserPage {
         Assert.assertTrue(moreThan50MB.isDisplayed());
 
 
-                                      /* need fix bug */
     }
 
     public void deleteOneOfUploadedFiles() {
@@ -386,10 +385,6 @@ public class ExpertiseUserPage {
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNameXML);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/div/span/div[2]/div/ul[2]/li/ul/li[2]")).isDisplayed());
-
-
-
-
 
     }
 
