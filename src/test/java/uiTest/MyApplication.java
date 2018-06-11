@@ -43,4 +43,11 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.downloadAttachment();
     }
 
+    @Test(description = "download Attachment", groups = {"Expertise"}, priority = 4)
+    public void downloadAttachmentPopUp() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.downloadAttachmentPopUp();
+    }
+
+
+
 }

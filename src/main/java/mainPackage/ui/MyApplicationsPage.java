@@ -88,6 +88,8 @@ public class MyApplicationsPage {
 
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.MultipleFileSelection > div.Value > div > div > ul > li:nth-child(1) > ul > li > div.Icon > svg")
     private WebElement downloadAttachment;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.wrapperAddContent > div > div.addBody > div > div > div > ul > li > ul > li > div.Icon")
+    private WebElement downloadAttachPopUp;
 
 
     private final WebDriver driver;
@@ -173,6 +175,30 @@ public class MyApplicationsPage {
         String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
         String actual = DatatypeConverter.printHexBinary(hash);
         System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
+
+    }
+
+    public void downloadAttachmentPopUp() throws IOException, NoSuchAlgorithmException {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(filterStatus);
+        filterStatus.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(view);
+        view.click();
+        WebDriverTools.FluentWaitFunction(updateButton);
+        updateButton.click();
+        WebDriverTools.FluentWaitFunction(downloadAttachPopUp);
+        WebDriverTools.clickOnInvisibleElement(downloadAttachPopUp);
+        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));
+        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
+
+        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
+        String actual = DatatypeConverter.printHexBinary(hash);
+        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
+
 
     }
 
