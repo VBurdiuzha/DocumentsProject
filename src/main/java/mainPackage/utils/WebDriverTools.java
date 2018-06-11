@@ -3,7 +3,6 @@ package mainPackage.utils;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import mainPackage.interfaceFolder.ExpertiseVars;
-
 import mainPackage.interfaceFolder.Vars;
 import org.testng.Assert;
 import org.openqa.selenium.By;
@@ -33,11 +32,7 @@ public class WebDriverTools {
         element.sendKeys(data);
         return element;
     }
-//    public static WebElement fillFild(By selector, String data){
-//        WebElement element = driver.findElement(selector);
-//        element.sendKeys(data);
-//        return element;
-//    }
+
 
     public static void waitForElementClickable(WebElement element) {
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(element));
@@ -113,8 +108,8 @@ public class WebDriverTools {
     }
 
 
-    public static String authorizationGetTokenUI(String Name, String Passw)
-    {
+     public static String authorizationGetTokenUI(String Name, String Passw)
+     {
         RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
         RequestSpecification request = given();
         org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
@@ -178,6 +173,9 @@ public class WebDriverTools {
         return
                 tokenAdmin;
     }
+
+
+
 
 
 }
