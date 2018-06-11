@@ -7,6 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
 
 public class MyApplication extends WebDriverTestBase {
 
@@ -34,4 +37,10 @@ public class MyApplication extends WebDriverTestBase {
     public void updateAppInTheWork() throws InterruptedException {
         myApplicationsPage.updateAppInTheWork();
     }
+
+    @Test(description = "download Attachment", groups = {"Expertise"}, priority = 4)
+    public void downloadAttachment() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.downloadAttachment();
+    }
+
 }

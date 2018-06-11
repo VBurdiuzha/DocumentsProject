@@ -11,9 +11,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import sun.awt.windows.ThemeReader;
 
+import javax.xml.bind.DatatypeConverter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.cssSelector;
@@ -73,6 +81,15 @@ public class MyApplicationsPage {
     @FindBy(css = "div[class='FileName 7568fe1cc132338520598c09a4fefbef']")
     private WebElement fileExpertise;
 
+
+
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.Context > div > div.ListHeader > div.status")
+    private WebElement filterStatus;
+
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.MultipleFileSelection > div.Value > div > div > ul > li:nth-child(1) > ul > li > div.Icon > svg")
+    private WebElement downloadAttachment;
+
+
     private final WebDriver driver;
     public MyApplicationsPage(WebDriver browser){
         this.driver = browser;
@@ -117,6 +134,9 @@ public class MyApplicationsPage {
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
+        WebDriverTools.FluentWaitFunction(filterStatus);
+        filterStatus.click();
+        WebDriverTools.FluentWaitFunction(actions);
         actions.click();
         WebDriverTools.FluentWaitFunction(view);
         view.click();
@@ -134,6 +154,27 @@ public class MyApplicationsPage {
                                /* need add changes to the history */
     }
 
+    public void downloadAttachment() throws NoSuchAlgorithmException, IOException {
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(filterStatus);
+        filterStatus.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(view);
+        view.click();
+        WebDriverTools.FluentWaitFunction(downloadAttachment);
+        WebDriverTools.clickOnInvisibleElement(downloadAttachment);
+
+        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));
+        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
+
+        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
+        String actual = DatatypeConverter.printHexBinary(hash);
+        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
+
+    }
 
 
 }
