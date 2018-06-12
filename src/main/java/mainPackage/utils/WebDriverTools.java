@@ -1,26 +1,30 @@
 package mainPackage.utils;
 
+import com.sun.glass.events.KeyEvent;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import mainPackage.interfaceFolder.ExpertiseVars;
 
 import mainPackage.interfaceFolder.Vars;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.testng.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.json.*;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 import static io.restassured.RestAssured.given;
+import static java.lang.Thread.sleep;
 
 
 public class WebDriverTools {
@@ -179,11 +183,28 @@ public class WebDriverTools {
                 tokenAdmin;
     }
 
-    public void dateToday(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String dayToday = sdf.format(new Date(System.currentTimeMillis()));
-        System.out.println("Today is: " + dayToday);
+    public void makeScreenshot(WebDriver driver, String name) throws InterruptedException {
+        Thread.sleep(1000);
+        File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screen, new File("/target/screenshots/"+ getTime() +"/"+name+".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void scrollPageUp(WebDriver driver){
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("scroll(0, -250);");
+    }
+
+    public String getTime(){
+        DateFormat dateFormat = new SimpleDateFormat("(dd.MM.yyyy) HH-mm-ss");
+        Date date = new Date();
+        String today = dateFormat.format(date);
+        return today;
+    }
+
 
 
 

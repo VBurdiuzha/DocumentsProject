@@ -59,7 +59,7 @@ public class ExpertiseUserPage {
     private WebElement fileExpertise;
 
 
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > span > div.MultipleFileSelection > div > ul.FilesList > li:nth-child(24) > ul > li.Message")
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > span > div.MultipleFileSelection > div > ul.FilesList > li:nth-child(21) > ul > li.Message")
     private WebElement moreThan20;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > span > div.MultipleFileSelection > div > ul.FilesList > li > ul > li.Message")
     private WebElement moreThan50MB;
@@ -245,15 +245,8 @@ public class ExpertiseUserPage {
             attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
             attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
         }
-
-        WebDriverTools.FluentWaitFunction(nextButton);
-        nextButton.click();
-        Thread.sleep(8000);
-        WebDriverTools.FluentWaitFunction(payAndGo);
-        payAndGo.click();
-        WebDriverTools.FluentWaitFunction(continueWork);
-        continueWork.click();
         Assert.assertTrue(moreThan20.isDisplayed());
+
 
     }
 
