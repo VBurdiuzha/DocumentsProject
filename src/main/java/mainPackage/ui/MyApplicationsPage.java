@@ -1,6 +1,7 @@
 package mainPackage.ui;
 
 
+import mainPackage.api.APIMethods;
 import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
 import mainPackage.utils.WebDriverTools;
@@ -198,6 +199,14 @@ public class MyApplicationsPage {
         String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
         String actual = DatatypeConverter.printHexBinary(hash);
         System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
+
+    }
+
+    public void whyRejectedApp(){
+        APIMethods.createApplication();
+        APIMethods.payDoc();
+//        APIMethods.rejectedApplication();
+
 
 
     }

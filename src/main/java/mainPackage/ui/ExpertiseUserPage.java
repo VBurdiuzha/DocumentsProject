@@ -2,6 +2,7 @@ package mainPackage.ui;
 
 
 import io.qameta.allure.Step;
+import mainPackage.api.APIMethods;
 import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
 import mainPackage.utils.WebDriverTools;
@@ -322,7 +323,7 @@ public class ExpertiseUserPage {
     public void haveNotMoney() {
         driver.navigate().refresh();
 
-        WebDriverTools.withdrawMoneyPOSTrequest("-10");
+        APIMethods.withdrawMoneyPOSTrequest("-10");
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -341,7 +342,7 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"app\"]/div/div[1]/div[3]/div/div/div[2]/button")).isDisplayed());
 
 
-        WebDriverTools.addMoneyPOSTrequest(10);
+        APIMethods.addMoneyPOSTrequest(10);
 
     }
 
