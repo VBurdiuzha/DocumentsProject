@@ -45,6 +45,9 @@ public class TestListenerUI implements ITestListener {
         return screenShot;
     }
 
+
+
+
     @Override
     public void onTestStart(ITestResult iTestResult) {
         System.out.println("============Test started============");
