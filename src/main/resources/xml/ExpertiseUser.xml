@@ -3,7 +3,7 @@
 <suite name="Expertise Suite">
     <listeners>
         <listener class-name="mainPackage.listeners.RetryListener"/>
-        <listener class-name="mainPackage.listeners.TestListener"/>
+        <listener class-name="mainPackage.listeners.TestListenerUI"/>
     </listeners>
     <test name="Expertise">
         <classes>

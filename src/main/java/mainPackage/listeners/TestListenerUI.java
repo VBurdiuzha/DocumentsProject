@@ -4,7 +4,6 @@ import io.qameta.allure.Attachment;
 import mainPackage.utils.WebDriverTestBase;
 import mainPackage.utils.WebDriverTools;
 import org.apache.commons.io.FileUtils;
-import org.apache.http.util.Args;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +18,7 @@ import java.nio.file.Files;
 
 import static mainPackage.utils.WebDriverTools.driver;
 
-public class TestListener implements ITestListener {
+public class TestListenerUI implements ITestListener {
 
     WebDriverTools tools = new WebDriverTools();
     private String params;
@@ -27,7 +26,7 @@ public class TestListener implements ITestListener {
     private File captureScreenshot(WebDriver driver) {
         File file = null;
         try {
-            file = ((TakesScreenshot) WebDriverTools.driver).getScreenshotAs(OutputType.FILE);
+            file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             screenshotToAllure(file);
         }catch (WebDriverException e){
             e.printStackTrace();
@@ -45,6 +44,7 @@ public class TestListener implements ITestListener {
         }
         return screenShot;
     }
+
 
 
     @Override

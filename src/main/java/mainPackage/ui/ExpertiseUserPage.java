@@ -1,6 +1,7 @@
 package mainPackage.ui;
 
 
+import io.qameta.allure.Step;
 import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
 import mainPackage.utils.WebDriverTools;
@@ -71,7 +72,6 @@ public class ExpertiseUserPage {
         this.driver = driver;
     }
 
-
     public void expertiseModule() {
         driver.get(Vars.baseURL);
         driver.findElement(loginButton).click();
@@ -82,6 +82,7 @@ public class ExpertiseUserPage {
         expertiseModule.click();
         Assert.assertNotNull(tabNewDoc);
     }
+
 
     public void validData() {
 
@@ -247,9 +248,7 @@ public class ExpertiseUserPage {
         }
         Assert.assertTrue(moreThan20.isDisplayed());
 
-
     }
-
 
     public void fileMoreThen50MB() {
 
