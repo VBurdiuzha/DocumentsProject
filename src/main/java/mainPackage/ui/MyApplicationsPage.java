@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -38,9 +39,6 @@ public class MyApplicationsPage {
     private final By inputPassword = cssSelector("#front75da0a9226c31d6d56e327f558c4ccd8");
     private final By loginButton = xpath("//*[@id=\"front64fbd75d07ec519ac1c34bbf3c93e41b\"]");
     private final By deleteAttachButton = cssSelector("#maincolumn > div > div.ReviewServicesContent > div > div > span > div.MultipleFileSelection > div > ul.FilesList > li > ul > li > div.ButtonRemove > svg > path");
-
-
-
 
 
     @FindBy(xpath = "//*[@id=\"fronta0e5a7b36e788e511ab810fb77be3bc2\"]")
@@ -93,7 +91,6 @@ public class MyApplicationsPage {
     private WebElement fileExpertise;
 
 
-
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.Context > div > div.ListHeader > div.status")
     private WebElement filterStatus;
 
@@ -131,9 +128,9 @@ public class MyApplicationsPage {
     private WebElement errorMessageAttachments;
 
 
-
     private final WebDriver driver;
-    public MyApplicationsPage(WebDriver browser){
+
+    public MyApplicationsPage(WebDriver browser) {
         this.driver = browser;
     }
 
@@ -150,7 +147,7 @@ public class MyApplicationsPage {
 
     }
 
-    public void reviewAppInTheWork(){
+    public void reviewAppInTheWork() {
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
@@ -186,7 +183,8 @@ public class MyApplicationsPage {
         updateButton.click();
         WebDriverTools.FluentWaitFunction(textAreaUpdateDoc);
         textAreaUpdateDoc.sendKeys("   Какое-то дополнение от пользователя");
-        uploadAttach.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);;
+        uploadAttach.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        ;
         WebDriverTools.clickOnInvisibleElement(sendButton);
         WebDriverTools.FluentWaitFunction(fileExpertise);
         assertNotNull("Какое-то дополнение от пользователя");
@@ -241,7 +239,7 @@ public class MyApplicationsPage {
 
     }
 
-    public void whyRejectedApp(){
+    public void whyRejectedApp() {
         APIMethods.createApplication();
         APIMethods.payDoc();
         APIMethods.rejectedApplication();
@@ -273,7 +271,7 @@ public class MyApplicationsPage {
 
     }
 
-    public void  downloadAttachWhenEditApp() throws IOException, NoSuchAlgorithmException {
+    public void downloadAttachWhenEditApp() throws IOException, NoSuchAlgorithmException {
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -314,15 +312,14 @@ public class MyApplicationsPage {
         WebDriverTools.clickOnInvisibleElement(editButton);
 
 
+        try {
+            while (deleteAttachButton != null) {
+                WebDriverTools.clickOnInvisibleElement(deleteAllAttachments);
+            }
+        } catch (Throwable t) {}
 
-        if (deleteAttachButton != null) {
-            WebDriverTools.clickOnInvisibleElement(deleteAllAttachments);
-        }
-        else
+        assertNotNull(errorMessageAttachments);
 
-            saveButton.click();
-            assertNotNull(errorMessageAttachments);
-        }
     }
 
-
+}
