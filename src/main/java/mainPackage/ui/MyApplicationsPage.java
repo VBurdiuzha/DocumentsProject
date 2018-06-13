@@ -12,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import sun.awt.windows.ThemeReader;
 
 import javax.xml.bind.DatatypeConverter;
@@ -91,6 +92,29 @@ public class MyApplicationsPage {
     private WebElement downloadAttachment;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.wrapperAddContent > div > div.addBody > div > div > div > ul > li > ul > li > div.Icon")
     private WebElement downloadAttachPopUp;
+    @FindBy(css = "#fronte934dd9bb03d9f7e252f06f1c642da43")
+    private WebElement editButton;
+    @FindBy(css = "#front868dfaedd842b532f770504a740cbf47")
+    private WebElement togleFirstStep;
+    @FindBy(xpath = "//*[@id=\"5b20d70c7a39b47d2bb70a8c\"]")
+    private WebElement testVilli;
+    @FindBy(css = "#front15028f72ff543a7225493002142fac78")
+    private WebElement secondStep;
+    @FindBy(css = "#frontd4a454317d5f666aa45d98df2d2c06c8")
+    private WebElement radioButton1;
+    @FindBy(xpath = "//*[@id=\"maincolumn\"]/div/div[2]/div/div/span/div[2]/div/ul[2]/li[2]/ul/li/div[2]")
+    private WebElement expertisePNG;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > span > div.MultipleFileSelection > div > ul.FilesList > li > ul > li > div.ButtonRemove > svg > path")
+    private WebElement deleteFile;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div.Finalizer > div > button.Save")
+    private WebElement saveButton;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.Context > div")
+    private WebElement listOfDoc;
+
+
+
+
+
 
 
     private final WebDriver driver;
@@ -205,11 +229,39 @@ public class MyApplicationsPage {
     public void whyRejectedApp(){
         APIMethods.createApplication();
         APIMethods.payDoc();
-//        APIMethods.rejectedApplication();
-
-
+        APIMethods.rejectedApplication();
 
     }
 
+    public void editAppWaitForPay() {
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+        expertiseModule.click();
+        myAppTab.click();
+
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(editButton);
+        WebDriverTools.clickOnInvisibleElement(editButton);
+        WebDriverTools.FluentWaitFunction(togleFirstStep);
+        togleFirstStep.click();
+        WebDriverTools.clickOnInvisibleElement(testVilli);
+        secondStep.sendKeys("Никем");
+        radioButton1.click();
+        expertisePNG.click();
+        WebDriverTools.clickOnInvisibleElement(deleteFile);
+        saveButton.click();
+        Assert.assertNotNull(listOfDoc);
+
+
+    }
 
 }

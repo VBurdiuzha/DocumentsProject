@@ -48,10 +48,15 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.downloadAttachmentPopUp();
     }
 
-    @Test(description = "why rejected application ", groups = {"Expertise"}, priority = 6)
-    public void whyRejectedApp() throws InterruptedException, IOException, NoSuchAlgorithmException {
-        myApplicationsPage.whyRejectedApp();
+//    @Test(description = "why rejected application ", groups = {"Expertise"}, priority = 6)
+//    public void whyRejectedApp() throws InterruptedException, IOException, NoSuchAlgorithmException {
+//        myApplicationsPage.whyRejectedApp();
+//    }
+    @Test(description = "edit App Wait for Pay", groups = {"Expertise"}, priority = 6)
+    public void editAppWaitForPay() throws InterruptedException {
+        myApplicationsPage.editAppWaitForPay();
     }
+
 
 
 
