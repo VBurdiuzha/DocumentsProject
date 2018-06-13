@@ -110,7 +110,8 @@ public class MyApplicationsPage {
     private WebElement saveButton;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.Context > div")
     private WebElement listOfDoc;
-
+    @FindBy(css = "#frontf831f8d8a3777a0306b90072cba6bec7")
+    private WebElement downloadAtachWhenEdit;
 
 
 
@@ -234,15 +235,6 @@ public class MyApplicationsPage {
     }
 
     public void editAppWaitForPay() {
-        driver.get(Vars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-        expertiseModule.click();
-        myAppTab.click();
-
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -260,6 +252,40 @@ public class MyApplicationsPage {
         WebDriverTools.clickOnInvisibleElement(deleteFile);
         saveButton.click();
         Assert.assertNotNull(listOfDoc);
+
+
+                                       /* need add changes to the history */
+
+
+    }
+
+    public void  downloadAttachWhenEditApp() throws IOException, NoSuchAlgorithmException {
+
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+        expertiseModule.click();
+        myAppTab.click();
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(editButton);
+        WebDriverTools.clickOnInvisibleElement(editButton);
+        WebDriverTools.FluentWaitFunction(downloadAtachWhenEdit);
+        WebDriverTools.clickOnInvisibleElement(downloadAtachWhenEdit);
+        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));
+        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
+
+        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
+        String actual = DatatypeConverter.printHexBinary(hash);
+        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
+
 
 
     }

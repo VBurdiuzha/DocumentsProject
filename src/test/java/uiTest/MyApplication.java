@@ -52,9 +52,14 @@ public class MyApplication extends WebDriverTestBase {
 //    public void whyRejectedApp() throws InterruptedException, IOException, NoSuchAlgorithmException {
 //        myApplicationsPage.whyRejectedApp();
 //    }
-    @Test(description = "edit App Wait for Pay", groups = {"Expertise"}, priority = 6)
+    @Test(description = "edit App Wait for Pay", groups = {"Expertise"}, priority = 7)
     public void editAppWaitForPay() throws InterruptedException {
         myApplicationsPage.editAppWaitForPay();
+    }
+
+    @Test(description = "download Attach When Edit App", groups = {"Expertise"}, priority = 8)
+    public void downloadAttachWhenEditApp() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.downloadAttachWhenEditApp();
     }
 
 
