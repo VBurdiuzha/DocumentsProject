@@ -1,6 +1,7 @@
 package mainPackage.ui;
 
 
+import bsh.commands.dir;
 import mainPackage.api.APIMethods;
 import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
@@ -16,6 +17,7 @@ import org.testng.annotations.Listeners;
 import sun.awt.windows.ThemeReader;
 
 import javax.xml.bind.DatatypeConverter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -28,12 +30,19 @@ import java.util.List;
 import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
+import static org.testng.Assert.assertNotNull;
 
 public class MyApplicationsPage {
 
     private final By inputUsername = cssSelector("#front480616263a00926a515c2aaf34b53fcc");
     private final By inputPassword = cssSelector("#front75da0a9226c31d6d56e327f558c4ccd8");
     private final By loginButton = xpath("//*[@id=\"front64fbd75d07ec519ac1c34bbf3c93e41b\"]");
+    private final By deleteAttachButton = cssSelector("#maincolumn > div > div.ReviewServicesContent > div > div > span > div.MultipleFileSelection > div > ul.FilesList > li > ul > li > div.ButtonRemove > svg > path");
+
+
+
+
+
     @FindBy(xpath = "//*[@id=\"fronta0e5a7b36e788e511ab810fb77be3bc2\"]")
     private WebElement avatar;
     @FindBy(css = "#front3d6305e5e1809ea5588858bbcf65cc36")
@@ -112,9 +121,14 @@ public class MyApplicationsPage {
     private WebElement listOfDoc;
     @FindBy(css = "#frontf831f8d8a3777a0306b90072cba6bec7")
     private WebElement downloadAtachWhenEdit;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div.Finalizer > div > button.Cancel")
+    private WebElement cancelButton;
 
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > span > div.MultipleFileSelection > div > ul.FilesList > li > ul > li > div.ButtonRemove > svg")
+    private WebElement deleteAllAttachments;
 
-
+    @FindBy(css = "#front393917ab1b5b784ed233b208744263f8")
+    private WebElement errorMessageAttachments;
 
 
 
@@ -132,7 +146,7 @@ public class MyApplicationsPage {
         profile.click();
         expertiseModule.click();
         myAppTab.click();
-        Assert.assertNotNull(myAppTab);
+        assertNotNull(myAppTab);
 
     }
 
@@ -143,19 +157,19 @@ public class MyApplicationsPage {
         actions.click();
         WebDriverTools.FluentWaitFunction(view);
         view.click();
-        Assert.assertNotNull(numOfApplication);
-        Assert.assertNotNull(dateStart);
-        Assert.assertNotNull(dateUpdate);
-        Assert.assertNotNull(status);
-        Assert.assertNotNull(typeOfApplication);
-        Assert.assertNotNull(side);
-        Assert.assertNotNull(requisiteDoc);
-        Assert.assertNotNull(text);
-        Assert.assertNotNull(attachment);
-        Assert.assertNotNull(updateButton);
-        Assert.assertNotNull(descriptionIcon);
-        Assert.assertNotNull(messages);
-        Assert.assertNotNull(flowApplication);
+        assertNotNull(numOfApplication);
+        assertNotNull(dateStart);
+        assertNotNull(dateUpdate);
+        assertNotNull(status);
+        assertNotNull(typeOfApplication);
+        assertNotNull(side);
+        assertNotNull(requisiteDoc);
+        assertNotNull(text);
+        assertNotNull(attachment);
+        assertNotNull(updateButton);
+        assertNotNull(descriptionIcon);
+        assertNotNull(messages);
+        assertNotNull(flowApplication);
     }
 
     public void updateAppInTheWork() {
@@ -175,8 +189,8 @@ public class MyApplicationsPage {
         uploadAttach.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);;
         WebDriverTools.clickOnInvisibleElement(sendButton);
         WebDriverTools.FluentWaitFunction(fileExpertise);
-        Assert.assertNotNull("Какое-то дополнение от пользователя");
-        Assert.assertNotNull(fileExpertise);
+        assertNotNull("Какое-то дополнение от пользователя");
+        assertNotNull(fileExpertise);
 
 
                                /* need add changes to the history */
@@ -251,7 +265,7 @@ public class MyApplicationsPage {
         expertisePNG.click();
         WebDriverTools.clickOnInvisibleElement(deleteFile);
         saveButton.click();
-        Assert.assertNotNull(listOfDoc);
+        assertNotNull(listOfDoc);
 
 
                                        /* need add changes to the history */
@@ -260,15 +274,6 @@ public class MyApplicationsPage {
     }
 
     public void  downloadAttachWhenEditApp() throws IOException, NoSuchAlgorithmException {
-
-        driver.get(Vars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-        expertiseModule.click();
-        myAppTab.click();
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -286,8 +291,38 @@ public class MyApplicationsPage {
         String actual = DatatypeConverter.printHexBinary(hash);
         System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
 
-
-
     }
 
-}
+    public void deleteAllAttachWhenEdit() throws InterruptedException {
+
+
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+        expertiseModule.click();
+        myAppTab.click();
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(editButton);
+        WebDriverTools.clickOnInvisibleElement(editButton);
+
+
+
+        if (deleteAttachButton != null) {
+            WebDriverTools.clickOnInvisibleElement(deleteAllAttachments);
+        }
+        else
+
+            saveButton.click();
+            assertNotNull(errorMessageAttachments);
+        }
+    }
+
+
