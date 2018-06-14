@@ -400,12 +400,6 @@ public class MyApplicationsPage {
     }
 
     public void haveNotMoneyWhenWaitForPayDoc(){
-        driver.get(Vars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
 
         APIMethods.withDrawAllMoney();
 
@@ -420,6 +414,27 @@ public class MyApplicationsPage {
         assertNotNull(needMoneyButton);
 
         APIMethods.addMoneyPOSTrequest(100);
+    }
+
+    public void sendToArchivWhenWaitForPay(){
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(archiveButton);
+        WebDriverTools.clickOnInvisibleElement(archiveButton);
+        String selector = "#front721c0f66c16e78c7120e829611dac8c8_242";
+        String num = selector.substring(39, selector.length());
+        archiveTab.click();
+        Assert.assertFalse(By.id(By.cssSelector("#front_rid_") + num).equals(true));
+
 
 
     }

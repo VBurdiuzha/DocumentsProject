@@ -89,5 +89,10 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.haveNotMoneyWhenWaitForPayDoc();
     }
 
+    @Test(description = "send To Archiv When Wait For Pay", groups = {"Expertise"}, priority = 14)
+    public void sendToArchivWhenWaitForPay() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.sendToArchivWhenWaitForPay();
+    }
+
 
 }
