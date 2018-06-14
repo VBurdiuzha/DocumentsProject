@@ -134,6 +134,10 @@ public class MyApplicationsPage {
     private WebElement whyOK;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div.historyWrapper > div:nth-child(5) > div.textWrapperLastChild > div.aboutDate")
     private WebElement aboutDate;
+    @FindBy(css = "#frontd8a2d7282f772f3622cfe69e2d0c6190")
+    private WebElement archiveButton;
+    @FindBy(css = "#front1afe563199b52f8c4170e0edc4a81b37")
+    private WebElement archiveTab;
 
 
 
@@ -269,6 +273,30 @@ public class MyApplicationsPage {
     }
 
     public void rejectedAppToArchive(){
+
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(archiveButton);
+        archiveButton.click();
+
+        String selector = "#front721c0f66c16e78c7120e829611dac8c8_242";
+        String num = selector.substring(39, selector.length());
+
+        archiveTab.click();
+
+
+        Assert.assertFalse(By.id(By.cssSelector("#front_rid_") + num).equals(true));
 
 
 

@@ -52,17 +52,24 @@ public class MyApplication extends WebDriverTestBase {
     public void whyRejectedApp() throws InterruptedException, IOException, NoSuchAlgorithmException {
         myApplicationsPage.whyRejectedApp();
     }
-    @Test(description = "edit App Wait for Pay", groups = {"Expertise"}, priority = 7)
+
+    @Test(description = "rejected App To Archive", groups = {"Expertise"}, priority = 7)
+    public void rejectedAppToArchive() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.rejectedAppToArchive();
+    }
+
+
+    @Test(description = "edit App Wait for Pay", groups = {"Expertise"}, priority = 8)
     public void editAppWaitForPay() throws InterruptedException {
         myApplicationsPage.editAppWaitForPay();
     }
 
-    @Test(description = "download Attach When Edit App", groups = {"Expertise"}, priority = 8)
+    @Test(description = "download Attach When Edit App", groups = {"Expertise"}, priority = 9)
     public void downloadAttachWhenEditApp() throws InterruptedException, IOException, NoSuchAlgorithmException {
         myApplicationsPage.downloadAttachWhenEditApp();
     }
 
-    @Test(description = "delete All Attach When Edit", groups = {"Expertise"}, priority = 9)
+    @Test(description = "delete All Attach When Edit", groups = {"Expertise"}, priority = 10)
     public void deleteAllAttachWhenEdit() throws InterruptedException, IOException, NoSuchAlgorithmException {
         myApplicationsPage.deleteAllAttachWhenEdit();
     }
