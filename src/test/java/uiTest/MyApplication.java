@@ -38,12 +38,12 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.updateAppInTheWork();
     }
 
-    @Test(description = "download Attachment", groups = {"Expertise"}, priority = 4)
+    @Test(description = "download Attachment from preview in work Doc", groups = {"Expertise"}, priority = 4)
     public void downloadAttachment() throws InterruptedException, IOException, NoSuchAlgorithmException {
         myApplicationsPage.downloadAttachment();
     }
 
-    @Test(description = "download Attachment", groups = {"Expertise"}, priority = 5)
+    @Test(description = "download Attachment when edit app", groups = {"Expertise"}, priority = 5)
     public void downloadAttachmentPopUp() throws InterruptedException, IOException, NoSuchAlgorithmException {
         myApplicationsPage.downloadAttachmentPopUp();
     }

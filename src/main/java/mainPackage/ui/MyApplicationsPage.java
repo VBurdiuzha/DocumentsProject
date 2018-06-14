@@ -435,6 +435,18 @@ public class MyApplicationsPage {
         archiveTab.click();
         Assert.assertFalse(By.id(By.cssSelector("#front_rid_") + num).equals(true));
 
+    }
+
+    public void answerForOperatorWhenWaitForPayDoc(){
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
+        expertiseModule.click();
+        myAppTab.click();
 
 
     }
