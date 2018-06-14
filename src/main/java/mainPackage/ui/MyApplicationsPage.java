@@ -138,8 +138,10 @@ public class MyApplicationsPage {
     private WebElement archiveButton;
     @FindBy(css = "#front1afe563199b52f8c4170e0edc4a81b37")
     private WebElement archiveTab;
-
-
+    @FindBy(css = "#front27d1fdd92bb71da13adda72adb6eeef8")
+    private WebElement pay;
+    @FindBy(css = "#front21ad970067350483d2bc4f104de16594")
+    private WebElement continueWork;
 
 
     private final WebDriver driver;
@@ -379,9 +381,19 @@ public class MyApplicationsPage {
 
     }
 
-    public void getBalanceTest(){
-     //   APIMethods.getBalance();
-        APIMethods.withDrawAllMoney();
+    public void successPaymentWhenWaitForPayDoc(){
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(pay);
+        WebDriverTools.clickOnInvisibleElement(pay);
+        WebDriverTools.FluentWaitFunction(continueWork);
+        continueWork.click();
+        assertNotNull(listOfDoc);
+
     }
 
 }

@@ -79,9 +79,9 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.cancelChangesEditApp();
     }
 
-    @Test(description = "get balance", groups = {"Expertise"}, priority = 12)
-    public void getBalanceTest() throws InterruptedException, IOException, NoSuchAlgorithmException {
-        myApplicationsPage.getBalanceTest();
+    @Test(description = "success Payment When Wait For Pay Doc", groups = {"Expertise"}, priority = 12)
+    public void successPaymentWhenWaitForPayDoc() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.successPaymentWhenWaitForPayDoc();
     }
 
 
