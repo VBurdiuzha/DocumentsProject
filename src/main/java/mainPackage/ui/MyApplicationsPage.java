@@ -127,6 +127,16 @@ public class MyApplicationsPage {
     @FindBy(css = "#front393917ab1b5b784ed233b208744263f8")
     private WebElement errorMessageAttachments;
 
+    @FindBy(css = "#front02b89c29205d0e3642410285dd273840")
+    private WebElement why;
+
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div.wrapperAddContent > div > div.rejectBottom > button")
+    private WebElement whyOK;
+    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div.historyWrapper > div:nth-child(5) > div.textWrapperLastChild > div.aboutDate")
+    private WebElement aboutDate;
+
+
+
 
     private final WebDriver driver;
 
@@ -243,6 +253,24 @@ public class MyApplicationsPage {
         APIMethods.createApplication();
         APIMethods.payDoc();
         APIMethods.rejectedApplication();
+
+        driver.navigate().refresh();
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(view);
+        view.click();
+        why.click();
+        WebDriverTools.FluentWaitFunction(whyOK);
+        whyOK.click();
+        assertNotNull(aboutDate);
+
+    }
+
+    public void rejectedAppToArchive(){
+
+
 
     }
 
