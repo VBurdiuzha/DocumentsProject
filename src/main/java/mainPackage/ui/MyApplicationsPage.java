@@ -142,6 +142,9 @@ public class MyApplicationsPage {
     private WebElement pay;
     @FindBy(css = "#front21ad970067350483d2bc4f104de16594")
     private WebElement continueWork;
+    @FindBy(css = "#app > div > div.container > div.serverResponseErrorAlerts > div > div > div.buttons > button")
+    private WebElement needMoneyButton;
+
 
 
     private final WebDriver driver;
@@ -396,4 +399,28 @@ public class MyApplicationsPage {
 
     }
 
+    public void haveNotMoneyWhenWaitForPayDoc(){
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
+        APIMethods.withDrawAllMoney();
+
+        expertiseModule.click();
+        myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(pay);
+        WebDriverTools.clickOnInvisibleElement(pay);
+
+        WebDriverTools.FluentWaitFunction(needMoneyButton);
+        assertNotNull(needMoneyButton);
+
+        APIMethods.addMoneyPOSTrequest(100);
+
+
+    }
 }

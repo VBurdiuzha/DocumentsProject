@@ -84,5 +84,10 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.successPaymentWhenWaitForPayDoc();
     }
 
+    @Test(description = "have Not Money When Wait For Pay Doc", groups = {"Expertise"}, priority = 13)
+    public void haveNotMoneyWhenWaitForPayDoc() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.haveNotMoneyWhenWaitForPayDoc();
+    }
+
 
 }

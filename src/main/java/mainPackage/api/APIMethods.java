@@ -229,9 +229,16 @@ static int balance;
 
     public static void  withDrawAllMoney(){
         RestAssured.baseURI ="https://stage.servicedoc.ua";
+        int oops = Integer.parseInt("-"+getBalance());
+
+        if (oops == 0) {
+            Assert.assertTrue(true);
+            return;
+        }
+
         RequestSpecification request = given();
         org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
-        requestParams.put("change", "-"+getBalance());
+        requestParams.put("change", oops);
         requestParams.put("userId", "5af40ce5bb4c21029830830d");
         requestParams.put("forAdminPanel", 1);
         request.header("Content-Type", "application/json");
