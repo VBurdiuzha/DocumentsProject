@@ -4,7 +4,6 @@ import com.sun.glass.events.KeyEvent;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import mainPackage.interfaceFolder.ExpertiseVars;
-
 import mainPackage.interfaceFolder.Vars;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -23,8 +22,6 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-import static io.restassured.RestAssured.given;
-import static java.lang.Thread.sleep;
 
 
 public class WebDriverTools {
@@ -93,8 +90,6 @@ public class WebDriverTools {
         String today = dateFormat.format(date);
         return today;
     }
-
-
 
 
 }

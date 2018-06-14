@@ -7,6 +7,7 @@ import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -146,11 +147,44 @@ public class MyApplicationsPage {
     private WebElement needMoneyButton;
 
 
+    private WebElement tabNewDoc;
+    @FindBy(css = "#frontb5fbbf28a9f06b537b590d5f3b4ff32d > div")
+    private WebElement createApplication;
+    @FindBy(css = "#front868dfaedd842b532f770504a740cbf47 > svg")
+    private WebElement typeDoc;
+    @FindBy(css = "#\\35 aafce473a24c926d01797ba")
+    private WebElement testCategoryType;
+    @FindBy(css = "#frontfc57de6a29ea1e8f6ee07fda4f548cc8")
+    private WebElement radioButton3;
+    @FindBy(css = "input[type=file]")
+    private WebElement attachFile;
+    @FindBy(xpath = "//*[@id=\"front930d0de3b569e900ece1ea62969151de\"]/div/span")
+    private WebElement nextButton;
+    private final By roleInDoc = xpath("//*[@id=\"front15028f72ff543a7225493002142fac78\"]");
+    private final By textarea = cssSelector("#front6cbe73215f7d646d4888d05f14810819");
+
+
+
 
     private final WebDriver driver;
 
     public MyApplicationsPage(WebDriver browser) {
         this.driver = browser;
+    }
+
+    public void createDocWaitForPay(){
+        driver.navigate().refresh();
+        expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(createApplication);
+        createApplication.click();
+        typeDoc.click();
+        testCategoryType.click();
+        WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        radioButton3.click();
+        WebDriverTools.clearAndFill(textarea, "This is automation test").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        nextButton.click();
     }
 
     public void expertiseModule() {
@@ -188,7 +222,10 @@ public class MyApplicationsPage {
         assertNotNull(flowApplication);
     }
 
-    public void updateAppInTheWork() {
+    public void updateAppWaitForPay() {
+
+        createDocWaitForPay();
+
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
@@ -214,6 +251,13 @@ public class MyApplicationsPage {
     }
 
     public void downloadAttachment() throws NoSuchAlgorithmException, IOException {
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
@@ -236,6 +280,13 @@ public class MyApplicationsPage {
     }
 
     public void downloadAttachmentPopUp() throws IOException, NoSuchAlgorithmException {
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();

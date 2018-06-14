@@ -33,9 +33,9 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.reviewAppInTheWork();
     }
 
-    @Test(description = "update App In TheWork", groups = {"Expertise"}, priority = 3)
-    public void updateAppInTheWork() throws InterruptedException {
-        myApplicationsPage.updateAppInTheWork();
+    @Test(description = "update App Wait For Pay", groups = {"Expertise"}, priority = 3)
+    public void updateAppWaitForPay() throws InterruptedException {
+        myApplicationsPage.updateAppWaitForPay();
     }
 
     @Test(description = "download Attachment from preview in work Doc", groups = {"Expertise"}, priority = 4)
