@@ -274,14 +274,6 @@ public class MyApplicationsPage {
 
     public void rejectedAppToArchive(){
 
-        driver.get(Vars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-
-
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
@@ -289,16 +281,10 @@ public class MyApplicationsPage {
         actions.click();
         WebDriverTools.FluentWaitFunction(archiveButton);
         archiveButton.click();
-
         String selector = "#front721c0f66c16e78c7120e829611dac8c8_242";
         String num = selector.substring(39, selector.length());
-
         archiveTab.click();
-
-
         Assert.assertFalse(By.id(By.cssSelector("#front_rid_") + num).equals(true));
-
-
 
     }
 
@@ -387,7 +373,23 @@ public class MyApplicationsPage {
         profile.click();
         expertiseModule.click();
         myAppTab.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(editButton);
+        WebDriverTools.clickOnInvisibleElement(editButton);
 
+        try {
+            while (deleteAttachButton != null) {
+                WebDriverTools.clickOnInvisibleElement(deleteAllAttachments);
+            }
+        } catch (Throwable t) {}
+
+        cancelButton.click();
+        WebDriverTools.FluentWaitFunction(actions);
+        actions.click();
+        WebDriverTools.FluentWaitFunction(view);
+        WebDriverTools.clickOnInvisibleElement(view);
+        assertNotNull(expertisePNG);
 
 
     }

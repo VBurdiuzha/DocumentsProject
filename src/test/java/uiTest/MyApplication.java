@@ -74,5 +74,11 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.deleteAllAttachWhenEdit();
     }
 
+    @Test(description = "delete All Attach When Edit", groups = {"Expertise"}, priority = 10)
+    public void cancelChangesEditApp() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.cancelChangesEditApp();
+    }
+
+
 
 }
