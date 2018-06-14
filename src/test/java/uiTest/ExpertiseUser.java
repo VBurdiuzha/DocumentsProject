@@ -96,7 +96,7 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.emptyAllField();
     }
 
-    @Test(description =  "test case with incorrect Format File", groups = {"Expertise"}, priority = 16)
+    @Test(description =  "test case with incorrect Format File", groups = {"Expertise"}, priority = 17)
     public void incorrectFormatFile() throws InterruptedException {
         expertiseUserPage.incorrectFormatFile();
     }

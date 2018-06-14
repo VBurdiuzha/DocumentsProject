@@ -228,8 +228,26 @@ static int balance;
     }
 
     public static void  withDrawAllMoney(){
+        RestAssured.baseURI ="https://stage.servicedoc.ua";
+        RequestSpecification request = given();
+        org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
+        requestParams.put("change", "-"+getBalance());
+        requestParams.put("userId", "5af40ce5bb4c21029830830d");
+        requestParams.put("forAdminPanel", 1);
+        request.header("Content-Type", "application/json");
+        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenAdmin
+                (Vars.adminUser, Vars.regularUserPassword));
+        request.body(requestParams.toJSONString());
+
+        System.out.println(requestParams.toJSONString());
+        io.restassured.response.Response response = request.post("/api/v1/payment/changeaccount/");
+        System.out.println("Response body: " + response.body().asString());
+        System.out.println(request + "\n");
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode, 200);
 
     }
+
 
 }
 

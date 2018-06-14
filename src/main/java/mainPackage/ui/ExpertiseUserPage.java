@@ -323,7 +323,7 @@ public class ExpertiseUserPage {
     public void haveNotMoney() {
         driver.navigate().refresh();
 
-        APIMethods.withdrawMoneyPOSTrequest("-10");
+        APIMethods.withDrawAllMoney();
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -342,11 +342,17 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"app\"]/div/div[1]/div[3]/div/div/div[2]/button")).isDisplayed());
 
 
-        APIMethods.addMoneyPOSTrequest(10);
+        APIMethods.addMoneyPOSTrequest(100);
 
     }
 
     public void emptyAllField() {
+        driver.get(Vars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
 
         driver.navigate().refresh();
         expertiseModule.click();

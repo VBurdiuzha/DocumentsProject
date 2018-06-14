@@ -380,7 +380,8 @@ public class MyApplicationsPage {
     }
 
     public void getBalanceTest(){
-        APIMethods.getBalance();
+     //   APIMethods.getBalance();
+        APIMethods.withDrawAllMoney();
     }
 
 }
