@@ -15,6 +15,7 @@ import static io.restassured.RestAssured.given;
 
 
 public class APIMethods {
+static String id_application;
 
     public static void addMoneyPOSTrequest(int money)
     {
@@ -145,9 +146,6 @@ public class APIMethods {
                 (Vars.regularUser, Vars.regularUserPassword));
 
         request.body(requestParams.toJSONString());
-
-
-      //  System.out.println(requestParams.toJSONString());
         io.restassured.response.Response response = request.post("/reviews/createNewReview");
       //  System.out.println("Response body: " + response.body().asString());
         java.lang.String responseSTR = response.body().asString();
@@ -156,17 +154,13 @@ public class APIMethods {
 
         org.json.JSONObject obj = new JSONObject(responseSTR);
         JSONObject dataObject = obj.getJSONObject("data");
-       // System.out.println(dataObject + "\n");
-
-        String id_app = dataObject.getString("_id");
-
-        System.out.println("This is my token of application: " + id_app + "\n");
+        id_application = dataObject.getString("_id");
+        System.out.println("This is my token of application: " + id_application + "\n");
 
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
-
         return
-                id_app;
+                id_application;
 
     }
 
@@ -175,7 +169,7 @@ public class APIMethods {
         RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
         RequestSpecification request = given();
         org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
-        requestParams.put("_id", createApplication());
+        requestParams.put("_id", id_application);
         requestParams.put("statusComment", "test");
 
         request.header("Content-Type", "application/json");
@@ -196,29 +190,17 @@ public class APIMethods {
 
 
 
-    public static void payDoc(){
+    public static void payDoc(){                            // GET Request
         System.out.println("Here will be payDoc \n");
         RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
         RequestSpecification request = given();
-        org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
-
-
         request.header("Content-Type", "application/json");
         request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
                 (Vars.regularUser, Vars.regularUserPassword));
-
-        request.body(requestParams.toJSONString());
-
-
-        System.out.println(requestParams.toJSONString());
-        io.restassured.response.Response response = request.post("/reviews/buy/review/" + createApplication());
-
+        io.restassured.response.Response response = request.get("/reviews/buy/review/" + id_application);
         System.out.println("payDoc success" + "\n");
-
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
-
-        System.out.println("==================WTF===================");
     }
 
 }
