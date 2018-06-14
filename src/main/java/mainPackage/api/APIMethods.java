@@ -16,6 +16,8 @@ import static io.restassured.RestAssured.given;
 
 public class APIMethods {
 static String id_application;
+static int balance;
+
 
     public static void addMoneyPOSTrequest(int money)
     {
@@ -188,8 +190,6 @@ static String id_application;
         Assert.assertEquals(statusCode, 200);
     }
 
-
-
     public static void payDoc(){                            // GET Request
         System.out.println("Here will be payDoc \n");
         RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
@@ -201,6 +201,34 @@ static String id_application;
         System.out.println("payDoc success" + "\n");
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
+    }
+
+    public static int  getBalance(){
+        System.out.println("Here will be payDoc \n");
+        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
+        RequestSpecification request = given();
+        request.header("Content-Type", "application/json");
+        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
+                (Vars.regularUser, Vars.regularUserPassword));
+        io.restassured.response.Response response = request.get("/payment/account");
+        System.out.println("get balance" + "\n");
+        int statusCode = response.getStatusCode();
+
+        java.lang.String responseSTR = response.body().asString();
+        org.json.JSONObject obj = new JSONObject(responseSTR);
+        JSONObject dataObject = obj.getJSONObject("data");
+        balance = dataObject.getInt("account");
+        System.out.println(balance);
+
+        Assert.assertEquals(statusCode, 200);
+
+        return
+                balance;
+
+    }
+
+    public static void  withDrawAllMoney(){
+
     }
 
 }

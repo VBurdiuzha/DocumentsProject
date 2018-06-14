@@ -74,11 +74,15 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.deleteAllAttachWhenEdit();
     }
 
-    @Test(description = "delete All Attach When Edit", groups = {"Expertise"}, priority = 10)
+    @Test(description = "delete All Attach When Edit", groups = {"Expertise"}, priority = 11)
     public void cancelChangesEditApp() throws InterruptedException, IOException, NoSuchAlgorithmException {
         myApplicationsPage.cancelChangesEditApp();
     }
 
+    @Test(description = "get balance", groups = {"Expertise"}, priority = 12)
+    public void getBalanceTest() throws InterruptedException, IOException, NoSuchAlgorithmException {
+        myApplicationsPage.getBalanceTest();
+    }
 
 
 }

@@ -336,15 +336,6 @@ public class MyApplicationsPage {
     public void deleteAllAttachWhenEdit() throws InterruptedException {
 
 
-        driver.get(Vars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-        expertiseModule.click();
-        myAppTab.click();
-
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
@@ -365,12 +356,7 @@ public class MyApplicationsPage {
     }
 
     public void cancelChangesEditApp(){
-        driver.get(Vars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
+        driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
@@ -391,7 +377,10 @@ public class MyApplicationsPage {
         WebDriverTools.clickOnInvisibleElement(view);
         assertNotNull(expertisePNG);
 
+    }
 
+    public void getBalanceTest(){
+        APIMethods.getBalance();
     }
 
 }
