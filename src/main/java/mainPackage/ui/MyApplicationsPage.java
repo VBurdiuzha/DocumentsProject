@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import sun.awt.windows.ThemeReader;
+import sun.security.krb5.internal.TGSRep;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.File;
@@ -165,7 +166,8 @@ public class MyApplicationsPage {
     private final By roleInDoc = xpath("//*[@id=\"front15028f72ff543a7225493002142fac78\"]");
     private final By textarea = cssSelector("#front6cbe73215f7d646d4888d05f14810819");
 
-
+    @FindBy(css = "#fronte934dd9bb03d9f7e252f06f1c642da43 > div > div > div")
+    private WebElement editButtonTest;
 
 
     private final WebDriver driver;
@@ -174,7 +176,7 @@ public class MyApplicationsPage {
         this.driver = browser;
     }
 
-    public void createDocWaitForPay(){
+    public void createDocWaitForPay() throws InterruptedException {
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -182,14 +184,17 @@ public class MyApplicationsPage {
         typeDoc.click();
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
+        Thread.sleep(1000);
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
         nextButton.click();
+        Thread.sleep(2000);
     }
 
-    public void createDocInWork(){
+    public void createDocInWork() throws InterruptedException {
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -201,7 +206,10 @@ public class MyApplicationsPage {
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
         attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
         nextButton.click();
+
+        Thread.sleep(2000);
 
         String selector = "#front721c0f66c16e78c7120e829611dac8c8_242";
         String num = selector.substring(39, selector.length());   // get unique value (in this case "242")
@@ -224,7 +232,7 @@ public class MyApplicationsPage {
 
     }
 
-    public void reviewAppInTheWork() {
+    public void reviewAppInTheWork() throws InterruptedException {
         createDocInWork();
 
         driver.navigate().refresh();
@@ -249,17 +257,13 @@ public class MyApplicationsPage {
     }
 
     public void updateAppWaitForPay() throws InterruptedException {
-        driver.get(Vars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
-      //  createDocWaitForPay();
+
+        createDocWaitForPay();
+
+        myAppTab.click();
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -268,6 +272,7 @@ public class MyApplicationsPage {
         actions.click();
         WebDriverTools.FluentWaitFunction(view);
         view.click();
+        Thread.sleep(2000);
         WebDriverTools.FluentWaitFunction(updateButton);
         updateButton.click();
         Thread.sleep(2000);
@@ -283,7 +288,7 @@ public class MyApplicationsPage {
                                /* need add changes to the history */
     }
 
-    public void downloadAttachment() throws NoSuchAlgorithmException, IOException {
+    public void downloadAttachment() throws NoSuchAlgorithmException, IOException, InterruptedException {
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
@@ -357,8 +362,6 @@ public class MyApplicationsPage {
     }
 
     public void rejectedAppToArchive(){
-        expertiseModule();
-
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -374,20 +377,24 @@ public class MyApplicationsPage {
 
     }
 
-    public void editAppWaitForPay() {
-        expertiseModule();
+    public void editAppWaitForPay() throws InterruptedException {
 
+        driver.navigate().refresh();
+        expertiseModule.click();
+        createDocWaitForPay();
 
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();
-        WebDriverTools.FluentWaitFunction(editButton);
-        WebDriverTools.clickOnInvisibleElement(editButton);
+        Thread.sleep(1000);
+        WebDriverTools.FluentWaitFunction(editButtonTest);
+        WebDriverTools.clickOnInvisibleElement(editButtonTest);
         WebDriverTools.FluentWaitFunction(togleFirstStep);
         togleFirstStep.click();
         WebDriverTools.clickOnInvisibleElement(testVilli);
+        Thread.sleep(2000);
         secondStep.sendKeys("Никем");
         radioButton1.click();
         expertisePNG.click();
@@ -402,6 +409,7 @@ public class MyApplicationsPage {
     }
 
     public void downloadAttachWhenEditApp() throws IOException, NoSuchAlgorithmException {
+        driver.navigate().refresh();
         expertiseModule();
 
 
@@ -424,11 +432,10 @@ public class MyApplicationsPage {
     }
 
     public void deleteAllAttachWhenEdit() throws InterruptedException {
-        expertiseModule();
-
-
 
         driver.navigate().refresh();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
         expertiseModule.click();
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
@@ -448,7 +455,9 @@ public class MyApplicationsPage {
     }
 
     public void cancelChangesEditApp(){
-        expertiseModule();
+        driver.navigate().refresh();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -474,7 +483,9 @@ public class MyApplicationsPage {
     }
 
     public void successPaymentWhenWaitForPayDoc(){
-        expertiseModule();
+        driver.navigate().refresh();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
 
 
         driver.navigate().refresh();
@@ -493,8 +504,9 @@ public class MyApplicationsPage {
     public void haveNotMoneyWhenWaitForPayDoc(){
 
         APIMethods.withDrawAllMoney();
-
-        expertiseModule();
+        driver.navigate().refresh();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
 
         expertiseModule.click();
         myAppTab.click();
@@ -510,6 +522,7 @@ public class MyApplicationsPage {
     }
 
     public void sendToArchivWhenWaitForPay(){
+        driver.navigate().refresh();
         expertiseModule();
 
         driver.get(Vars.baseURL);
@@ -533,6 +546,7 @@ public class MyApplicationsPage {
     }
 
     public void answerForOperatorWhenWaitForPayDoc(){
+        driver.navigate().refresh();
         driver.get(Vars.baseURL);
         driver.findElement(loginButton).click();
         WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
