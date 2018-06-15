@@ -166,6 +166,7 @@ static int balance;
 
     }
 
+
     public static void rejectedApplication(){
         System.out.println("Here will be rejectedApplication \n");
         RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
@@ -253,6 +254,62 @@ static int balance;
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
 
+    }
+
+    public static void attachFileInToTheDoc(){
+        System.out.println("Here will be sent application from Doper to Oper \n");
+        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
+        RequestSpecification request = given();
+        org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
+        requestParams.put("id", id_application);
+        requestParams.put("flag", "");
+        requestParams.put("assignedTo", "5af40db2bb4c21dfa5308313");
+        requestParams.put("lawyerName", "Operator ");
+        requestParams.put("operatorComment", "Виталик - чемпион");
+        requestParams.put("knowledgeSubType", "5aafd1073a24c92b041797bb");
+
+
+        request.header("Content-Type", "image/png");
+        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
+                (Vars.doperUser, Vars.doperUserPassword));
+
+        request.body(requestParams.toJSONString());
+        io.restassured.response.Response response = request.post("/reviews/attachFile/"+id_application);
+        System.out.println("===== Application was sent to operator =====" + "\n");
+
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode, 200);
+
+
+
+                        /*          ===== Ned doing =====   */
+
+
+    }
+
+    public static void setDocFromDOperToOper(){
+        System.out.println("Here will be sent application from Doper to Oper \n");
+        RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
+        RequestSpecification request = given();
+        org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
+        requestParams.put("id", id_application);
+        requestParams.put("flag", "");
+        requestParams.put("assignedTo", "5af40db2bb4c21dfa5308313");
+        requestParams.put("lawyerName", "Operator ");
+        requestParams.put("operatorComment", "Виталик - чемпион");
+        requestParams.put("knowledgeSubType", "5aafd1073a24c92b041797bb");
+
+
+        request.header("Content-Type", "application/json");
+        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
+                (Vars.doperUser, Vars.doperUserPassword));
+
+        request.body(requestParams.toJSONString());
+        io.restassured.response.Response response = request.post("/reviews/updateReviewById");
+        System.out.println("===== Application was sent to operator =====" + "\n");
+
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode, 200);
     }
 
 
