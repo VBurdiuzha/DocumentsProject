@@ -466,8 +466,7 @@ public class APIMethods {
                 body(equalTo("I'm a test file")).
                 when().
                 post("https://stage.servicedoc.ua/api/v1/reviews/attachFile"+id_application);
-    }
-
+        }
     }
 
 
