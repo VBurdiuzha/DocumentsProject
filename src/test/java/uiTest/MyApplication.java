@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 
 
@@ -95,7 +96,7 @@ public class MyApplication extends WebDriverTestBase {
     }
 
     @Test(description = "send To Archiv When Wait For Pay", groups = {"Expertise"}, priority = 14)
-    public void answerForOperatorWhenWaitForPayDoc() throws InterruptedException, IOException, NoSuchAlgorithmException {
+    public void answerForOperatorWhenWaitForPayDoc() throws Exception {
         myApplicationsPage.answerForOperatorWhenWaitForPayDoc();
     }
 

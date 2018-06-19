@@ -1,22 +1,46 @@
 package mainPackage.api;
 
+import com.jayway.restassured.builder.MultiPartSpecBuilder;
 import io.restassured.RestAssured;
+import io.restassured.internal.util.IOUtils;
+import io.restassured.specification.MultiPartSpecification;
 import io.restassured.specification.RequestSpecification;
 import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
-import org.json.JSONArray;
-import org.json.JSONException;
+import okhttp3.*;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.testng.Assert;
 
-import javax.xml.ws.Response;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.sun.org.apache.xerces.internal.utils.SecuritySupport.getResourceAsStream;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 
 public class APIMethods {
-static String id_application;
-static int balance;
+
+    static String id_application;
+    static int balance;
+    static String tokenUI;
 
 
     public static void addMoneyPOSTrequest(int money)
@@ -84,15 +108,13 @@ static int balance;
         request.body(requestParams.toJSONString());
 
 
-      //  System.out.println(requestParams.toJSONString());
         io.restassured.response.Response response = request.post("/oauth/token");
-      //  System.out.println("Response body: " + response.body().asString());
         java.lang.String responseSTR = response.body().asString();
 
         org.json.JSONObject obj = new JSONObject(responseSTR);
-        String tokenUI = obj.getString("access_token");
+        tokenUI = obj.getString("access_token");
 
-      //  System.out.println("This is my token : " + tokenUI + "\n");
+        System.out.println("This is my token UI: " + tokenUI + "\n");
 
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
@@ -124,7 +146,7 @@ static int balance;
         org.json.JSONObject obj = new JSONObject(responseSTR);
         String tokenAdmin = obj.getString("access_token");
 
-        System.out.println("This is my token : " + tokenAdmin + "\n");
+        System.out.println("This is my token ADMIN: " + tokenAdmin + "\n");
 
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
@@ -157,10 +179,11 @@ static int balance;
         org.json.JSONObject obj = new JSONObject(responseSTR);
         JSONObject dataObject = obj.getJSONObject("data");
         id_application = dataObject.getString("_id");
-        System.out.println("This is my token of application: " + id_application + "\n");
+        System.out.println("This is my id of application: " + id_application + "\n");
 
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
+
         return
                 id_application;
 
@@ -312,8 +335,142 @@ static int balance;
         Assert.assertEquals(statusCode, 200);
     }
 
+                /*   https://javatutorial.net/java-file-upload-rest-service  */
 
-}
+        public static void uploadTheFile() {
+            System.out.println("=======Now i will attach the file======= ");
+
+            RequestSpecification request = given();
+            org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
+
+            request.header("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU");
+            request.header("Authorization",ExpertiseVars.typeToken + tokenUI);
+            request.body(requestParams.toJSONString());
+            System.out.println(tokenUI);
+            System.out.println(requestParams);
+            File inFile = new File(ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePNG);
+            FileInputStream fis = null;
+            try {
+                fis = new FileInputStream(inFile);
+                DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+
+                // server back-end URL
+                HttpPost httppost = new HttpPost("https://stage.servicedoc.ua/api/v1/reviews/attachFile/"+id_application);
+                MultipartEntity entity = new MultipartEntity();
+                // set the file input stream and file name as arguments
+                entity.addPart("file", new InputStreamBody(fis, inFile.getName()));
+                httppost.setEntity(entity);
+                // execute the request
+                HttpResponse response = httpclient.execute(httppost);
+
+                int statusCode = response.getStatusLine().getStatusCode();
+                HttpEntity responseEntity = response.getEntity();
+                String responseString = EntityUtils.toString(responseEntity, "UTF-8");
+                System.out.println(httppost);
+                System.out.println("[" + statusCode + "] " + responseString);
+
+            } catch (ClientProtocolException e) {
+                System.err.println("Unable to make connection");
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.err.println("Unable to read file");
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (fis != null) fis.close();
+                } catch (IOException e) {}
+            }
+        }
+
+//    public static void uploadTheFile() {
+//        System.out.println("=======Now i will attach the file======= ");
+//        System.out.println(tokenUI);
+//
+//        given().
+//                formParam("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU").
+//                formParam("Authorization",ExpertiseVars.typeToken + tokenUI).
+//                multiPart("file", ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePNG).
+//                multiPart("string", "body").
+//                expect().
+//                statusCode(200).
+//                when().
+//                post("https://stage.servicedoc.ua/api/v1/reviews/attachFile/"+id_application);
+//        }
+
+        public static void TEST() throws IOException {
+            OkHttpClient client = new OkHttpClient();
+
+            MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
+            RequestBody body = RequestBody.create(mediaType, "{\"files\":[{\"fileName\":\"/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/picture/expertise.png\"}],\"reviewId\":\"5b27b8c0c9766550cef13512\",\"fileName\":\"0\"}\n");
+            Request request = new Request.Builder()
+                    .url("https://stage.servicedoc.ua/api/v1/reviews/attachFile/"+id_application)
+                    .post(body)
+                    .addHeader("authorization", "Bearer "+tokenUI)
+                    .addHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            System.out.println(response.body());
+        }
+
+    /*   https://github.com/rest-assured/rest-assured/blob/master/examples/rest-assured-itest-java/src/test/java/io/restassured/itest/java/presentation/MultiPartITest.java*/
+
+
+
+         public static void byteArrayUploading() throws Exception {
+                // Given
+              final byte[] bytes = IOUtils.toByteArray(APIMethods.class.getResourceAsStream(ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePNG));
+
+             // When
+                  given().
+                    formParam("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU").
+                    formParam("Authorization",ExpertiseVars.typeToken + tokenUI).
+                    multiPart("file", "myFile", bytes).
+                    expect().
+                    statusCode(200).
+                    body(is(new String(bytes))).
+                    when().
+                    post("https://stage.servicedoc.ua/api/v1/reviews/attachFile"+id_application);
+        }
+
+    public void multiPartUploading() throws Exception {
+    // Given
+        final byte[] bytes;
+        bytes = IOUtils.toByteArray(getClass().getResourceAsStream(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG));
+        File file = new File(ExpertiseVars.attachmentFileLocation);
+
+        long length = file.length();
+        System.out.println(length);
+        Map<String, String> expectedHeaders = new HashMap<String, String>();
+        expectedHeaders.put("Content-Length", ""+length);
+// When
+        given().
+                multiPart("file", "myFile", bytes).
+                headers("Authorization",ExpertiseVars.typeToken + tokenUI).
+                headers("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU").
+                expect().
+                statusCode(200).
+                body(is(new String(bytes))).
+                when().
+                post("https://stage.servicedoc.ua/api/v1/reviews/attachFile"+id_application);
+        }
+
+    public static void simpleFileUploading() throws Exception {
+        // When
+        given().
+                multiPart(new File(ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePDF)).
+                headers("Authorization",ExpertiseVars.typeToken + tokenUI).
+                headers("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU").
+                expect().
+                statusCode(200).
+                body(equalTo("I'm a test file")).
+                when().
+                post("https://stage.servicedoc.ua/api/v1/reviews/attachFile"+id_application);
+    }
+
+    }
+
+
 
 
 

@@ -22,6 +22,7 @@ import sun.security.krb5.internal.TGSRep;
 import javax.xml.bind.DatatypeConverter;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
@@ -545,10 +546,15 @@ public class MyApplicationsPage {
 
     }
 
-    public void answerForOperatorWhenWaitForPayDoc(){
+    public void answerForOperatorWhenWaitForPayDoc() throws Exception {
         APIMethods.createApplication();
-        APIMethods.payDoc();
-        APIMethods.setDocFromDOperToOper();
+      //  APIMethods.TEST();
+
+//        APIMethods s = new APIMethods();
+//         s.multiPartUploading();
+       APIMethods.simpleFileUploading();
+//        APIMethods.payDoc();
+//        APIMethods.setDocFromDOperToOper();
 
 
     }

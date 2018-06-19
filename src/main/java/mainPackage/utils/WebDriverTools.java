@@ -49,7 +49,7 @@ public class WebDriverTools {
     }
 
 
-    public static void FluentWaitFunction(WebElement element) {
+    public static void FluentWaitFunction(final WebElement element) {
         WebElement linkAttachment = new FluentWait<WebDriver>(driver).withTimeout(60, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS).ignoring(org.openqa.selenium.NoSuchElementException.class)
                 .until(new Function<WebDriver, WebElement>() {
