@@ -41,4 +41,11 @@ public class DocCategory extends WebDriverTestBase {
      public void dropdawnList()  {
          docCategoryPage.dropdawnList();
      }
+
+     @Test(description = "data With One Leter", groups = ("DocCategory"), priority = 4)
+     public void dataWithOneLetter() throws InterruptedException {
+         docCategoryPage.dataWithOneLetter();
+     }
+
+
 }

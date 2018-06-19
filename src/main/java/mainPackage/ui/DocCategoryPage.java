@@ -28,7 +28,8 @@ public class DocCategoryPage {
     private WebElement sumDoc;
     @FindBy(css = "#my_documents > div.list > div.aboutDocContainer")
     private WebElement docContainer;
-
+    @FindBy(css = "#clearData")
+    private WebElement crossIcon;
 
 
     private final WebDriver driver;
@@ -60,5 +61,12 @@ public class DocCategoryPage {
         WebDriverTools.FluentWaitFunction(docContainer);
         Assert.assertNotNull(docContainer);
     }
-
+    public void dataWithOneLetter() throws InterruptedException {
+        catDocTab.click();
+        inputCatDoc.sendKeys("T");
+        Thread.sleep(1000);
+        inputCatDoc.sendKeys(Keys.RETURN);
+        WebDriverTools.FluentWaitFunction(crossIcon);
+        Assert.assertNotNull(crossIcon);
+    }
 }

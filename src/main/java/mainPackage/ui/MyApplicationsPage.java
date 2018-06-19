@@ -1,7 +1,6 @@
 package mainPackage.ui;
 
 
-import bsh.commands.dir;
 import mainPackage.api.APIMethods;
 import mainPackage.interfaceFolder.ExpertiseVars;
 import mainPackage.interfaceFolder.Vars;
@@ -12,26 +11,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
-import sun.awt.windows.ThemeReader;
-import sun.security.krb5.internal.TGSRep;
 
 import javax.xml.bind.DatatypeConverter;
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
-import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 import static org.testng.Assert.assertNotNull;
@@ -558,4 +547,5 @@ public class MyApplicationsPage {
 
 
     }
+
 }

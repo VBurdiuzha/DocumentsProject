@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 
 
@@ -99,5 +98,6 @@ public class MyApplication extends WebDriverTestBase {
     public void answerForOperatorWhenWaitForPayDoc() throws Exception {
         myApplicationsPage.answerForOperatorWhenWaitForPayDoc();
     }
+
 
 }
