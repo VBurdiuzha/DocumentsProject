@@ -69,4 +69,13 @@ public class DocCategoryPage {
         WebDriverTools.FluentWaitFunction(crossIcon);
         Assert.assertNotNull(crossIcon);
     }
+
+    public void dataWithTwoLetter() throws InterruptedException {
+        catDocTab.click();
+        inputCatDoc.sendKeys("Te");
+        Thread.sleep(1000);
+        inputCatDoc.sendKeys(Keys.RETURN);
+        WebDriverTools.FluentWaitFunction(crossIcon);
+        Assert.assertNotNull(crossIcon);
+    }
 }

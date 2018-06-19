@@ -47,5 +47,9 @@ public class DocCategory extends WebDriverTestBase {
          docCategoryPage.dataWithOneLetter();
      }
 
+     @Test(description = "data With Two Leter", groups = ("DocCategory"), priority = 5)
+     public void dataWithTwoLetter() throws InterruptedException {
+         docCategoryPage.dataWithTwoLetter();
+     }
 
 }
