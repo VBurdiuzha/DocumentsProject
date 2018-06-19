@@ -25,15 +25,11 @@ public class DocCategory extends WebDriverTestBase {
         System.out.println("Doc Category page init");
     }
 
-     @Test(description = "Valid Login", groups = {"Wizard"}, priority = 1)
-     public void logIn(){
-         loginPage.successfulLogin(Vars.regularUser, Vars.regularUserPassword);
-     }
 
-
-     @Test(description = "correct Data", groups = ("DocCategory"), priority = 2)
+     @Test(description = "correct Data", groups = ("DocCategory"), priority = 1)
     public void toDocCategory()  {
-        docCategoryPage.correctData();
+         loginPage.successfulLogin(Vars.regularUser, Vars.regularUserPassword);
+         docCategoryPage.correctData();
     }
 
 
