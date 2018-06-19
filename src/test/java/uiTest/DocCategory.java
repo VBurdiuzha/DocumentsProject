@@ -52,4 +52,11 @@ public class DocCategory extends WebDriverTestBase {
          docCategoryPage.dataWithTwoLetter();
      }
 
+     @Test(description = "data With Many Letters", groups = ("DocCategory"), priority = 6)
+     public void dataWithManyLetters() throws InterruptedException {
+         docCategoryPage.dataWithManyLetters();
+     }
+
+
+
 }

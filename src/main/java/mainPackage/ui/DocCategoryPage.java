@@ -30,6 +30,9 @@ public class DocCategoryPage {
     private WebElement docContainer;
     @FindBy(css = "#clearData")
     private WebElement crossIcon;
+    @FindBy(css = "#my_documents > div.list.nothing-found-list")
+    private WebElement emptyList;
+
 
 
     private final WebDriver driver;
@@ -47,6 +50,7 @@ public class DocCategoryPage {
     }
 
     public void correctDataWithEnterButton() throws InterruptedException {
+        driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys("Test");
         Thread.sleep(1000);
@@ -54,6 +58,7 @@ public class DocCategoryPage {
         Assert.assertNotNull(numOfDocs);
     }
     public void dropdawnList() {
+        driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys("Test");
         WebDriverTools.FluentWaitFunction(sumDoc);
@@ -62,6 +67,7 @@ public class DocCategoryPage {
         Assert.assertNotNull(docContainer);
     }
     public void dataWithOneLetter() throws InterruptedException {
+        driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys("T");
         Thread.sleep(1000);
@@ -71,11 +77,22 @@ public class DocCategoryPage {
     }
 
     public void dataWithTwoLetter() throws InterruptedException {
+        driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys("Te");
         Thread.sleep(1000);
         inputCatDoc.sendKeys(Keys.RETURN);
         WebDriverTools.FluentWaitFunction(crossIcon);
         Assert.assertNotNull(crossIcon);
+    }
+
+    public void dataWithManyLetters() throws InterruptedException {
+        driver.navigate().refresh();
+        catDocTab.click();
+        inputCatDoc.sendKeys("ааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа");
+        Thread.sleep(1000);
+        inputCatDoc.sendKeys(Keys.RETURN);
+        WebDriverTools.FluentWaitFunction(emptyList);
+        Assert.assertNotNull(emptyList);
     }
 }
