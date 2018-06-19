@@ -337,50 +337,7 @@ public class APIMethods {
 
                 /*   https://javatutorial.net/java-file-upload-rest-service  */
 
-        public static void uploadTheFile() {
-            System.out.println("=======Now i will attach the file======= ");
 
-            RequestSpecification request = given();
-            org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
-
-            request.header("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU");
-            request.header("Authorization",ExpertiseVars.typeToken + tokenUI);
-            request.body(requestParams.toJSONString());
-            System.out.println(tokenUI);
-            System.out.println(requestParams);
-            File inFile = new File(ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePNG);
-            FileInputStream fis = null;
-            try {
-                fis = new FileInputStream(inFile);
-                DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-
-                // server back-end URL
-                HttpPost httppost = new HttpPost("https://stage.servicedoc.ua/api/v1/reviews/attachFile/"+id_application);
-                MultipartEntity entity = new MultipartEntity();
-                // set the file input stream and file name as arguments
-                entity.addPart("file", new InputStreamBody(fis, inFile.getName()));
-                httppost.setEntity(entity);
-                // execute the request
-                HttpResponse response = httpclient.execute(httppost);
-
-                int statusCode = response.getStatusLine().getStatusCode();
-                HttpEntity responseEntity = response.getEntity();
-                String responseString = EntityUtils.toString(responseEntity, "UTF-8");
-                System.out.println(httppost);
-                System.out.println("[" + statusCode + "] " + responseString);
-
-            } catch (ClientProtocolException e) {
-                System.err.println("Unable to make connection");
-                e.printStackTrace();
-            } catch (IOException e) {
-                System.err.println("Unable to read file");
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (fis != null) fis.close();
-                } catch (IOException e) {}
-            }
-        }
 
 //    public static void uploadTheFile() {
 //        System.out.println("=======Now i will attach the file======= ");
@@ -447,7 +404,7 @@ public class APIMethods {
         given().
                 multiPart("file", "myFile", bytes).
                 headers("Authorization",ExpertiseVars.typeToken + tokenUI).
-                headers("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU").
+                headers("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU; application/pdf").
                 expect().
                 statusCode(200).
                 body(is(new String(bytes))).
@@ -460,7 +417,7 @@ public class APIMethods {
         given().
                 multiPart(new File(ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePDF)).
                 headers("Authorization",ExpertiseVars.typeToken + tokenUI).
-                headers("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU").
+                headers("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU; application/pdf").
                 expect().
                 statusCode(200).
                 body(equalTo("I'm a test file")).
