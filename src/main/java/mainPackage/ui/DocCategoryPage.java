@@ -35,6 +35,10 @@ public class DocCategoryPage {
     @FindBy(css = "#fronta0e5a7b36e788e511ab810fb77be3bc2")
     private WebElement ava;
 
+    @FindBy(css = "#my_documents > div.list > div.search_header > div > div > span:nth-child(2) > input")
+    private WebElement placeholder;
+
+
     private final WebDriver driver;
 
     public DocCategoryPage(WebDriver driver){
@@ -105,5 +109,14 @@ public class DocCategoryPage {
         inputCatDoc.sendKeys(Keys.RETURN);
         WebDriverTools.FluentWaitFunction(ava);
         Assert.assertNotNull(ava);
+    }
+
+    public void deleteData() throws InterruptedException {
+        driver.navigate().refresh();
+        catDocTab.click();
+        inputCatDoc.sendKeys("Te");
+        WebDriverTools.FluentWaitFunction(crossIcon);
+        crossIcon.click();
+        Assert.assertNotNull(placeholder);
     }
 }
