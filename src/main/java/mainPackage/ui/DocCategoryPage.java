@@ -1,6 +1,8 @@
 package mainPackage.ui;
 
+import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,8 +22,12 @@ public class DocCategoryPage {
     private WebElement inputCatDoc;
     @FindBy(css = "#my_documents > div.list > div.search_header > div > div > span:nth-child(2) > svg")
     private WebElement lupa;
-    @FindBy(css = "#my_documents > div.list")
-    private WebElement docList;
+    @FindBy(css = "#my_documents > div.list > div.list_header > p")
+    private WebElement numOfDocs;
+    @FindBy(xpath = "//*[@id=\"5a293e74bf4ed10001a54d69\"]")
+    private WebElement sumDoc;
+    @FindBy(css = "#my_documents > div.list > div.aboutDocContainer")
+    private WebElement docContainer;
 
 
 
@@ -32,17 +38,27 @@ public class DocCategoryPage {
     }
 
 
-    public void correctData(){
-//        driver.get(Vars.baseURL);
-//        driver.findElement(loginButton).click();
-//        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-//        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+    public void correctDataWithLupa(){
         catDocTab.click();
         inputCatDoc.sendKeys("Test");
         lupa.click();
-        Assert.assertNotNull(docList);
+        Assert.assertNotNull(numOfDocs);
     }
 
-
+    public void correctDataWithEnterButton() throws InterruptedException {
+        catDocTab.click();
+        inputCatDoc.sendKeys("Test");
+        Thread.sleep(1000);
+        inputCatDoc.sendKeys(Keys.RETURN);
+        Assert.assertNotNull(numOfDocs);
+    }
+    public void dropdawnList() {
+        catDocTab.click();
+        inputCatDoc.sendKeys("Test");
+        WebDriverTools.FluentWaitFunction(sumDoc);
+        sumDoc.click();
+        WebDriverTools.FluentWaitFunction(docContainer);
+        Assert.assertNotNull(docContainer);
+    }
 
 }

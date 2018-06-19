@@ -26,11 +26,19 @@ public class DocCategory extends WebDriverTestBase {
     }
 
 
-     @Test(description = "correct Data", groups = ("DocCategory"), priority = 1)
-    public void toDocCategory()  {
+     @Test(description = "correct Data Lupa", groups = ("DocCategory"), priority = 1)
+    public void correctDataWithLupa()  {
          loginPage.successfulLogin(Vars.regularUser, Vars.regularUserPassword);
-         docCategoryPage.correctData();
+         docCategoryPage.correctDataWithLupa();
     }
 
+     @Test(description = "correct Data Enter", groups = ("DocCategory"), priority = 2)
+     public void correctDataWithEnterButton() throws InterruptedException {
+         docCategoryPage.correctDataWithEnterButton();
+     }
 
+     @Test(description = "dropdawn List", groups = ("DocCategory"), priority = 3)
+     public void dropdawnList()  {
+         docCategoryPage.dropdawnList();
+     }
 }
