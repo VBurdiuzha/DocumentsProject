@@ -1,7 +1,5 @@
 package mainPackage.ui;
 
-import mainPackage.interfaceFolder.Vars;
-import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,10 +33,10 @@ public class DocCategoryPage {
 
 
     public void correctData(){
-        driver.get(Vars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+//        driver.get(Vars.baseURL);
+//        driver.findElement(loginButton).click();
+//        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
+//        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
         catDocTab.click();
         inputCatDoc.sendKeys("Test");
         lupa.click();
