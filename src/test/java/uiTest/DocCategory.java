@@ -57,6 +57,11 @@ public class DocCategory extends WebDriverTestBase {
          docCategoryPage.dataWithManyLetters();
      }
 
+     @Test(description = "data With Slash And Space", groups = ("DocCategory"), priority = 7)
+     public void dataWithSlashAndSpace() throws InterruptedException {
+         docCategoryPage.dataWithSlashAndSpace();
+     }
+
 
 
 }

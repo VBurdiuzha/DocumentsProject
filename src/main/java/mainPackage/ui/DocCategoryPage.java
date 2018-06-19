@@ -32,8 +32,8 @@ public class DocCategoryPage {
     private WebElement crossIcon;
     @FindBy(css = "#my_documents > div.list.nothing-found-list")
     private WebElement emptyList;
-
-
+    @FindBy(css = "#fronta0e5a7b36e788e511ab810fb77be3bc2")
+    private WebElement ava;
 
     private final WebDriver driver;
 
@@ -94,5 +94,16 @@ public class DocCategoryPage {
         inputCatDoc.sendKeys(Keys.RETURN);
         WebDriverTools.FluentWaitFunction(emptyList);
         Assert.assertNotNull(emptyList);
+    }
+
+    public void dataWithSlashAndSpace() throws InterruptedException {
+        driver.navigate().refresh();
+        catDocTab.click();
+        inputCatDoc.sendKeys(" ");
+        Thread.sleep(1000);
+        inputCatDoc.sendKeys("/");
+        inputCatDoc.sendKeys(Keys.RETURN);
+        WebDriverTools.FluentWaitFunction(ava);
+        Assert.assertNotNull(ava);
     }
 }
