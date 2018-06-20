@@ -62,11 +62,24 @@ public class DocCategory extends WebDriverTestBase {
          docCategoryPage.dataWithSlashAndSpace();
      }
 
-     @Test(description = "delete data", groups = ("DocCategory"), priority = 7)
-     public void deleteData() throws InterruptedException {
+     @Test(description = "delete data", groups = ("DocCategory"), priority = 8)
+     public void deleteData() {
          docCategoryPage.deleteData();
      }
 
+     @Test(description = "space data", groups = ("DocCategory"), priority = 9)
+     public void spaceData()  {
+         docCategoryPage.spaceData();
+     }
 
+     @Test(description = "subcategories", groups = ("DocCategory"), priority = 10)
+     public void subcategories()  {
+         docCategoryPage.subcategories();
+     }
+
+     @Test(description = "category With Out Sub Cat", groups = ("DocCategory"), priority = 11)
+     public void categoryWithOutSubCat()  {
+         docCategoryPage.categoryWithOutSubCat();
+     }
 
 }

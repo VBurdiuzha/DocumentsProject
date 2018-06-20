@@ -37,6 +37,17 @@ public class DocCategoryPage {
 
     @FindBy(css = "#my_documents > div.list > div.search_header > div > div > span:nth-child(2) > input")
     private WebElement placeholder;
+    @FindBy(css = "//input[@value=\"null\"]')")
+    private WebElement emptySeaarch;
+
+    @FindBy(css = "#my_documents > div.list > div:nth-child(3) > div > div.header_right > svg")
+    private WebElement iconbot;
+    @FindBy(css = "#my_documents > div.list > div:nth-child(3) > div > div.header_right > p")
+    private WebElement iconIsOpen;
+    @FindBy(css = "#my_documents > div.list > div:nth-child(2) > div")
+    private WebElement automationCat;
+    @FindBy(css = "#my_documents > div.list")
+    private WebElement automationList;
 
 
     private final WebDriver driver;
@@ -46,18 +57,17 @@ public class DocCategoryPage {
     }
 
 
-    public void correctDataWithLupa(){
+    public void correctDataWithLupa() {
         catDocTab.click();
         inputCatDoc.sendKeys("Test");
         lupa.click();
         Assert.assertNotNull(numOfDocs);
     }
 
-    public void correctDataWithEnterButton() throws InterruptedException {
+    public void correctDataWithEnterButton() {
         driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys("Test");
-        Thread.sleep(1000);
         inputCatDoc.sendKeys(Keys.RETURN);
         Assert.assertNotNull(numOfDocs);
     }
@@ -73,28 +83,25 @@ public class DocCategoryPage {
     public void dataWithOneLetter() throws InterruptedException {
         driver.navigate().refresh();
         catDocTab.click();
-        inputCatDoc.sendKeys("T");
         Thread.sleep(1000);
         inputCatDoc.sendKeys(Keys.RETURN);
         WebDriverTools.FluentWaitFunction(crossIcon);
         Assert.assertNotNull(crossIcon);
     }
 
-    public void dataWithTwoLetter() throws InterruptedException {
+    public void dataWithTwoLetter() {
         driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys("Te");
-        Thread.sleep(1000);
         inputCatDoc.sendKeys(Keys.RETURN);
         WebDriverTools.FluentWaitFunction(crossIcon);
         Assert.assertNotNull(crossIcon);
     }
 
-    public void dataWithManyLetters() throws InterruptedException {
+    public void dataWithManyLetters() {
         driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys("ааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа");
-        Thread.sleep(1000);
         inputCatDoc.sendKeys(Keys.RETURN);
         WebDriverTools.FluentWaitFunction(emptyList);
         Assert.assertNotNull(emptyList);
@@ -104,19 +111,43 @@ public class DocCategoryPage {
         driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys(" ");
-        Thread.sleep(1000);
         inputCatDoc.sendKeys("/");
         inputCatDoc.sendKeys(Keys.RETURN);
         WebDriverTools.FluentWaitFunction(ava);
         Assert.assertNotNull(ava);
     }
 
-    public void deleteData() throws InterruptedException {
+    public void deleteData()  {
         driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys("Te");
         WebDriverTools.FluentWaitFunction(crossIcon);
         crossIcon.click();
         Assert.assertNotNull(placeholder);
+    }
+
+    public void spaceData()  {
+        driver.navigate().refresh();
+        catDocTab.click();
+        inputCatDoc.sendKeys(" ");
+        WebDriverTools.FluentWaitFunction(emptySeaarch);
+        Assert.assertNotNull(emptySeaarch);
+    }
+
+    public void subcategories() {
+        driver.navigate().refresh();
+        catDocTab.click();
+        WebDriverTools.FluentWaitFunction(iconbot);
+        iconbot.click();
+        WebDriverTools.FluentWaitFunction(iconIsOpen);
+        Assert.assertNotNull(iconIsOpen);
+    }
+
+    public void categoryWithOutSubCat() {
+        driver.navigate().refresh();
+        catDocTab.click();
+        automationCat.click();
+        WebDriverTools.FluentWaitFunction(automationList);
+        Assert.assertNotNull(automationList);
     }
 }
