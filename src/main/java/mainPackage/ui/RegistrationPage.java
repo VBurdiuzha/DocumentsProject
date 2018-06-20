@@ -1,6 +1,6 @@
 package mainPackage.ui;
 
-import mainPackage.interfaceFolder.Vars;
+import mainPackage.interfaceFolder.LogsVars;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -96,12 +96,12 @@ public class RegistrationPage {
 
     @Test (dataProvider = "provider1")
     public void verifyEmail(String n1, boolean n2)  {
-        driver.get(Vars.baseURL);
+        driver.get(LogsVars.baseURL);
         enterButton.click();
         registrationButton.click();
 
         WebDriverTools.clearAndFill(inputUsernameReg, n1);
-        WebDriverTools.clearAndFill(inputPasswordReg, Vars.correctPassword).submit();
+        WebDriverTools.clearAndFill(inputPasswordReg, LogsVars.correctPassword).submit();
         icon.click();
         Assert.assertFalse(errorEmail.size() != 0);
 
@@ -113,7 +113,7 @@ public class RegistrationPage {
         driver.navigate().refresh();
         enterButton.click();
         registrationButton.click();
-        WebDriverTools.clearAndFill(inputUsernameReg, Vars.OSSEmail);
+        WebDriverTools.clearAndFill(inputUsernameReg, LogsVars.OSSEmail);
         WebDriverTools.clearAndFill(inputPasswordReg, n1).submit();
         icon.click();
         checkbox.click();
@@ -130,9 +130,9 @@ public class RegistrationPage {
     }
 
     public void confirmAccountWithEmail() throws InterruptedException {
-        driver.get(Vars.OSS);
-        OSSinputEmail.sendKeys(Vars.OSSlogin);
-        OSSinputPass.sendKeys(Vars.OSSpass);
+        driver.get(LogsVars.OSS);
+        OSSinputEmail.sendKeys(LogsVars.OSSlogin);
+        OSSinputPass.sendKeys(LogsVars.OSSpass);
         OSSSignIn.click();
         Thread.sleep(5000);
         driver.navigate().refresh();
@@ -169,18 +169,18 @@ public class RegistrationPage {
 
         driver.switchTo().window(originalWindow);//In here I should switch back to the old window
 
-        driver.get(Vars.baseURL);
+        driver.get(LogsVars.baseURL);
         enterButton.click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.OSSEmail);
-        WebDriverTools.clearAndFill(inputPassword, Vars.adminUserPassword).submit();
+        WebDriverTools.clearAndFill(inputUsername, LogsVars.OSSEmail);
+        WebDriverTools.clearAndFill(inputPassword, LogsVars.adminUserPassword).submit();
 
     }
 
     public void deleteUser () throws InterruptedException {
 
-        driver.get(Vars.baseAdminURL);
-        WebDriverTools.clearAndFill(By.xpath("//*[@id=\"textfield-1012-inputEl\"]"), Vars.adminUser);
-        adminPassField.sendKeys(Vars.adminUserPassword);
+        driver.get(LogsVars.baseAdminURL);
+        WebDriverTools.clearAndFill(By.xpath("//*[@id=\"textfield-1012-inputEl\"]"), LogsVars.adminUser);
+        adminPassField.sendKeys(LogsVars.adminUserPassword);
         toolbarSignIn.click();
         admSignIn.click();
         toolbarNextPage.click();

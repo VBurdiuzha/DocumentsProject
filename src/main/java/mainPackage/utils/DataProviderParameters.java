@@ -1,6 +1,6 @@
 package mainPackage.utils;
 
-import mainPackage.interfaceFolder.Vars;
+import mainPackage.interfaceFolder.LogsVars;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderParameters {
@@ -28,7 +28,7 @@ public class DataProviderParameters {
                 { "парольнарусском", true},
                 { "0123456789012345678901234", false },
                 { "  ", false},
-                { Vars.regularUserPassword, true},
+                { LogsVars.regularUserPassword, true},
         };
     }
     @DataProvider(name = "surName")

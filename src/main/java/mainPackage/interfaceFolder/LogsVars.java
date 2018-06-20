@@ -1,9 +1,6 @@
 package mainPackage.interfaceFolder;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public interface Vars {
+public interface LogsVars {
     String baseURL = "https://stage.servicedoc.ua/ru";
     String baseAdminURL = "https://stage.servicedoc.ua/admin/";
 
@@ -27,8 +24,9 @@ public interface Vars {
     String OSSpass = "1c264ec95143b";
     String OSSEmail = "v.burdiuzha@ossystem.com.ua";
 
-    String personalUser = "taras.myza.84@gmail.com";
+    String personalUser = "personalUser@test.com";
     String personalUserPassword = "123456";
 
+    String typeToken = "Bearer ";
 
 }

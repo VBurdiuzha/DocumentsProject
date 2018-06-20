@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Profile Suite">
+    <listeners>
+        <listener class-name="mainPackage.listeners.RetryListener"/>
+        <listener class-name="mainPackage.listeners.TestListenerUI"/>
+    </listeners>
     <test name="Profile">
         <classes>
             <class name="uiTest.Profile"/>

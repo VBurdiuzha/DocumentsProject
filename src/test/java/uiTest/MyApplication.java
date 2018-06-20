@@ -1,16 +1,18 @@
 package uiTest;
 
+import mainPackage.listeners.TestListenerUI;
 import mainPackage.ui.MyApplicationsPage;
 import mainPackage.utils.WebDriverTestBase;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-
+@Listeners({TestListenerUI.class})
 public class MyApplication extends WebDriverTestBase {
 
     private MyApplicationsPage myApplicationsPage;

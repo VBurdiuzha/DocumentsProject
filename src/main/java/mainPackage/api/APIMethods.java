@@ -1,36 +1,19 @@
 package mainPackage.api;
 
-import com.jayway.restassured.builder.MultiPartSpecBuilder;
 import io.restassured.RestAssured;
 import io.restassured.internal.util.IOUtils;
-import io.restassured.specification.MultiPartSpecification;
 import io.restassured.specification.RequestSpecification;
-import mainPackage.interfaceFolder.ExpertiseVars;
-import mainPackage.interfaceFolder.Vars;
+import mainPackage.interfaceFolder.FilesVars;
+import mainPackage.interfaceFolder.LogsVars;
 import okhttp3.*;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.InputStreamBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.testng.Assert;
 
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.sun.org.apache.xerces.internal.utils.SecuritySupport.getResourceAsStream;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -50,8 +33,8 @@ public class APIMethods {
         org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
         requestParams.put("change", money);
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
-                (Vars.regularUser, Vars.regularUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenUI
+                (LogsVars.regularUser, LogsVars.regularUserPassword));
         request.body(requestParams.toJSONString());
 
         System.out.println(requestParams.toJSONString());
@@ -74,8 +57,8 @@ public class APIMethods {
         requestParams.put("userId", "5af40ce5bb4c21029830830d");
         requestParams.put("forAdminPanel", 1);
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenAdmin
-                (Vars.adminUser, Vars.regularUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenAdmin
+                (LogsVars.adminUser, LogsVars.regularUserPassword));
         request.body(requestParams.toJSONString());
 
         System.out.println(requestParams.toJSONString());
@@ -166,8 +149,8 @@ public class APIMethods {
         requestParams.put("ownership", "APItest");
 
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
-                (Vars.regularUser, Vars.regularUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenUI
+                (LogsVars.regularUser, LogsVars.regularUserPassword));
 
         request.body(requestParams.toJSONString());
         io.restassured.response.Response response = request.post("/reviews/createNewReview");
@@ -199,8 +182,8 @@ public class APIMethods {
         requestParams.put("statusComment", "test");
 
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
-                (Vars.doperUser, Vars.doperUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenUI
+                (LogsVars.doperUser, LogsVars.doperUserPassword));
 
         request.body(requestParams.toJSONString());
 
@@ -219,8 +202,8 @@ public class APIMethods {
         RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
         RequestSpecification request = given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
-                (Vars.regularUser, Vars.regularUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenUI
+                (LogsVars.regularUser, LogsVars.regularUserPassword));
         io.restassured.response.Response response = request.get("/reviews/buy/review/" + id_application);
         System.out.println("payDoc success" + "\n");
         int statusCode = response.getStatusCode();
@@ -232,8 +215,8 @@ public class APIMethods {
         RestAssured.baseURI ="https://stage.servicedoc.ua/api/v1";
         RequestSpecification request = given();
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
-                (Vars.regularUser, Vars.regularUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenUI
+                (LogsVars.regularUser, LogsVars.regularUserPassword));
         io.restassured.response.Response response = request.get("/payment/account");
         System.out.println("get balance" + "\n");
         int statusCode = response.getStatusCode();
@@ -266,8 +249,8 @@ public class APIMethods {
         requestParams.put("userId", "5af40ce5bb4c21029830830d");
         requestParams.put("forAdminPanel", 1);
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenAdmin
-                (Vars.adminUser, Vars.regularUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenAdmin
+                (LogsVars.adminUser, LogsVars.regularUserPassword));
         request.body(requestParams.toJSONString());
 
         System.out.println(requestParams.toJSONString());
@@ -293,8 +276,8 @@ public class APIMethods {
 
 
         request.header("Content-Type", "image/png");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
-                (Vars.doperUser, Vars.doperUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenUI
+                (LogsVars.doperUser, LogsVars.doperUserPassword));
 
         request.body(requestParams.toJSONString());
         io.restassured.response.Response response = request.post("/reviews/attachFile/"+id_application);
@@ -324,8 +307,8 @@ public class APIMethods {
 
 
         request.header("Content-Type", "application/json");
-        request.header("Authorization", ExpertiseVars.typeToken + authorizationGetTokenUI
-                (Vars.doperUser, Vars.doperUserPassword));
+        request.header("Authorization", LogsVars.typeToken + authorizationGetTokenUI
+                (LogsVars.doperUser, LogsVars.doperUserPassword));
 
         request.body(requestParams.toJSONString());
         io.restassured.response.Response response = request.post("/reviews/updateReviewById");
@@ -345,8 +328,8 @@ public class APIMethods {
 //
 //        given().
 //                formParam("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU").
-//                formParam("Authorization",ExpertiseVars.typeToken + tokenUI).
-//                multiPart("file", ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePNG).
+//                formParam("Authorization",FilesVars.typeToken + tokenUI).
+//                multiPart("file", FilesVars.attachmentFileLocation+FilesVars.attachmentFileNamePNG).
 //                multiPart("string", "body").
 //                expect().
 //                statusCode(200).
@@ -376,12 +359,12 @@ public class APIMethods {
 
          public static void byteArrayUploading() throws Exception {
                 // Given
-              final byte[] bytes = IOUtils.toByteArray(APIMethods.class.getResourceAsStream(ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePNG));
+              final byte[] bytes = IOUtils.toByteArray(APIMethods.class.getResourceAsStream(FilesVars.attachmentFileLocation+FilesVars.attachmentFileNamePNG));
 
              // When
                   given().
                     formParam("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU").
-                    formParam("Authorization",ExpertiseVars.typeToken + tokenUI).
+                    formParam("Authorization",LogsVars.typeToken + tokenUI).
                     multiPart("file", "myFile", bytes).
                     expect().
                     statusCode(200).
@@ -393,8 +376,8 @@ public class APIMethods {
     public void multiPartUploading() throws Exception {
     // Given
         final byte[] bytes;
-        bytes = IOUtils.toByteArray(getClass().getResourceAsStream(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG));
-        File file = new File(ExpertiseVars.attachmentFileLocation);
+        bytes = IOUtils.toByteArray(getClass().getResourceAsStream(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG));
+        File file = new File(FilesVars.attachmentFileLocation);
 
         long length = file.length();
         System.out.println(length);
@@ -403,7 +386,7 @@ public class APIMethods {
 // When
         given().
                 multiPart("file", "myFile", bytes).
-                headers("Authorization",ExpertiseVars.typeToken + tokenUI).
+                headers("Authorization",LogsVars.typeToken + tokenUI).
                 headers("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU; application/pdf").
                 expect().
                 statusCode(200).
@@ -415,8 +398,8 @@ public class APIMethods {
     public static void simpleFileUploading() throws Exception {
         // When
         given().
-                multiPart(new File(ExpertiseVars.attachmentFileLocation+ExpertiseVars.attachmentFileNamePDF)).
-                headers("Authorization",ExpertiseVars.typeToken + tokenUI).
+                multiPart(new File(FilesVars.attachmentFileLocation+FilesVars.attachmentFileNamePDF)).
+                headers("Authorization",LogsVars.typeToken + tokenUI).
                 headers("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryi1TNXqtDD8JNDHYU; application/pdf").
                 expect().
                 statusCode(200).

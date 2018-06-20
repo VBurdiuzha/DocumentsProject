@@ -1,6 +1,6 @@
 package uiTest;
 
-import mainPackage.interfaceFolder.Vars;
+import mainPackage.interfaceFolder.LogsVars;
 import mainPackage.listeners.TestListenerUI;
 import mainPackage.ui.DocCategoryPage;
 import mainPackage.ui.LoginPage;
@@ -28,7 +28,7 @@ public class DocCategory extends WebDriverTestBase {
 
      @Test(description = "correct Data Lupa", groups = ("DocCategory"), priority = 1)
     public void correctDataWithLupa()  {
-         loginPage.successfulLogin(Vars.regularUser, Vars.regularUserPassword);
+         loginPage.successfulLogin(LogsVars.regularUser, LogsVars.regularUserPassword);
          docCategoryPage.correctDataWithLupa();
     }
 

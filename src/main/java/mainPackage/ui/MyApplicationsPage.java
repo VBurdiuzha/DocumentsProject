@@ -2,8 +2,8 @@ package mainPackage.ui;
 
 
 import mainPackage.api.APIMethods;
-import mainPackage.interfaceFolder.ExpertiseVars;
-import mainPackage.interfaceFolder.Vars;
+import mainPackage.interfaceFolder.FilesVars;
+import mainPackage.interfaceFolder.LogsVars;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -178,8 +178,8 @@ public class MyApplicationsPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePDF);
         nextButton.click();
         Thread.sleep(2000);
     }
@@ -195,8 +195,8 @@ public class MyApplicationsPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePDF);
         nextButton.click();
 
         Thread.sleep(2000);
@@ -210,10 +210,10 @@ public class MyApplicationsPage {
     }
 
     public void expertiseModule() {
-        driver.get(Vars.baseURL);
+        driver.get(LogsVars.baseURL);
         driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
         expertiseModule.click();
@@ -268,7 +268,7 @@ public class MyApplicationsPage {
         Thread.sleep(2000);
         WebDriverTools.FluentWaitFunction(textAreaUpdateDoc);
         textAreaUpdateDoc.sendKeys("   Какое-то дополнение от пользователя");
-        uploadAttach.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        uploadAttach.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         WebDriverTools.clickOnInvisibleElement(sendButton);
         WebDriverTools.FluentWaitFunction(fileExpertise);
         assertNotNull("Какое-то дополнение от пользователя");
@@ -515,10 +515,10 @@ public class MyApplicationsPage {
         driver.navigate().refresh();
         expertiseModule();
 
-        driver.get(Vars.baseURL);
+        driver.get(LogsVars.baseURL);
         driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
 

@@ -1,6 +1,6 @@
 package mainPackage.ui;
 
-import mainPackage.interfaceFolder.Vars;
+import mainPackage.interfaceFolder.LogsVars;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +24,7 @@ public class LoginPage {
     }
 
     private void login(String user, String password) {
-        driver.get(Vars.baseURL);
+        driver.get(LogsVars.baseURL);
         driver.findElement(loginBotton).click();
         WebDriverTools.clearAndFill(inputUsername, user);
         WebDriverTools.clearAndFill(inputPassword, password).submit();

@@ -1,13 +1,15 @@
 package uiTest;
 
+import mainPackage.listeners.TestListenerUI;
 import mainPackage.ui.RegistrationPage;
 import mainPackage.utils.DataProviderParameters;
 import mainPackage.utils.WebDriverTestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-
+@Listeners({TestListenerUI.class})
 public class Registration extends WebDriverTestBase{
     private RegistrationPage registrationPage;
     private DataProviderParameters dataProviderParameters;

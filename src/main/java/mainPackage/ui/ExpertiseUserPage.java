@@ -1,19 +1,19 @@
 package mainPackage.ui;
 
 
-import io.qameta.allure.Step;
 import mainPackage.api.APIMethods;
-import mainPackage.interfaceFolder.ExpertiseVars;
-import mainPackage.interfaceFolder.Vars;
+import mainPackage.interfaceFolder.FilesVars;
+import mainPackage.interfaceFolder.LogsVars;
 import mainPackage.utils.WebDriverTools;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import static jdk.nashorn.internal.objects.NativeString.length;
-import static jdk.nashorn.internal.objects.NativeString.substring;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
@@ -74,10 +74,10 @@ public class ExpertiseUserPage {
     }
 
     public void expertiseModule() {
-        driver.get(Vars.baseURL);
+        driver.get(LogsVars.baseURL);
         driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
         expertiseModule.click();
@@ -97,7 +97,7 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         nextButton.click();
 
         String selector = "#front721c0f66c16e78c7120e829611dac8c8_242";
@@ -121,8 +121,8 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNameDOCX);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePDF);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameDOCX);
         WebDriverTools.FluentWaitFunction(nextButton);
         nextButton.click();
         WebDriverTools.FluentWaitFunction(payAndGo);
@@ -142,7 +142,7 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.cssSelector("#frontefe13855ecb4f08c893b82990641b449")).isDisplayed());
     }
@@ -158,7 +158,7 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front3dd6d39ab46cf734a1a23794bcc6a2dd\"]")).isDisplayed());
     }
@@ -175,7 +175,7 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front3dd6d39ab46cf734a1a23794bcc6a2dd\"]")).isDisplayed());
 
@@ -194,7 +194,7 @@ public class ExpertiseUserPage {
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"front8c5a7f84a773a7e92820274c5740a8a7\"]")).isDisplayed());
     }
@@ -209,7 +209,7 @@ public class ExpertiseUserPage {
         testCategoryType.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.cssSelector("#front8c5a7f84a773a7e92820274c5740a8a7")).isDisplayed());
 
@@ -244,8 +244,8 @@ public class ExpertiseUserPage {
 
         int count = 11;
         for (int i = 0; i <= count; i++) {
-            attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
-            attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
+            attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+            attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePDF);
         }
         Assert.assertTrue(moreThan20.isDisplayed());
 
@@ -263,7 +263,7 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileName50MB);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileName50MB);
         nextButton.click();
         Assert.assertTrue(moreThan50MB.isDisplayed());
 
@@ -281,8 +281,8 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePDF);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePDF);
         driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/div/span/div[2]/div/ul[2]/li[2]/ul/li/div[2]")).click();
         WebDriverTools.clickOnInvisibleElement(deleteFile);
         WebDriverTools.FluentWaitFunction(nextButton);
@@ -307,7 +307,7 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         fileExpertise.click();
         WebDriverTools.clickOnInvisibleElement(deleteFile);
         reestablis.click();
@@ -335,7 +335,7 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         nextButton.click();
         WebDriverTools.FluentWaitFunction(payAndGo);
         payAndGo.click();
@@ -347,10 +347,10 @@ public class ExpertiseUserPage {
     }
 
     public void emptyAllField() {
-        driver.get(Vars.baseURL);
+        driver.get(LogsVars.baseURL);
         driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, Vars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, Vars.regularUserPassword).submit();
+        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
 
@@ -381,7 +381,7 @@ public class ExpertiseUserPage {
         radioButton3.click();
         WebDriverTools.clearAndFill(textarea, "This is automation test").click();
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
-        attachFile.sendKeys(ExpertiseVars.attachmentFileLocation + ExpertiseVars.attachmentFileNameXML);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameXML);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/div/span/div[2]/div/ul[2]/li/ul/li[2]")).isDisplayed());
 

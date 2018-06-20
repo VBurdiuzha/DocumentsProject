@@ -1,19 +1,11 @@
 package mainPackage.utils;
 
-import com.sun.glass.events.KeyEvent;
-import io.restassured.RestAssured;
-import io.restassured.specification.RequestSpecification;
-import mainPackage.interfaceFolder.ExpertiseVars;
-import mainPackage.interfaceFolder.Vars;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.testng.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.json.*;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
