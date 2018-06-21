@@ -1,22 +1,28 @@
 package mainPackage.ui;
 
+import mainPackage.interfaceFolder.FilesVars;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import static org.openqa.selenium.By.xpath;
 
 public class ProfilePage {
 
-    private final By MENUBUTTON = By.id("fronta0e5a7b36e788e511ab810fb77be3bc2");
-    private final By PROFILEBUTTOB = By.id("front3d6305e5e1809ea5588858bbcf65cc36");
-    private final By UPLOADFOTO = By.id("front16a8798d370eb274c51db577e047a929");
+    private final By MENU_BUTTON = By.id("fronta0e5a7b36e788e511ab810fb77be3bc2");
+    private final By PROFILE_BUTTON = By.id("front3d6305e5e1809ea5588858bbcf65cc36");
+    @FindBy(css = "#front16a8798d370eb274c51db577e047a929")
+    private WebElement uploadFoto;
+
+
+    @FindBy(css = "[class=serverResponseErrorAlerts]")
+    private WebElement allertError;
+
+
+
     private final String ATTACHMENTPICTURE = "C:\\ServiceDoc\\qa\\src\\main\\resources\\picture\\";
     private final By SURNAMEFIELD = By.id("front405bbe8e4001ec0948f0888ef8a785bf");
     private final By NAMEFIELD = By.id("front68d8b2b234b0e3d0de6620b9ada9d991");
@@ -41,7 +47,8 @@ public class ProfilePage {
     private final By visiblePassword = xpath("//div/input[@value=\"123456\"]");
     private final By visibleCurrentPasswordButton = xpath("//*[@id=\"fronta8c70490d53c902d11afe62cf486145d\"]");
     private final By visibleNewPasswordButton = xpath("//*[@id=\"front9ba90ab3392fe8ddc58ab1499a28523b\"]");
-    private final By visibleConfirPasswordButton = xpath("//*[@id=\"frontbbe4c7ed0235340b35e11aa63d6bcd9a\"]");;
+    private final By visibleConfirPasswordButton = xpath("//*[@id=\"frontbbe4c7ed0235340b35e11aa63d6bcd9a\"]");
+    ;
     private final By successSaveMessage = xpath("//p[contains(text(),\"Персональные даные изменены успешно\")]");
 
     static final By ERRORSURNAME = xpath("//div[text()=\"Данное поле может содержать только буквы\"]");
@@ -55,7 +62,7 @@ public class ProfilePage {
 
     static final By PROFSLADER = By.id("front38ff1273b71541cadb2b3117b8f60cad");
     static final By PROFMODEON = xpath("//span[@class=\"profesional-mode\"]/span[@class=\"is-active\"][contains(text(), \"Профессионал\")]");
-    static final By PROFMODEOFF= xpath("//span[@class=\"normal-mode\"]/span[@class=\"is-active\"][contains(text(), \"Обычный\")]");
+    static final By PROFMODEOFF = xpath("//span[@class=\"normal-mode\"]/span[@class=\"is-active\"][contains(text(), \"Обычный\")]");
     static final By WARNINGPROFFMODEON = By.xpath("//div[@class=\"notificationHeader khaki\"]");
 
     static final By ERRORNOTSUPPORTEDFORMATPICTURE = By.xpath("//div[@class=\"notifMasageText alert-text\"]");
@@ -64,25 +71,130 @@ public class ProfilePage {
     @FindBy(css = "input[type=file]")
     private WebElement attachFile;
 
+
+    @FindBy(css = "#front3958782bbce34c0dfeb6cc232a0fd2df")
+    private WebElement profileSideBar;
+    @FindBy(css = "#front29b36a788ae06325de5b6c50e83d6cc6")
+    private WebElement expertiseSideBar;
+    @FindBy(css = "#front71c51c3798c0e53c216a544aba75d67d")
+    private WebElement expertiseHouseSideBar;
+    @FindBy(css = "#front0c544ebe6d3889a2809847afaf5d83aa")
+    private WebElement notifySideBar;
+    @FindBy(css = "#frontf2967a974e00e9962e0bca363c54f55c")
+    private WebElement myDocSideBar;
+    @FindBy(css = "#frontf0e18c1ca6fe110ebb86bded28749c43")
+    private WebElement statisticPaymentSideBar;
+    @FindBy(css = "[class=addAvatar]")
+    private WebElement addAvatar;
+    @FindBy(css = "[class=accept]")
+    private WebElement acceptAvatar;
+    @FindBy(css = "#maincolumn > div > div.userAvatar > div.avaContainer > div > img")
+    private WebElement avatarNotNull;
+    @FindBy(css = "[class=delete]")
+    private WebElement deleteAva;
+    @FindBy(css = "img[src='/']")
+    private WebElement emptyAva;
+
+
+
     private final WebDriver driver;
 
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void waitForElementClickable(By bySelector) {
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(bySelector));
-    }
-
-    public void waitForElementDisplayed(By bySelector){
-        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(bySelector));
-    }
 
     public void toProfilePage(){
-        driver.findElement(MENUBUTTON).click();
-        driver.findElement(PROFILEBUTTOB).click();
-        Assert.assertTrue(driver.findElement(By.xpath("//div[@class=\"profile\"]")).isDisplayed());
+        driver.findElement(MENU_BUTTON).click();
+        driver.findElement(PROFILE_BUTTON).click();
+        Assert.assertNotNull(profileSideBar);
+        Assert.assertNotNull(expertiseSideBar);
+        Assert.assertNotNull(expertiseHouseSideBar);
+        Assert.assertNotNull(notifySideBar);
+        Assert.assertNotNull(myDocSideBar);
+        Assert.assertNotNull(statisticPaymentSideBar);
     }
+
+    public void uploadAvatarGIF()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameGIF);
+        Assert.assertNotNull(allertError);
+    }
+
+    public void uploadAvatarBMP()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameBMP);
+        Assert.assertNotNull(allertError);
+    }
+
+    public void uploadAvatarWEBP()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameWEBP);
+        Assert.assertNotNull(allertError);
+    }
+
+    public void uploadAvatarTIFF()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameTIFF);
+        Assert.assertNotNull(allertError);
+    }
+
+    public void uploadAvatarSVG()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameSVG);
+        Assert.assertNotNull(allertError);
+    }
+
+    public void uploadAvatar2MB()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileName2MB);
+        Assert.assertNotNull(allertError);
+    }
+
+    public void uploadAvatarPNG()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        Assert.assertNotNull(addAvatar);
+    }
+
+    public void uploadAvatarJPG()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameJPG);
+        WebDriverTools.FluentWaitFunction(acceptAvatar);
+        acceptAvatar.click();
+        Assert.assertNotNull(avatarNotNull);
+    }
+
+    public void deleteAva()  {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        WebDriverTools.FluentWaitFunction(deleteAva);
+        deleteAva.click();
+        Assert.assertNotNull(emptyAva);
+    }
+
+
+
+
+
+
+
+
+ /*   ==============  ======================================================================
+
+
+
+
+
 
     @Test(dataProvider = "surName")
     public void verifyEmail(String surName, boolean n2) throws InterruptedException {
@@ -91,7 +203,7 @@ public class ProfilePage {
             Assert.assertNotNull(ERRORSURNAME);
         }else {
             driver.findElement(SAVEBUTTON).click();
-            waitForElementDisplayed(OKBUTTONSUCCHANGE);
+            WebDriverTools.waitForElementClickable((WebElement) OKBUTTONSUCCHANGE);
             driver.findElement(OKBUTTONSUCCHANGE).click();
         }
     }
@@ -103,7 +215,7 @@ public class ProfilePage {
             Assert.assertNotNull(ERRORNAME);
         }else {
             driver.findElement(SAVEBUTTON).click();
-            waitForElementDisplayed(OKBUTTONSUCCHANGE);
+            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONSUCCHANGE);
             driver.findElement(OKBUTTONSUCCHANGE).click();
         }
     }
@@ -116,7 +228,7 @@ public class ProfilePage {
             Assert.assertNotNull(ERRORLASTNAME);
         }else {
             driver.findElement(SAVEBUTTON).click();
-            waitForElementDisplayed(OKBUTTONSUCCHANGE);
+            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONSUCCHANGE);
             driver.findElement(OKBUTTONSUCCHANGE).click();
         }
     }
@@ -127,7 +239,7 @@ public class ProfilePage {
         WebDriverTools.clearAndFill(NEWPASSWORDFIELD, newPassword);
         WebDriverTools.clearAndFill(CONFIRMPASSWORDFIELD, newPassword);
         Thread.sleep(3000);
-        waitForElementClickable(CHANGEPASSORDBUTTON);
+        WebDriverTools.waitForElementClickable((WebElement)(CHANGEPASSORDBUTTON);
         driver.findElement(CHANGEPASSORDBUTTON).click();
         Thread.sleep(3000);
         if (driver.findElement(OKBUTTONSUCCHANGE).isDisplayed()){
@@ -143,13 +255,13 @@ public class ProfilePage {
         if (n2 == false) {
             attachFile.sendKeys(ATTACHMENTPICTURE + avatarFielsName);
             Assert.assertNotNull(ERRORNOTSUPPORTEDFORMATPICTURE);
-            waitForElementClickable(OKBUTTONERROR);
+            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONERROR);
             driver.findElement(OKBUTTONERROR).click();
-            waitForElementClickable(BUTTONAPLAYFOTO);
+            WebDriverTools.waitForElementClickable((WebElement)(BUTTONAPLAYFOTO);
             driver.findElement(BUTTONAPLAYFOTO).click();
         }else {
             attachFile.sendKeys(ATTACHMENTPICTURE + avatarFielsName);
-            waitForElementDisplayed(BUTTONAPLAYFOTO);
+            WebDriverTools.waitForElementClickable((WebElement)(BUTTONAPLAYFOTO);
             driver.findElement(BUTTONAPLAYFOTO).click();
         }
     }
@@ -161,7 +273,7 @@ public class ProfilePage {
             Assert.assertNotNull(ERRORADDITIONALEMAIL);
         }else {
             driver.findElement(SAVEBUTTON).click();
-            waitForElementDisplayed(OKBUTTONSUCCHANGE);
+            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONSUCCHANGE);
             driver.findElement(OKBUTTONSUCCHANGE).click();
         }
     }
@@ -172,9 +284,9 @@ public class ProfilePage {
         if(n2 == false){
             Assert.assertNotNull(ERRORPHONENUMBER);
         }else {
-            waitForElementClickable(SAVEBUTTON);
+            WebDriverTools.waitForElementClickable((WebElement)(SAVEBUTTON);
             driver.findElement(SAVEBUTTON).click();
-            waitForElementDisplayed(OKBUTTONSUCCHANGE);
+            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONSUCCHANGE);
             driver.findElement(OKBUTTONSUCCHANGE).click();
         }
     }
@@ -186,13 +298,15 @@ public class ProfilePage {
             Assert.assertTrue(driver.findElement(PROFMODEOFF).isDisplayed());
         }else {
             driver.findElement(PROFSLADER).click();
-            waitForElementDisplayed(NOTIFICATIONALERT);
+            WebDriverTools.waitForElementClickable((WebElement)(NOTIFICATIONALERT);
             Assert.assertNotNull(NOTIFICATIONALERT);
-            waitForElementClickable(NOTIFICATIONOKBUTTONPROFFMOD);
+            WebDriverTools.waitForElementClickable((WebElement)(NOTIFICATIONOKBUTTONPROFFMOD);
             driver.findElement(NOTIFICATIONOKBUTTONPROFFMOD).click();
             Assert.assertTrue(driver.findElement(PROFMODEON).isDisplayed());
         }
     }
+
+    */
 }
 
 
