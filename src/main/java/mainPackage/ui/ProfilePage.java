@@ -94,6 +94,10 @@ public class ProfilePage {
     private WebElement deleteAva;
     @FindBy(css = "img[src='/']")
     private WebElement emptyAva;
+    @FindBy(css = "[class=editAva]")
+    private WebElement editAva;
+    @FindBy(css = "input[type='range']")
+    private WebElement dimensionAva1;
 
 
 
@@ -182,6 +186,17 @@ public class ProfilePage {
         Assert.assertNotNull(emptyAva);
     }
 
+    public void dimensionsAva() {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        WebDriverTools.FluentWaitFunction(editAva);
+        WebDriverTools.clickOnInvisibleElement(editAva);
+        WebDriverTools.clickOnInvisibleElement(dimensionAva1);
+        dimensionAva1.sendKeys("0.5");
+        dimensionAva1.click();
+        Assert.assertNotNull(dimensionAva1);
+    }
 
 
 

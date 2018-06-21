@@ -81,7 +81,10 @@ public class Profile extends WebDriverTestBase{
         profilePage.deleteAva();
     }
 
-
+    @Test (description = "dimensions Ava",groups = ("Profile"), priority = 13)
+    public void dimensionsAva() {
+        profilePage.dimensionsAva();
+    }
 
 
 
