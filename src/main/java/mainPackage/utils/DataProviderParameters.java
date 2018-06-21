@@ -34,29 +34,28 @@ public class DataProviderParameters {
     @DataProvider(name = "surName")
     public Object[][] surNameInputData() {
         return new Object[][]{
-                {"Qwe123", false},
-                {"Петров", true},
-                {"!@##$Иванов", false},
-                {"Сидоров", true},
-                {"123456", false},
-                {"123123ИвановSSSS", false},
+                {"", false},
+                {"123", false},
+                {"+-*/|?.,@$#%^&()!~", false},
+                {"Ив.ан", false},
+                {"Иван123", false},
                 {"      ", false},
-                {"Пупкин", true},
+                {"Мамренко", true},
         };
     }
 
     @DataProvider(name = "name")
     public Object[][] nameInputData() {
         return new Object[][]{
-                {"Qwe123", false},
-                {"Петров", true},
-                {"Иванов", true},
-                {"Сидоров!@@#$%", false},
-                {"1234567", false},
+                {"123", false},
+                {"+-*/|?.,@$#%^&()!~", false},
+                {"Ив.ан", false},
+                {"Иван123", false},
                 {"      ", false},
-                {"Пупка", true},
+                {"Стас", true},
         };
     }
+
     @DataProvider(name = "lastName")
     public Object[][] lastNameInputData() {
         return new Object[][]{

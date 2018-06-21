@@ -4,6 +4,7 @@ import mainPackage.interfaceFolder.LogsVars;
 import mainPackage.listeners.TestListenerUI;
 import mainPackage.ui.LoginPage;
 import mainPackage.ui.ProfilePage;
+import mainPackage.utils.DataProviderParameters;
 import mainPackage.utils.WebDriverTestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
@@ -86,9 +87,22 @@ public class Profile extends WebDriverTestBase{
         profilePage.dimensionsAva();
     }
 
+    @Test (description = "edit Uploaded Photo",groups = ("Profile"), priority = 14)
+    public void editUploadedPhoto() {
+        profilePage.editUploadedPhoto();
+    }
 
+    @Test (description = "check different Name", dataProviderClass = DataProviderParameters.class,
+            dataProvider = "name", groups = {"Profile"}, priority = 15)
+    public void verifyName(String name, boolean n2) {
+        profilePage.verifyName(name, n2);
+    }
 
-
+    @Test (description = "check different Surname", dataProviderClass = DataProviderParameters.class,
+            dataProvider = "surName", groups = {"Profile"}, priority = 16)
+    public void verifySurName(String surName, boolean n2) {
+        profilePage.verifyEmail(surName ,n2);
+    }
 
 
 

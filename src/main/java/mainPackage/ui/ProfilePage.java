@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import static org.openqa.selenium.By.xpath;
 
@@ -21,18 +22,14 @@ public class ProfilePage {
     @FindBy(css = "[class=serverResponseErrorAlerts]")
     private WebElement allertError;
 
-
-
-    private final String ATTACHMENTPICTURE = "C:\\ServiceDoc\\qa\\src\\main\\resources\\picture\\";
-    private final By SURNAMEFIELD = By.id("front405bbe8e4001ec0948f0888ef8a785bf");
-    private final By NAMEFIELD = By.id("front68d8b2b234b0e3d0de6620b9ada9d991");
+    private final By SURNAME_FIELD = By.id("front405bbe8e4001ec0948f0888ef8a785bf");
+    private final By NAME_FIELD = By.id("front68d8b2b234b0e3d0de6620b9ada9d991");
     private final By LASTNAMEFIELD = By.id("front05b064591cb0664a5d27c61545fd181e");
     private final By ADDITIONALEMAILFIELD = By.id("frontf40dad94c14ecd2444dc82d08982eece");
     private final By PHONEFIELD = By.id("front31d4268c6a82c7346f9718c9a0eeddf8");
     //private final By checkBoxField = xpath("//*[@id=\"frontc9cbb1c342671979b3697e6e244c001f\"]");
-    private final By SAVEBUTTON = By.id("front568091864f935c2d061a3f0b850538a2");
-    private final By OKBUTTONSUCCHANGE = xpath("//button[contains(text(), \"Ok\")]");
-    private final By OKBUTTONERROR = xpath("//button[contains(text(), \"OK\")]");
+    private final By SAVE_BUTTON = By.id("front568091864f935c2d061a3f0b850538a2");
+    private final By OK_BUTTONERROR = xpath("//button[contains(text(), \"OK\")]");
 
     private final By CURRENTPASSWORDFIELD = xpath("//div/input[@id=\"fronta8c70490d53c902d11afe62cf486145d\"]");
     private final By NEWPASSWORDFIELD = By.id("front3cade50d322efc1e206a5d352e32304c");
@@ -48,17 +45,8 @@ public class ProfilePage {
     private final By visibleCurrentPasswordButton = xpath("//*[@id=\"fronta8c70490d53c902d11afe62cf486145d\"]");
     private final By visibleNewPasswordButton = xpath("//*[@id=\"front9ba90ab3392fe8ddc58ab1499a28523b\"]");
     private final By visibleConfirPasswordButton = xpath("//*[@id=\"frontbbe4c7ed0235340b35e11aa63d6bcd9a\"]");
-    ;
-    private final By successSaveMessage = xpath("//p[contains(text(),\"Персональные даные изменены успешно\")]");
 
-    static final By ERRORSURNAME = xpath("//div[text()=\"Данное поле может содержать только буквы\"]");
-    static final By ERRORNAME = xpath("//div[text()=\"Данное поле может содержать только буквы\"]");
-    static final By ERRORLASTNAME = xpath("//div[text()=\"Данное поле может содержать только буквы\"]");
-    static final By ERRORADDITIONALEMAIL = xpath("//div[contains(text(), \"E-mail введенно не верно\")]");
-    static final By ERRORPHONENUMBER = xpath("//div[contains(text(), \"Не верный формат ввода должен быть +380973519267\")]");
-    static final By errorCurPass = xpath("//div[text()=\"Пароль введен не верно\"]");
-    static final By errorNewPass = xpath("//div[text()=\"Пароль должен состоять не менее чем из 6 символов\"]");
-    static final By errorConfPass = xpath("//div[text()=\"Пароли не совпадают\"]");
+    private final By successSaveMessage = xpath("//p[contains(text(),\"Персональные даные изменены успешно\")]");
 
     static final By PROFSLADER = By.id("front38ff1273b71541cadb2b3117b8f60cad");
     static final By PROFMODEON = xpath("//span[@class=\"profesional-mode\"]/span[@class=\"is-active\"][contains(text(), \"Профессионал\")]");
@@ -99,6 +87,13 @@ public class ProfilePage {
     @FindBy(css = "input[type='range']")
     private WebElement dimensionAva1;
 
+    @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.name > div.inputTextField > div:nth-child(4)")
+    private WebElement nameError;
+    @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.surname > div.inputTextField > div:nth-child(4)")
+    private WebElement surnameError;
+
+    @FindBy(css = "#maincolumn > div > div.userMode > div.overlayAlertDiv > div > div.notificationFooter > button")
+    private WebElement notificationOk;
 
 
     private final WebDriver driver;
@@ -193,16 +188,43 @@ public class ProfilePage {
         WebDriverTools.FluentWaitFunction(editAva);
         WebDriverTools.clickOnInvisibleElement(editAva);
         WebDriverTools.clickOnInvisibleElement(dimensionAva1);
-        dimensionAva1.sendKeys("0.5");
+        dimensionAva1.sendKeys("1");
         dimensionAva1.click();
         Assert.assertNotNull(dimensionAva1);
     }
 
+    public void editUploadedPhoto() {
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(attachFile);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        driver.navigate().refresh();
+        WebDriverTools.FluentWaitFunction(editAva);
+        WebDriverTools.clickOnInvisibleElement(editAva);
+        Assert.assertNotNull(avatarNotNull);
+    }
 
 
+    @Test(dataProvider = "name")
+    public void verifyName(String name, boolean n2) {
+        WebDriverTools.clearAndFill(NAME_FIELD, name);
+        if(n2 == false){
+            Assert.assertNotNull(nameError);
+        }else {
+            driver.findElement(SAVE_BUTTON).click();
+        }
+    }
 
+    @Test(dataProvider = "surName")
+    public void verifyEmail(String surName, boolean n2) {
+        WebDriverTools.clearAndFill(SURNAME_FIELD, surName);
+        if(n2 == false){
+            Assert.assertNotNull(surnameError);
+        }else {
+            driver.findElement(SAVE_BUTTON).click();
+        }
+    }
 
-
+}
 
  /*   ==============  ======================================================================
 
@@ -322,6 +344,5 @@ public class ProfilePage {
     }
 
     */
-}
 
 
