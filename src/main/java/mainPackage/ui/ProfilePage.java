@@ -15,49 +15,23 @@ public class ProfilePage {
 
     private final By MENU_BUTTON = By.id("fronta0e5a7b36e788e511ab810fb77be3bc2");
     private final By PROFILE_BUTTON = By.id("front3d6305e5e1809ea5588858bbcf65cc36");
-    @FindBy(css = "#front16a8798d370eb274c51db577e047a929")
-    private WebElement uploadFoto;
-
-
-    @FindBy(css = "[class=serverResponseErrorAlerts]")
-    private WebElement allertError;
-
     private final By SURNAME_FIELD = By.id("front405bbe8e4001ec0948f0888ef8a785bf");
     private final By NAME_FIELD = By.id("front68d8b2b234b0e3d0de6620b9ada9d991");
     private final By LASTNAMEFIELD = By.id("front05b064591cb0664a5d27c61545fd181e");
     private final By ADDITIONALEMAILFIELD = By.id("frontf40dad94c14ecd2444dc82d08982eece");
     private final By PHONE_FIELD = By.id("front31d4268c6a82c7346f9718c9a0eeddf8");
     private final By SAVE_BUTTON = By.id("front568091864f935c2d061a3f0b850538a2");
-
     private final By CURRENTPASSWORDFIELD = xpath("//div/input[@id=\"fronta8c70490d53c902d11afe62cf486145d\"]");
     private final By NEWPASSWORDFIELD = By.id("front3cade50d322efc1e206a5d352e32304c");
     private final By CONFIRMPASSWORDFIELD = By.id("front0028d653e3134862587fb6a63671137b");
-    private final By CHANGEPASSORDBUTTON = By.id("frontba18c5cf1d22197288461c025285de35");
-    private final By NOTIFICATIONALERT = xpath("//div[@class=\"notifMasageText notifMasageTextDanger confirm-text\"]");
-    private final By BUTTONAPLAYFOTO = xpath("//button[@class=\"accept\"]");
-    private final By NOTIFICATIONHEDERYELLOW = xpath("//div[@class=\"notificationHeader yellow\"]");
-    private final By NOTIFICATIONOKBUTTONYELLOW = xpath("//button[contains(text(), \"OK\")]");
-    private final By NOTIFICATIONOKBUTTONPROFFMOD = xpath("//button[contains(text(), \"Да\")]");
-
-    private final By visiblePassword = xpath("//div/input[@value=\"123456\"]");
-    private final By visibleCurrentPasswordButton = xpath("//*[@id=\"fronta8c70490d53c902d11afe62cf486145d\"]");
-    private final By visibleNewPasswordButton = xpath("//*[@id=\"front9ba90ab3392fe8ddc58ab1499a28523b\"]");
-    private final By visibleConfirPasswordButton = xpath("//*[@id=\"frontbbe4c7ed0235340b35e11aa63d6bcd9a\"]");
-
-    private final By successSaveMessage = xpath("//p[contains(text(),\"Персональные даные изменены успешно\")]");
-
-    static final By PROFSLADER = By.id("front38ff1273b71541cadb2b3117b8f60cad");
-    static final By PROFMODEON = xpath("//span[@class=\"profesional-mode\"]/span[@class=\"is-active\"][contains(text(), \"Профессионал\")]");
-    static final By PROFMODEOFF = xpath("//span[@class=\"normal-mode\"]/span[@class=\"is-active\"][contains(text(), \"Обычный\")]");
-    static final By WARNINGPROFFMODEON = By.xpath("//div[@class=\"notificationHeader khaki\"]");
-
-    static final By ERRORNOTSUPPORTEDFORMATPICTURE = By.xpath("//div[@class=\"notifMasageText alert-text\"]");
 
 
     @FindBy(css = "input[type=file]")
     private WebElement attachFile;
-
-
+    @FindBy(css = "#front16a8798d370eb274c51db577e047a929")
+    private WebElement uploadFoto;
+    @FindBy(css = "[class=serverResponseErrorAlerts]")
+    private WebElement allertError;
     @FindBy(css = "#front3958782bbce34c0dfeb6cc232a0fd2df")
     private WebElement profileSideBar;
     @FindBy(css = "#front29b36a788ae06325de5b6c50e83d6cc6")
