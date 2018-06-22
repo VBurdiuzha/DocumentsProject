@@ -129,11 +129,22 @@ public class Profile extends WebDriverTestBase{
 
     @Test (description = "verify Change Password", dataProviderClass = DataProviderParameters.class,
             dataProvider = "newPassword", groups = ("Profile"), priority = 21)
-    public void verifyChangePassword(String newPassword, boolean n2) {
+    public void verifyChangePassword(String newPassword, boolean n2) throws InterruptedException {
 
         profilePage.verifyChangePassword(newPassword, n2);
     }
 
+    @Test (description = "verify Confirm Password", dataProviderClass = DataProviderParameters.class,
+            dataProvider = "confirmPassword", groups = ("Profile"), priority = 22)
+    public void verifyConfirmPassword(String changePassword, String changePassword2) throws InterruptedException {
+
+        profilePage.verifyConfirmPassword(changePassword,changePassword2);
+    }
+
+    @Test (description = "change Password", groups = ("Profile"), priority = 23)
+    public void changePassword() {
+        profilePage.changePassword();
+    }
 
 
 

@@ -96,7 +96,7 @@ public class ProfilePage {
     private WebElement hintMessage;
     @FindBy(css = "#maincolumn > div > div.personalInfo > div.email > span > div.smallTooltipWrapper.question-tooltip > svg")
     private WebElement hint;
-    @FindBy(css = "[class=notificationOk]")
+    @FindBy(css = "button[class='notificationOk']")
     private WebElement notificationOk;
     @FindBy(css = "#maincolumn > div > div.personalInfo > div.phone > div.inputTextField > div:nth-child(5)")
     private WebElement phoneError;
@@ -104,6 +104,16 @@ public class ProfilePage {
     private WebElement chanhePasswordButton;
     @FindBy(css = "#maincolumn > div > div.password > div > form > span:nth-child(1) > div.inputTextField > div:nth-child(4)")
     private WebElement newPasswordError;
+    @FindBy(css = "#maincolumn > div > div.password > div > form > span:nth-child(3) > div.inputTextField > div:nth-child(4)")
+    private WebElement confirmPasswordError;
+    @FindBy(css = "#frontbbe4c7ed0235340b35e11aa63d6bcd9a > svg")
+    private WebElement showPassIcon3;
+    @FindBy(css = "#fronta8c70490d53c902d11afe62cf486145d > svg")
+    private WebElement showPassIcon1;
+    @FindBy(css = "#front9ba90ab3392fe8ddc58ab1499a28523b > svg")
+    private WebElement showPassIcon2;
+
+
 
     private final WebDriver driver;
 
@@ -251,7 +261,6 @@ public class ProfilePage {
     @Test(dataProvider = "email address")
     public void verifyAdditionalEmail(String createEmail, boolean n2) throws InterruptedException {
         WebDriverTools.clearAndFill(ADDITIONALEMAILFIELD, createEmail);
-        Thread.sleep(1000);
         driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(emailError != null);
     }
@@ -264,19 +273,36 @@ public class ProfilePage {
     }
 
     @Test(dataProvider = "newPassword")
-    public void verifyChangePassword(String newPassword, boolean n2) {
+    public void verifyChangePassword(String newPassword, boolean n2) throws InterruptedException {
         WebDriverTools.clearAndFill(CURRENTPASSWORDFIELD, newPassword);
+        WebDriverTools.clickOnInvisibleElement(showPassIcon1);
         chanhePasswordButton.click();
         Assert.assertNotNull(newPasswordError);
+    }
 
+    @Test(dataProvider = "confirmPassword")
+    public void verifyConfirmPassword(String changePassword, String changePassword2) throws InterruptedException {
+        WebDriverTools.clearAndFill(NEWPASSWORDFIELD, changePassword);
+        WebDriverTools.clearAndFill(CONFIRMPASSWORDFIELD, changePassword2);
+        WebDriverTools.clickOnInvisibleElement(showPassIcon2);
+        WebDriverTools.clickOnInvisibleElement(showPassIcon3);
+        chanhePasswordButton.click();
+        Assert.assertNotNull(confirmPasswordError);
+        Thread.sleep(3000);
+        WebDriverTools.FluentWaitFunction(notificationOk);
 
+    }
+
+    public void changePassword(){
+        WebDriverTools.clearAndFill(CURRENTPASSWORDFIELD, "testtest");
+        WebDriverTools.clearAndFill(NEWPASSWORDFIELD, "123456");
+        WebDriverTools.clearAndFill(CONFIRMPASSWORDFIELD, "123456");
+        chanhePasswordButton.click();
+        WebDriverTools.FluentWaitFunction(notificationOk);
     }
 }
 
  /*   ==============  ======================================================================
-
- WebDriverTools.clearAndFill(NEWPASSWORDFIELD, LogsVars.correctPassword);
-        WebDriverTools.clearAndFill(CONFIRMPASSWORDFIELD, LogsVars.correctPassword);
 
 
 

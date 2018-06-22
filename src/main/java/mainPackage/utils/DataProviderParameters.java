@@ -22,16 +22,7 @@ public class DataProviderParameters {
         };
     }
 
-    @DataProvider(name = "password")
-    public Object[][] createPassw() {
-        return new Object[][] {
-                { " !@#$%^&*()_+=-|/\\'\"<>,.`~", false },
-                { "парольнарусском", true},
-                { "0123456789012345678901234", false },
-                { "  ", false},
-                { LogsVars.regularUserPassword, true},
-        };
-    }
+
     @DataProvider(name = "surName")
     public Object[][] surNameInputData() {
         return new Object[][]{
@@ -77,8 +68,18 @@ public class DataProviderParameters {
                 {"!@#$%^&*()_+=-<>,.`~", false},
                 {"парольнарусском", false},
                 {"0123456789012345678901234", false},
-                {"   ", false},
+             //   {"   ", false},
                 {LogsVars.correctPassword, true}
+        };
+    }
+
+    @DataProvider(name = "confirmPassword")
+    public Object[][] confirmData(){
+        return new Object[][]{
+             //   {LogsVars.correctPassword, LogsVars.correctPassword},
+                {"testtest", "test12345"},
+             //   {"testtest", "    "},
+                {"testtest", "testtest"}
         };
     }
 
