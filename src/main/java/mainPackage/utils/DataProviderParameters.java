@@ -59,13 +59,12 @@ public class DataProviderParameters {
     @DataProvider(name = "lastName")
     public Object[][] lastNameInputData() {
         return new Object[][]{
-                {"Qwe", true},
-                {"Петров123", false},
-                {"123Иванов", false},
-                {"Сидоров!@#$%$%^^", false},
+                {"123", false},
+                {"+-*/|?.,@$#%^&()!~", false},
+                {"Ив.ан", false},
+                {"Иван123", false},
                 {"      ", false},
-                {"ИвановSSSS", true},
-                {"Пупкович", true},
+                {"Иванович", true},
         };
     }
 

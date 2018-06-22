@@ -101,11 +101,19 @@ public class Profile extends WebDriverTestBase{
     @Test (description = "check different Surname", dataProviderClass = DataProviderParameters.class,
             dataProvider = "surName", groups = {"Profile"}, priority = 16)
     public void verifySurName(String surName, boolean n2) {
-        profilePage.verifyEmail(surName ,n2);
+        profilePage.verifysurname(surName ,n2);
     }
 
+    @Test (description = "check different Lastname", dataProviderClass = DataProviderParameters.class,
+            dataProvider = "lastName", groups = {"Profile"}, priority = 17)
+    public void verifylastName(String lastName, boolean n2) {
+        profilePage.verifylastName(lastName, n2);
+    }
 
-
+    @Test (description = "review Hint Message",groups = ("Profile"), priority = 18)
+    public void reviewHintMessage() {
+        profilePage.reviewHintMessage();
+    }
 
 
 //    @Test (description = "check different Surname", dataProviderClass = DataProviderParameters.class,

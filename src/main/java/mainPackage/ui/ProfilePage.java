@@ -86,14 +86,19 @@ public class ProfilePage {
     private WebElement editAva;
     @FindBy(css = "input[type='range']")
     private WebElement dimensionAva1;
-
     @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.name > div.inputTextField > div:nth-child(4)")
     private WebElement nameError;
     @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.surname > div.inputTextField > div:nth-child(4)")
     private WebElement surnameError;
-
     @FindBy(css = "#maincolumn > div > div.userMode > div.overlayAlertDiv > div > div.notificationFooter > button")
     private WebElement notificationOk;
+    @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.fathers-name > div.inputTextField > div:nth-child(4)")
+    private WebElement lastnameError;
+    @FindBy(css = "[class=smallTooltip]")
+    private WebElement hintMessage;
+    @FindBy(css = "#maincolumn > div > div.personalInfo > div.email > span > div.smallTooltipWrapper.question-tooltip > svg")
+    private WebElement hint;
+
 
 
     private final WebDriver driver;
@@ -215,7 +220,7 @@ public class ProfilePage {
     }
 
     @Test(dataProvider = "surName")
-    public void verifyEmail(String surName, boolean n2) {
+    public void verifysurname(String surName, boolean n2) {
         WebDriverTools.clearAndFill(SURNAME_FIELD, surName);
         if(n2 == false){
             Assert.assertNotNull(surnameError);
@@ -223,6 +228,26 @@ public class ProfilePage {
             driver.findElement(SAVE_BUTTON).click();
         }
     }
+
+    @Test(dataProvider = "lastName")
+    public void verifylastName(String lastName, boolean n2) {
+        WebDriverTools.clearAndFill(LASTNAMEFIELD, lastName);
+        if(n2 == false){
+            Assert.assertNotNull(lastnameError);
+        }else {
+            driver.findElement(SAVE_BUTTON).click();
+        }
+    }
+
+    public void reviewHintMessage() {
+        WebDriverTools.clickOnInvisibleElement(hint);
+        hint.click();
+        WebDriverTools.FluentWaitFunction(hintMessage);
+        Assert.assertNotNull(hintMessage);
+
+    }
+
+
 
 }
 
