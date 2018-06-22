@@ -112,7 +112,10 @@ public class ProfilePage {
     private WebElement showPassIcon1;
     @FindBy(css = "#front9ba90ab3392fe8ddc58ab1499a28523b > svg")
     private WebElement showPassIcon2;
-
+    @FindBy(css = "#front38ff1273b71541cadb2b3117b8f60cad")
+    private WebElement toogleOn;
+    @FindBy(css = "#front8628574b55129c807335ac973147f697")
+    private WebElement toogleOnYes;
 
 
     private final WebDriver driver;
@@ -300,35 +303,5 @@ public class ProfilePage {
         chanhePasswordButton.click();
         WebDriverTools.FluentWaitFunction(notificationOk);
     }
+
 }
-
- /*   ==============  ======================================================================
-
-
-
-
-
-
-
-
-
-
-
-    @Test(description = "Enable professional mode")
-    public void switchProfessionalModeSlider(){
-        if (driver.findElements(PROFMODEON).size() != 0){
-            driver.findElement(PROFSLADER).click();
-            Assert.assertTrue(driver.findElement(PROFMODEOFF).isDisplayed());
-        }else {
-            driver.findElement(PROFSLADER).click();
-            WebDriverTools.waitForElementClickable((WebElement)(NOTIFICATIONALERT);
-            Assert.assertNotNull(NOTIFICATIONALERT);
-            WebDriverTools.waitForElementClickable((WebElement)(NOTIFICATIONOKBUTTONPROFFMOD);
-            driver.findElement(NOTIFICATIONOKBUTTONPROFFMOD).click();
-            Assert.assertTrue(driver.findElement(PROFMODEON).isDisplayed());
-        }
-    }
-
-    */
-
-
