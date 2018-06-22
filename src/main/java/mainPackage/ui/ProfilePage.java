@@ -26,10 +26,8 @@ public class ProfilePage {
     private final By NAME_FIELD = By.id("front68d8b2b234b0e3d0de6620b9ada9d991");
     private final By LASTNAMEFIELD = By.id("front05b064591cb0664a5d27c61545fd181e");
     private final By ADDITIONALEMAILFIELD = By.id("frontf40dad94c14ecd2444dc82d08982eece");
-    private final By PHONEFIELD = By.id("front31d4268c6a82c7346f9718c9a0eeddf8");
-    //private final By checkBoxField = xpath("//*[@id=\"frontc9cbb1c342671979b3697e6e244c001f\"]");
+    private final By PHONE_FIELD = By.id("front31d4268c6a82c7346f9718c9a0eeddf8");
     private final By SAVE_BUTTON = By.id("front568091864f935c2d061a3f0b850538a2");
-    private final By OK_BUTTONERROR = xpath("//button[contains(text(), \"OK\")]");
 
     private final By CURRENTPASSWORDFIELD = xpath("//div/input[@id=\"fronta8c70490d53c902d11afe62cf486145d\"]");
     private final By NEWPASSWORDFIELD = By.id("front3cade50d322efc1e206a5d352e32304c");
@@ -98,10 +96,14 @@ public class ProfilePage {
     private WebElement hintMessage;
     @FindBy(css = "#maincolumn > div > div.personalInfo > div.email > span > div.smallTooltipWrapper.question-tooltip > svg")
     private WebElement hint;
+    @FindBy(css = "[class=notificationOk]")
     private WebElement notificationOk;
-    @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.fathers-name > div.inputTextField > div:nth-child(4)")
-
-
+    @FindBy(css = "#maincolumn > div > div.personalInfo > div.phone > div.inputTextField > div:nth-child(5)")
+    private WebElement phoneError;
+    @FindBy(css = "#frontba18c5cf1d22197288461c025285de35")
+    private WebElement chanhePasswordButton;
+    @FindBy(css = "#maincolumn > div > div.password > div > form > span:nth-child(1) > div.inputTextField > div:nth-child(4)")
+    private WebElement newPasswordError;
 
     private final WebDriver driver;
 
@@ -110,7 +112,7 @@ public class ProfilePage {
     }
 
 
-    public void toProfilePage(){
+    public void toProfilePage() {
         driver.findElement(MENU_BUTTON).click();
         driver.findElement(PROFILE_BUTTON).click();
         Assert.assertNotNull(profileSideBar);
@@ -121,56 +123,56 @@ public class ProfilePage {
         Assert.assertNotNull(statisticPaymentSideBar);
     }
 
-    public void uploadAvatarGIF()  {
+    public void uploadAvatarGIF() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameGIF);
         Assert.assertNotNull(allertError);
     }
 
-    public void uploadAvatarBMP()  {
+    public void uploadAvatarBMP() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameBMP);
         Assert.assertNotNull(allertError);
     }
 
-    public void uploadAvatarWEBP()  {
+    public void uploadAvatarWEBP() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameWEBP);
         Assert.assertNotNull(allertError);
     }
 
-    public void uploadAvatarTIFF()  {
+    public void uploadAvatarTIFF() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameTIFF);
         Assert.assertNotNull(allertError);
     }
 
-    public void uploadAvatarSVG()  {
+    public void uploadAvatarSVG() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameSVG);
         Assert.assertNotNull(allertError);
     }
 
-    public void uploadAvatar2MB()  {
+    public void uploadAvatar2MB() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileName2MB);
         Assert.assertNotNull(allertError);
     }
 
-    public void uploadAvatarPNG()  {
+    public void uploadAvatarPNG() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         Assert.assertNotNull(addAvatar);
     }
 
-    public void uploadAvatarJPG()  {
+    public void uploadAvatarJPG() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameJPG);
@@ -179,7 +181,7 @@ public class ProfilePage {
         Assert.assertNotNull(avatarNotNull);
     }
 
-    public void deleteAva()  {
+    public void deleteAva() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
@@ -214,7 +216,7 @@ public class ProfilePage {
     @Test(dataProvider = "name")
     public void verifyName(String name, boolean n2) throws InterruptedException {
         WebDriverTools.clearAndFill(NAME_FIELD, name);
-            driver.findElement(SAVE_BUTTON).click();
+        driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(nameError != null);
 
     }
@@ -222,7 +224,7 @@ public class ProfilePage {
     @Test(dataProvider = "surName")
     public void verifysurname(String surName, boolean n2) throws InterruptedException {
         WebDriverTools.clearAndFill(SURNAME_FIELD, surName);
-            driver.findElement(SAVE_BUTTON).click();
+        driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(surnameError != null);
         Thread.sleep(500);
 
@@ -232,7 +234,7 @@ public class ProfilePage {
     @Test(dataProvider = "lastName")
     public void verifylastName(String lastName, boolean n2) throws InterruptedException {
         WebDriverTools.clearAndFill(LASTNAMEFIELD, lastName);
-            driver.findElement(SAVE_BUTTON).click();
+        driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(lastnameError != null);
         Thread.sleep(500);
 
@@ -248,117 +250,43 @@ public class ProfilePage {
 
     @Test(dataProvider = "email address")
     public void verifyAdditionalEmail(String createEmail, boolean n2) throws InterruptedException {
-        WebDriverTools.clearAndFill(ADDITIONALEMAILFIELD ,createEmail);
+        WebDriverTools.clearAndFill(ADDITIONALEMAILFIELD, createEmail);
         Thread.sleep(1000);
         driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(emailError != null);
     }
 
+    @Test(dataProvider = "phoneNamber")
+    public void verifyPhoneNamber(String phoneNamber, boolean n2) {
+        WebDriverTools.clearAndFill(PHONE_FIELD, phoneNamber);
+        driver.findElement(SAVE_BUTTON).click();
+        Assert.assertTrue(phoneError != null);
+    }
+
+    @Test(dataProvider = "newPassword")
+    public void verifyChangePassword(String newPassword, boolean n2) {
+        WebDriverTools.clearAndFill(CURRENTPASSWORDFIELD, newPassword);
+        chanhePasswordButton.click();
+        Assert.assertNotNull(newPasswordError);
 
 
+    }
 }
 
  /*   ==============  ======================================================================
 
+ WebDriverTools.clearAndFill(NEWPASSWORDFIELD, LogsVars.correctPassword);
+        WebDriverTools.clearAndFill(CONFIRMPASSWORDFIELD, LogsVars.correctPassword);
 
 
 
 
 
-    @Test(dataProvider = "surName")
-    public void verifyEmail(String surName, boolean n2) throws InterruptedException {
-        WebDriverTools.clearAndFill(SURNAMEFIELD, surName);
-        if(n2 == false){
-            Assert.assertNotNull(ERRORSURNAME);
-        }else {
-            driver.findElement(SAVEBUTTON).click();
-            WebDriverTools.waitForElementClickable((WebElement) OKBUTTONSUCCHANGE);
-            driver.findElement(OKBUTTONSUCCHANGE).click();
-        }
-    }
-
-    @Test(dataProvider = "name")
-    public void verifyName(String name, boolean n2) throws InterruptedException {
-        WebDriverTools.clearAndFill(NAMEFIELD, name);
-        if(n2 == false){
-            Assert.assertNotNull(ERRORNAME);
-        }else {
-            driver.findElement(SAVEBUTTON).click();
-            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONSUCCHANGE);
-            driver.findElement(OKBUTTONSUCCHANGE).click();
-        }
-    }
 
 
-    @Test(dataProvider = "lastName")
-    public void verifylastName(String lastName, boolean n2) throws InterruptedException {
-        WebDriverTools.clearAndFill(LASTNAMEFIELD, lastName);
-        if(n2 == false){
-            Assert.assertNotNull(ERRORLASTNAME);
-        }else {
-            driver.findElement(SAVEBUTTON).click();
-            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONSUCCHANGE);
-            driver.findElement(OKBUTTONSUCCHANGE).click();
-        }
-    }
 
-    @Test(dataProvider = "changePassword")
-    public void verifyChangePassword(String oldPassword, String newPassword) throws InterruptedException{
-        WebDriverTools.clearAndFill(CURRENTPASSWORDFIELD, oldPassword);
-        WebDriverTools.clearAndFill(NEWPASSWORDFIELD, newPassword);
-        WebDriverTools.clearAndFill(CONFIRMPASSWORDFIELD, newPassword);
-        Thread.sleep(3000);
-        WebDriverTools.waitForElementClickable((WebElement)(CHANGEPASSORDBUTTON);
-        driver.findElement(CHANGEPASSORDBUTTON).click();
-        Thread.sleep(3000);
-        if (driver.findElement(OKBUTTONSUCCHANGE).isDisplayed()){
-        driver.findElement(OKBUTTONSUCCHANGE).click();
-        }else {
-            driver.findElement(NOTIFICATIONOKBUTTONYELLOW).click();
-        }
 
-    }
 
-    @Test(dataProvider = "avatarFielsName")
-    public void uploadAvatar(String avatarFielsName, boolean n2) throws InterruptedException{
-        if (n2 == false) {
-            attachFile.sendKeys(ATTACHMENTPICTURE + avatarFielsName);
-            Assert.assertNotNull(ERRORNOTSUPPORTEDFORMATPICTURE);
-            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONERROR);
-            driver.findElement(OKBUTTONERROR).click();
-            WebDriverTools.waitForElementClickable((WebElement)(BUTTONAPLAYFOTO);
-            driver.findElement(BUTTONAPLAYFOTO).click();
-        }else {
-            attachFile.sendKeys(ATTACHMENTPICTURE + avatarFielsName);
-            WebDriverTools.waitForElementClickable((WebElement)(BUTTONAPLAYFOTO);
-            driver.findElement(BUTTONAPLAYFOTO).click();
-        }
-    }
-
-    @Test(dataProvider = "email address")
-    public void verifyAdditionalEmail(String createEmail, boolean n2){
-        WebDriverTools.clearAndFill(ADDITIONALEMAILFIELD ,createEmail);
-        if(n2 == false){
-            Assert.assertNotNull(ERRORADDITIONALEMAIL);
-        }else {
-            driver.findElement(SAVEBUTTON).click();
-            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONSUCCHANGE);
-            driver.findElement(OKBUTTONSUCCHANGE).click();
-        }
-    }
-
-    @Test(dataProvider = "phoneNamber")
-    public void verifyPhoneNamber(String phoneNamber, boolean n2){
-        WebDriverTools.clearAndFill(PHONEFIELD, phoneNamber);
-        if(n2 == false){
-            Assert.assertNotNull(ERRORPHONENUMBER);
-        }else {
-            WebDriverTools.waitForElementClickable((WebElement)(SAVEBUTTON);
-            driver.findElement(SAVEBUTTON).click();
-            WebDriverTools.waitForElementClickable((WebElement)(OKBUTTONSUCCHANGE);
-            driver.findElement(OKBUTTONSUCCHANGE).click();
-        }
-    }
 
     @Test(description = "Enable professional mode")
     public void switchProfessionalModeSlider(){

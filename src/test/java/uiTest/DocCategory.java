@@ -33,7 +33,7 @@ public class DocCategory extends WebDriverTestBase {
     }
 
      @Test(description = "correct Data Enter", groups = ("DocCategory"), priority = 2)
-     public void correctDataWithEnterButton() throws InterruptedException {
+     public void correctDataWithEnterButton() {
          docCategoryPage.correctDataWithEnterButton();
      }
 

@@ -17,7 +17,7 @@ public class DataProviderParameters {
                 {"имейлнарусском@gmail.com", false},
                 {"admnAutoTest@email.ua", false},
                 {"test@gmail.com.", false},
-                {"  ", false},
+             //   {"  ", false},
                 {"test@test.com", true},
         };
     }
@@ -39,7 +39,7 @@ public class DataProviderParameters {
                 {"+-*/|?.,@$#%^&()!~", false},
                 {"Ив.ан", false},
                 {"Иван123", false},
-                {"      ", false},
+              //  {"      ", false},
                 {"Мамренко", true},
         };
     }
@@ -51,7 +51,7 @@ public class DataProviderParameters {
                 {"+-*/|?.,@$#%^&()!~", false},
                 {"Ив.ан", false},
                 {"Иван123", false},
-                {"      ", false},
+             //   {"      ", false},
                 {"Стас", true},
         };
     }
@@ -63,23 +63,22 @@ public class DataProviderParameters {
                 {"+-*/|?.,@$#%^&()!~", false},
                 {"Ив.ан", false},
                 {"Иван123", false},
-                {"      ", false},
+              //  {"      ", false},
                 {"Иванович", true},
         };
     }
 
-    @DataProvider(name = "changePassword")
+    @DataProvider(name = "newPassword")
     public Object[][] passInputData(){
         return new Object[][]{
-                {"123456", "123456"},
-                {"123456", "654321"},
-                {"654321", "0987654321"},
-                {"0987654321", "P@ssw0rd123"},
-                {"P@ssw0rd123", "Good_password"},
-                {"Good_password", "qweQWE123"},
-                {"qweQWE123", "123456"},
-                {"NotCorrectPass", "123456"},
-                {"123456", "123456"},
+                {LogsVars.badPassword, false},
+                {"password123", false},
+                {" 12345", false},
+                {"!@#$%^&*()_+=-<>,.`~", false},
+                {"парольнарусском", false},
+                {"0123456789012345678901234", false},
+                {"   ", false},
+                {LogsVars.correctPassword, true}
         };
     }
 
@@ -87,14 +86,12 @@ public class DataProviderParameters {
     @DataProvider(name = "phoneNamber")
     public Object[][] phoneNamber(){
         return new Object[][]{
-                {"+3809", false},
-                {"+34536", true},
-                {"0973519267", true},
-                {"+7809as", false},
-                {"+3809134324234234", true},
-                {"+38091343242342343", false},
-                {"+380913432424234!", false},
-                {"+        ", false},
+                {"буквы", false},
+                {"+12345", false},
+                {"+3806985741231", false},
+                {"+!\"#;%:?*()_+/~`@", false},
+                {"+38097.3519267", false},
+             //   {"  ", false},
                 {"+380973519267", true},
         };
     }

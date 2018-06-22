@@ -121,6 +121,22 @@ public class Profile extends WebDriverTestBase{
         profilePage.verifyAdditionalEmail(email, n2);
     }
 
+    @Test (description = "check phone number", dataProviderClass = DataProviderParameters.class,
+            dataProvider = "phoneNamber",enabled = false, groups = {"Profile"}, priority = 20)
+    public void verifyPhoneNamber(String phoneNamber, boolean n2){
+        profilePage.verifyPhoneNamber(phoneNamber, n2);
+    }
+
+    @Test (description = "verify Change Password", dataProviderClass = DataProviderParameters.class,
+            dataProvider = "newPassword", groups = ("Profile"), priority = 21)
+    public void verifyChangePassword(String newPassword, boolean n2) {
+
+        profilePage.verifyChangePassword(newPassword, n2);
+    }
+
+
+
+
 
 //    @Test (description = "check different Surname", dataProviderClass = DataProviderParameters.class,
 //            dataProvider = "surName", groups = {"Profile"}, priority = 3)
