@@ -8,16 +8,17 @@ public class DataProviderParameters {
     @DataProvider(name = "email address")
     public Object[][] createEmail() {
         return new Object[][]{
-                {"test@.com", false},
-                {"te st@gmail.com", false},
+                {"test@testcom", false},
+                {"test@.com ", false},
+                {"te st@gmail.com ", false},
                 {"te@st@gmail.com", false},
-                {"te..st@gmail.com", false},
-                {"test@gmail.com.", true},
+                {"te..st@gmail.com", true},
                 {"@gmail.com", false},
                 {"имейлнарусском@gmail.com", false},
-                {"admnAutoTest@email.ua", true},
+                {"admnAutoTest@email.ua", false},
+                {"test@gmail.com.", false},
                 {"  ", false},
-                {"additionalmail@gmail.com", true},
+                {"test@test.com", true},
         };
     }
 
@@ -34,7 +35,6 @@ public class DataProviderParameters {
     @DataProvider(name = "surName")
     public Object[][] surNameInputData() {
         return new Object[][]{
-                {"", false},
                 {"123", false},
                 {"+-*/|?.,@$#%^&()!~", false},
                 {"Ив.ан", false},
@@ -83,19 +83,6 @@ public class DataProviderParameters {
         };
     }
 
-    @DataProvider(name = "avatarFielsName")
-    public Object[][] avatarFielsName(){
-        return new Object[][]{
-                {"Avatar.bmp", false},
-                {"Avatar.webp", false},
-                {"Avatar.tiff", false},
-                {"Avatar.gif", false},
-                {"Avatar.jpg", true},
-                {"Avatar.png", true},
-                {"Avatar.jpe", true},
-                {"Avatar.jpeg", true},
-        };
-    }
 
     @DataProvider(name = "phoneNamber")
     public Object[][] phoneNamber(){

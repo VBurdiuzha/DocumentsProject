@@ -24,8 +24,6 @@ public class RegistrationPage {
     @FindBy(xpath = "//span[contains(text(),\"E-mail введен не верно\")]")
     private List<WebElement> errorEmail;
     @FindBy(xpath = "//div[contains(text(),\"Пароль должен содержать не менее 6-ти символов\")]")
-
-
     private List<WebElement> errorPassw;
     @FindBy(css = "#front64fbd75d07ec519ac1c34bbf3c93e41b > div > div > span")
     private WebElement enterButton;

@@ -91,13 +91,15 @@ public class ProfilePage {
     @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.surname > div.inputTextField > div:nth-child(4)")
     private WebElement surnameError;
     @FindBy(css = "#maincolumn > div > div.userMode > div.overlayAlertDiv > div > div.notificationFooter > button")
-    private WebElement notificationOk;
-    @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.fathers-name > div.inputTextField > div:nth-child(4)")
     private WebElement lastnameError;
+    @FindBy(css = "#maincolumn > div > div.personalInfo > div.email > span > div.inputTextField > div:nth-child(5)")
+    private WebElement emailError;
     @FindBy(css = "[class=smallTooltip]")
     private WebElement hintMessage;
     @FindBy(css = "#maincolumn > div > div.personalInfo > div.email > span > div.smallTooltipWrapper.question-tooltip > svg")
     private WebElement hint;
+    private WebElement notificationOk;
+    @FindBy(css = "#maincolumn > div > div.personalInfo > div.user-main-data > span.wrapper.fathers-name > div.inputTextField > div:nth-child(4)")
 
 
 
@@ -210,33 +212,31 @@ public class ProfilePage {
 
 
     @Test(dataProvider = "name")
-    public void verifyName(String name, boolean n2) {
+    public void verifyName(String name, boolean n2) throws InterruptedException {
         WebDriverTools.clearAndFill(NAME_FIELD, name);
-        if(n2 == false){
-            Assert.assertNotNull(nameError);
-        }else {
             driver.findElement(SAVE_BUTTON).click();
-        }
+        Assert.assertTrue(nameError != null);
+
     }
 
     @Test(dataProvider = "surName")
-    public void verifysurname(String surName, boolean n2) {
+    public void verifysurname(String surName, boolean n2) throws InterruptedException {
         WebDriverTools.clearAndFill(SURNAME_FIELD, surName);
-        if(n2 == false){
-            Assert.assertNotNull(surnameError);
-        }else {
             driver.findElement(SAVE_BUTTON).click();
-        }
+        Assert.assertTrue(surnameError != null);
+        Thread.sleep(500);
+
+
     }
 
     @Test(dataProvider = "lastName")
-    public void verifylastName(String lastName, boolean n2) {
+    public void verifylastName(String lastName, boolean n2) throws InterruptedException {
         WebDriverTools.clearAndFill(LASTNAMEFIELD, lastName);
-        if(n2 == false){
-            Assert.assertNotNull(lastnameError);
-        }else {
             driver.findElement(SAVE_BUTTON).click();
-        }
+        Assert.assertTrue(lastnameError != null);
+        Thread.sleep(500);
+
+
     }
 
     public void reviewHintMessage() {
@@ -244,7 +244,14 @@ public class ProfilePage {
         hint.click();
         WebDriverTools.FluentWaitFunction(hintMessage);
         Assert.assertNotNull(hintMessage);
+    }
 
+    @Test(dataProvider = "email address")
+    public void verifyAdditionalEmail(String createEmail, boolean n2) throws InterruptedException {
+        WebDriverTools.clearAndFill(ADDITIONALEMAILFIELD ,createEmail);
+        Thread.sleep(1000);
+        driver.findElement(SAVE_BUTTON).click();
+        Assert.assertTrue(emailError != null);
     }
 
 
