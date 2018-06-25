@@ -192,7 +192,7 @@ public class ProfilePage {
     public void editUploadedPhoto() {
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(attachFile);
-        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameJPG);
         driver.navigate().refresh();
         WebDriverTools.FluentWaitFunction(editAva);
         WebDriverTools.clickOnInvisibleElement(editAva);
@@ -201,7 +201,7 @@ public class ProfilePage {
 
 
     @Test(dataProvider = "name")
-    public void verifyName(String name, boolean n2) throws InterruptedException {
+    public void verifyName(String name, boolean n2)  {
         WebDriverTools.clearAndFill(NAME_FIELD, name);
         driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(nameError != null);
@@ -236,7 +236,7 @@ public class ProfilePage {
     }
 
     @Test(dataProvider = "email address")
-    public void verifyAdditionalEmail(String createEmail, boolean n2) throws InterruptedException {
+    public void verifyAdditionalEmail(String createEmail, boolean n2)  {
         WebDriverTools.clearAndFill(ADDITIONALEMAILFIELD, createEmail);
         driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(emailError != null);
@@ -250,7 +250,7 @@ public class ProfilePage {
     }
 
     @Test(dataProvider = "newPassword")
-    public void verifyChangePassword(String newPassword, boolean n2) throws InterruptedException {
+    public void verifyChangePassword(String newPassword, boolean n2) {
         WebDriverTools.clearAndFill(CURRENTPASSWORDFIELD, newPassword);
         WebDriverTools.clickOnInvisibleElement(showPassIcon1);
         chanhePasswordButton.click();

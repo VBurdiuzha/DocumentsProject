@@ -25,7 +25,7 @@ public class Profile extends WebDriverTestBase{
         System.out.println("Open brouser");
     }
 
-    @Test (description = "Valid Login", groups = {"Profile"}, priority = 1)
+    @Test (description = "Valid Login", groups = {"disabled"}, priority = 1)
     public void successfulLogin() {
 
         loginPage.successfulLogin(LogsVars.personalUser, LogsVars.personalUserPassword);

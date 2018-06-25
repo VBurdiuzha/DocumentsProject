@@ -73,7 +73,7 @@ public class ExpertiseUserPage {
         this.driver = driver;
     }
 
-    public void expertiseModule() {
+    public void logIn() {
         driver.get(LogsVars.baseURL);
         driver.findElement(loginButton).click();
         WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);

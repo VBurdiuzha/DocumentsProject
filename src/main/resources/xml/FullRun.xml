@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Sanity Suite" >
+    <test name="logIn">
+        <classes>
+            <class name="uiTest.LogIn"/>
+        </classes>
+    </test>
+    <test name="Profile">
+        <classes>
+            <class name="uiTest.Profile"/>
+        </classes>
+    </test>
+    <test name="DocCategory">
+        <classes>
+            <class name="uiTest.DocCategory"/>
+        </classes>
+    </test>
+    <test name="MyApplication">
+        <classes>
+            <class name="uiTest.MyApplication"/>
+        </classes>
+    </test>
+    <test name="ExpertiseUser">
+        <classes>
+            <class name="uiTest.ExpertiseUser"/>
+        </classes>
+    </test>
+</suite>
+
+
+
+        <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/FullRun.xml -->

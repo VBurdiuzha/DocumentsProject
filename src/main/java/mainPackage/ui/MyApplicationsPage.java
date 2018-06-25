@@ -209,7 +209,7 @@ public class MyApplicationsPage {
 
     }
 
-    public void expertiseModule() {
+    public void logIn() {
         driver.get(LogsVars.baseURL);
         driver.findElement(loginButton).click();
         WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
@@ -223,6 +223,8 @@ public class MyApplicationsPage {
     }
 
     public void reviewAppInTheWork() throws InterruptedException {
+        driver.navigate().refresh();
+        expertiseModule.click();
         createDocInWork();
 
         driver.navigate().refresh();
@@ -261,6 +263,7 @@ public class MyApplicationsPage {
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();
         WebDriverTools.FluentWaitFunction(view);
+        Thread.sleep(2000);
         view.click();
         Thread.sleep(2000);
         WebDriverTools.FluentWaitFunction(updateButton);
@@ -334,7 +337,7 @@ public class MyApplicationsPage {
         APIMethods.payDoc();
         APIMethods.rejectedApplication();
 
-        expertiseModule();
+        logIn();
 
 
         driver.navigate().refresh();
@@ -399,9 +402,6 @@ public class MyApplicationsPage {
     }
 
     public void downloadAttachWhenEditApp() throws IOException, NoSuchAlgorithmException {
-        driver.navigate().refresh();
-        expertiseModule();
-
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -513,7 +513,7 @@ public class MyApplicationsPage {
 
     public void sendToArchivWhenWaitForPay(){
         driver.navigate().refresh();
-        expertiseModule();
+        logIn();
 
         driver.get(LogsVars.baseURL);
         driver.findElement(loginButton).click();

@@ -25,10 +25,14 @@ public class DocCategory extends WebDriverTestBase {
         System.out.println("Doc Category page init");
     }
 
+     @Test(description = "logIn", groups = {"disabled"}, priority = -1)
+     public void login()  {
+         loginPage.successfulLogin(LogsVars.regularUser, LogsVars.regularUserPassword);
+     }
+
 
      @Test(description = "correct Data Lupa", groups = ("DocCategory"), priority = 1)
     public void correctDataWithLupa()  {
-         loginPage.successfulLogin(LogsVars.regularUser, LogsVars.regularUserPassword);
          docCategoryPage.correctDataWithLupa();
     }
 
@@ -48,12 +52,12 @@ public class DocCategory extends WebDriverTestBase {
      }
 
      @Test(description = "data With Two Leter", groups = ("DocCategory"), priority = 5)
-     public void dataWithTwoLetter() throws InterruptedException {
+     public void dataWithTwoLetter()  {
          docCategoryPage.dataWithTwoLetter();
      }
 
      @Test(description = "data With Many Letters", groups = ("DocCategory"), priority = 6)
-     public void dataWithManyLetters() throws InterruptedException {
+     public void dataWithManyLetters() {
          docCategoryPage.dataWithManyLetters();
      }
 

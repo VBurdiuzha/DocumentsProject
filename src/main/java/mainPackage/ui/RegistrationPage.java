@@ -2,14 +2,16 @@ package mainPackage.ui;
 
 import mainPackage.interfaceFolder.LogsVars;
 import mainPackage.utils.WebDriverTools;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.cssSelector;
@@ -118,12 +120,7 @@ public class RegistrationPage {
         Regbutton.click();
         Thread.sleep(2000);
         Assert.assertFalse(errorPassw.size() != 0);
-        new FluentWait<WebDriver>(driver).withTimeout(7, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
-                .ignoring(InvalidElementStateException.class).until(new Function<WebDriver, WebElement>() {
-            public WebElement apply(WebDriver browser) {
-                return OKbutton;
-            }
-        }).click();
+        WebDriverTools.FluentWaitFunction(OKbutton);
 
     }
 
@@ -132,7 +129,7 @@ public class RegistrationPage {
         OSSinputEmail.sendKeys(LogsVars.OSSlogin);
         OSSinputPass.sendKeys(LogsVars.OSSpass);
         OSSSignIn.click();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         driver.navigate().refresh();
         Thread.sleep(2000);
         driver.navigate().refresh();
@@ -174,7 +171,7 @@ public class RegistrationPage {
 
     }
 
-    public void deleteUser () throws InterruptedException {
+    public void deleteUser () {
 
         driver.get(LogsVars.baseAdminURL);
         WebDriverTools.clearAndFill(By.xpath("//*[@id=\"textfield-1012-inputEl\"]"), LogsVars.adminUser);

@@ -20,14 +20,14 @@ public class ExpertiseUser extends WebDriverTestBase {
         System.out.println("Expertise user page init");
     }
 
-    @Test(description = "Go to the Expertise module", groups = {"Expertise"}, priority = 1)
-    public void expertiseModule() throws InterruptedException {
+    @Test(description = "Go to the Expertise module", groups = {"disabled"}, priority = 1)
+    public void login() {
 
-        expertiseUserPage.expertiseModule();
+        expertiseUserPage.logIn();
 
     }
     @Test (description = "test case with valid data", priority = 2)
-    public void validData() throws InterruptedException {
+    public void validData()  {
 
         expertiseUserPage.validData();
     }
