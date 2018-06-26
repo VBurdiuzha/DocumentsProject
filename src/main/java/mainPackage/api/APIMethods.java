@@ -24,7 +24,7 @@ public class APIMethods {
     static String id_application;
     static int balance;
     static String tokenUI;
-
+    static String tokenAdmin;
 
     public static void addMoneyPOSTrequest(int money)
     {
@@ -243,6 +243,7 @@ public class APIMethods {
             return;
         }
 
+        RestAssured.baseURI ="https://stage.servicedoc.ua";
         RequestSpecification request = given();
         org.json.simple.JSONObject requestParams = new org.json.simple.JSONObject();
         requestParams.put("change", oops);

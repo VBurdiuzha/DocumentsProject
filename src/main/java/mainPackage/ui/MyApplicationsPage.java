@@ -63,18 +63,14 @@ public class MyApplicationsPage {
     private WebElement text;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.MultipleFileSelection > div.Value > div > div > ul > li > ul > li")
     private WebElement attachment;
-    @FindBy(css = "#front765eeb3892cfa9942bd09d53d08c0352")
+    @FindBy(css = "[class=AddButton]")
     private WebElement updateButton;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.AddButtonContainer > div > svg")
+    @FindBy(css = "//div[class=DescriptionBorder]")
     private WebElement descriptionIcon;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.questionHead")
     private WebElement messages;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.historyTitle")
     private WebElement flowApplication;
-
-
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.wrapperAddContent > div > div.addBody > textarea")
-    private WebElement textAreaUpdateDoc;
     @FindBy(css = "input[type=file]")
     private WebElement uploadAttach;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.wrapperAddContent > div > div.addFooter > div > button.submit")
@@ -104,8 +100,6 @@ public class MyApplicationsPage {
     private WebElement expertisePNG;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > span > div.MultipleFileSelection > div > ul.FilesList > li > ul > li > div.ButtonRemove > svg > path")
     private WebElement deleteFile;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div.Finalizer > div > button.Save")
-    private WebElement saveButton;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.Context > div")
     private WebElement listOfDoc;
     @FindBy(css = "#frontf831f8d8a3777a0306b90072cba6bec7")
@@ -158,7 +152,8 @@ public class MyApplicationsPage {
 
     @FindBy(css = "#fronte934dd9bb03d9f7e252f06f1c642da43 > div > div > div")
     private WebElement editButtonTest;
-
+    @FindBy(css = "button[class=Save]")
+    private WebElement saveButton;
 
     private final WebDriver driver;
 
@@ -254,7 +249,6 @@ public class MyApplicationsPage {
         myAppTab.click();
 
         createDocWaitForPay();
-
         myAppTab.click();
 
         driver.navigate().refresh();
@@ -269,10 +263,12 @@ public class MyApplicationsPage {
         WebDriverTools.FluentWaitFunction(updateButton);
         updateButton.click();
         Thread.sleep(2000);
-        WebDriverTools.FluentWaitFunction(textAreaUpdateDoc);
-        textAreaUpdateDoc.sendKeys("   Какое-то дополнение от пользователя");
-        uploadAttach.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
-        WebDriverTools.clickOnInvisibleElement(sendButton);
+        WebDriverTools.clearAndFill(textarea, "This is my changes").click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)");
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
+        attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePDF);
+        saveButton.click();
+
         WebDriverTools.FluentWaitFunction(fileExpertise);
         assertNotNull("Какое-то дополнение от пользователя");
         assertNotNull(fileExpertise);

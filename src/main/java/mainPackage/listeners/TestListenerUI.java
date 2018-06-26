@@ -1,6 +1,5 @@
 package mainPackage.listeners;
 
-import io.qameta.allure.Attachment;
 import mainPackage.utils.WebDriverTestBase;
 import mainPackage.utils.WebDriverTools;
 import org.apache.commons.io.FileUtils;
@@ -11,6 +10,7 @@ import org.openqa.selenium.WebDriverException;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +22,8 @@ public class TestListenerUI implements ITestListener {
 
     WebDriverTools tools = new WebDriverTools();
     private String params;
+
+
 
     private File captureScreenshot(WebDriver driver) {
         File file = null;

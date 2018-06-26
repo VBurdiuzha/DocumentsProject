@@ -324,7 +324,6 @@ public class ExpertiseUserPage {
         driver.navigate().refresh();
 
         APIMethods.withDrawAllMoney();
-
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.FluentWaitFunction(createApplication);
