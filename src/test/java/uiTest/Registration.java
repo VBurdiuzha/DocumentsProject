@@ -21,14 +21,16 @@ public class Registration extends WebDriverTestBase{
         System.out.println("Initialized");
     }
 
-    @Test (description = "check different email cases", dataProviderClass = DataProviderParameters.class, dataProvider = "email address", groups = {"Reg.Email"})
+    @Test (description = "check different email cases", dataProviderClass = DataProviderParameters.class,
+            dataProvider = "emailReg", priority = 1, groups = {"Reg.Email"})
     public void verifyEmail(String email, boolean n2){
 
         registrationPage.verifyEmail(email, n2);
     }
 
 
-    @Test (description = "check different passw cases" ,dataProviderClass = DataProviderParameters.class, dataProvider = "password", groups = {"Reg.Password"})
+    @Test (description = "check different passw cases" ,dataProviderClass = DataProviderParameters.class,
+            dataProvider = "passwReg", priority = 2, groups = {"Reg.Password"})
     public void verifyPassw(String password, boolean n2) throws InterruptedException {
 
         registrationPage.verifyPassw(password, n2);

@@ -23,9 +23,9 @@ public class RegistrationPage {
     private final By inputUsername = cssSelector("#front480616263a00926a515c2aaf34b53fcc");
     private final By inputPassword = cssSelector("#front75da0a9226c31d6d56e327f558c4ccd8");
     private final By loginBatton = className("front64fbd75d07ec519ac1c34bbf3c93e41b");
-    @FindBy(xpath = "//span[contains(text(),\"E-mail введен не верно\")]")
+    @FindBy(css = "#app > div > div.container > div.ModalWindow > div > div > div > div > div > div > form > div:nth-child(1) > div > div:nth-child(5)")
     private List<WebElement> errorEmail;
-    @FindBy(xpath = "//div[contains(text(),\"Пароль должен содержать не менее 6-ти символов\")]")
+    @FindBy(xpath = "//div[contains(text(),\"Пароль введен\")]")
     private List<WebElement> errorPassw;
     @FindBy(css = "#front64fbd75d07ec519ac1c34bbf3c93e41b > div > div > span")
     private WebElement enterButton;
@@ -55,7 +55,7 @@ public class RegistrationPage {
     private WebElement OSSinputEmail;
     @FindBy(xpath = "//*[@id=\"rcmloginpwd\"]")
     private WebElement OSSinputPass;
-    @FindBy(xpath = "//*[@id=\"textfield-1013-inputEl\"]")
+    @FindBy(css = "#textfield-1085-inputWrap")
     private WebElement adminPassField;
     @FindBy(xpath = "//*[@id=\"login-form\"]/div[1]/form/p/input")
     private WebElement OSSSignIn;
@@ -67,9 +67,9 @@ public class RegistrationPage {
     private WebElement toolbarNextPage;
     @FindBy(xpath = "//*[@id=\"button-1069\"]")
     private WebElement adminNextPage;
-    @FindBy(xpath = "//div[contains(text(),\"v.burdiuzha@ossystem.com.ua\")]")   // change "//div[contains(text(),\"Войти\")]"
+    @FindBy(xpath = "//div[contains(text(),\"v.burdiuzha@ossystem.com.ua\")]")
     private WebElement pickEmail;
-    @FindBy(xpath = "//*[@id=\"toolbar-1054-innerCt\"]")
+    @FindBy(xpath = "[class='x-btn-icon-el x-btn-icon-el-default-toolbar-small']")
     private WebElement toolbarDeleteUser;
     @FindBy(xpath = "//*[@id=\"button-1059-btnInnerEl\"]")
     private WebElement deleteUser;
@@ -85,6 +85,20 @@ public class RegistrationPage {
     private WebElement logOutAdm;
     @FindBy(css = "#menuitem-1035-textEl")
     private WebElement logOutAadm2;
+    @FindBy(css = "[class='x-form-item-body x-form-item-body-default x-form-text-field-body x-form-text-field-body-default  ']")
+    private WebElement emailAdminSignUp;
+    @FindBy(css = "[class='x-form-text-wrap x-form-text-wrap-default']")
+    private WebElement passwAdminSignUp;
+    @FindBy(css = "[class='x-column-header x-column-header-align-left x-box-item x-column-header-default x-unselectable x-column-header-last']")
+    private WebElement timeFilterAdmin;
+
+
+    @FindBy(css = "[class='x-column-header x-column-header-align-left x-box-item x-column-header-default x-unselectable x-column-header-last x-column-header-sort-DESC']")
+    private WebElement timeFilterUp;
+
+
+
+
 
 
 
@@ -94,8 +108,8 @@ public class RegistrationPage {
         this.driver = browser;
     }
 
-    @Test (dataProvider = "provider1")
-    public void verifyEmail(String n1, boolean n2)  {
+    @Test (dataProvider = "emailReg")
+    public void verifyEmail(String n1, boolean n2) {
         driver.get(LogsVars.baseURL);
         enterButton.click();
         registrationButton.click();
@@ -107,7 +121,7 @@ public class RegistrationPage {
 
     }
 
-    @Test (dataProvider = "provider2")
+    @Test (dataProvider = "passwReg")
     public void verifyPassw(String n1, boolean n2) throws InterruptedException {
         driver.manage().deleteAllCookies();
         driver.navigate().refresh();
@@ -171,17 +185,23 @@ public class RegistrationPage {
 
     }
 
-    public void deleteUser () {
+    public void deleteUser () throws InterruptedException {
 
         driver.get(LogsVars.baseAdminURL);
-        WebDriverTools.clearAndFill(By.xpath("//*[@id=\"textfield-1012-inputEl\"]"), LogsVars.adminUser);
-        adminPassField.sendKeys(LogsVars.adminUserPassword);
+        WebDriverTools.actionsForFocusElement(emailAdminSignUp, LogsVars.adminUser);
+        WebDriverTools.actionsForFocusElement(passwAdminSignUp, LogsVars.adminUserPassword);
         toolbarSignIn.click();
         admSignIn.click();
-        toolbarNextPage.click();
-        adminNextPage.click();
+
+
+
+        timeFilterAdmin.click();
+        Thread.sleep(3000);
+        timeFilterUp.click();
+
         pickEmail.click();
         toolbarDeleteUser.click();
+
         deleteUser.click();
         deleteUserYes.click();
     }

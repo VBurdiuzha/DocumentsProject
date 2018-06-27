@@ -5,6 +5,36 @@ import org.testng.annotations.DataProvider;
 
 public class DataProviderParameters {
 
+
+
+
+    @DataProvider(name = "emailReg")
+    public Object[][] emailreg() {
+        return new Object[][]{
+                {"test@testcom", false},
+                {"test@.com ", false},
+                {"te st@gmail.com ", false},
+                {"te@st@gmail.com", false},
+                {"te..st@gmail.com", true},
+                {"@gmail.com", false},
+                {"имейлнарусском@gmail.com", false},
+                {"admnAutoTest@email.ua", false},
+                {"test@gmail.com.", false},
+                {"v.burdiuzha@ossystem.com", true},
+        };
+    }
+
+
+    @DataProvider(name = "passwReg")
+    public Object[][] passwreg() {
+        return new Object[][]{
+                {"!@#$%^&*()_+=-<>,.`~", false},
+                {"парольнарусском", false},
+                {" 0123456789012345678901234", false},
+                {LogsVars.correctPassword, true}
+        };
+    }
+
     @DataProvider(name = "email address")
     public Object[][] createEmail() {
         return new Object[][]{

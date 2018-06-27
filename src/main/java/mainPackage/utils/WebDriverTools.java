@@ -2,6 +2,7 @@ package mainPackage.utils;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -82,6 +83,12 @@ public class WebDriverTools {
         String today = dateFormat.format(date);
         return today;
     }
-
+    public static void actionsForFocusElement(WebElement element, String key) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+        actions.click();
+        actions.sendKeys(key);
+        actions.build().perform();
+    }
 
 }
