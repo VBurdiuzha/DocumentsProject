@@ -91,4 +91,9 @@ public class WebDriverTools {
         actions.build().perform();
     }
 
+    public static void waitForElementDisplayed(WebElement element) {
+        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(element));
+    }
+
 }
+

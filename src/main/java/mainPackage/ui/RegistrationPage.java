@@ -69,11 +69,11 @@ public class RegistrationPage {
     private WebElement adminNextPage;
     @FindBy(xpath = "//div[contains(text(),\"v.burdiuzha@ossystem.com.ua\")]")
     private WebElement pickEmail;
-    @FindBy(xpath = "[class='x-btn-icon-el x-btn-icon-el-default-toolbar-small']")
+    @FindBy(css = "[class='x-toolbar-separator x-toolbar-separator-horizontal x-box-item x-toolbar-item']")
     private WebElement toolbarDeleteUser;
-    @FindBy(xpath = "//*[@id=\"button-1059-btnInnerEl\"]")
+    @FindBy(css = "[class='x-btn-inner x-btn-inner-default-toolbar-small']")
     private WebElement deleteUser;
-    @FindBy(xpath = "//*[@id=\"button-1006-btnInnerEl\"]")
+    @FindBy(css = "[class='x-btn-inner x-btn-inner-default-small']")
     private WebElement deleteUserYes;
     @FindBy(xpath = "//*[@id=\"messagelist\"]")
     private WebElement messageList;
@@ -89,26 +89,27 @@ public class RegistrationPage {
     private WebElement emailAdminSignUp;
     @FindBy(css = "[class='x-form-text-wrap x-form-text-wrap-default']")
     private WebElement passwAdminSignUp;
-    @FindBy(css = "[class='x-column-header x-column-header-align-left x-box-item x-column-header-default x-unselectable x-column-header-last']")
-    private WebElement timeFilterAdmin;
+    @FindBy(css = "[class='x-btn-icon-el x-btn-icon-el-plain-toolbar-small x-tbar-page-next ']")
+    private WebElement nextPageAdm;
 
 
-    @FindBy(css = "[class='x-column-header x-column-header-align-left x-box-item x-column-header-default x-unselectable x-column-header-last x-column-header-sort-DESC']")
+    @FindBy(css = "[role='presentation']")
+    private WebElement nextPageToolBar;
+    @FindBy(css = "[class='checkError']")
+    private WebElement errorRegPopUp;
+
+
+    @FindBy(css = "[class='x-menu-item-text x-menu-item-text-default x-menu-item-indent-no-separator']")
     private WebElement timeFilterUp;
-
-
-
-
-
 
 
     private final WebDriver driver;
 
-    public RegistrationPage(WebDriver browser){
+    public RegistrationPage(WebDriver browser) {
         this.driver = browser;
     }
 
-    @Test (dataProvider = "emailReg")
+    @Test(dataProvider = "emailReg")
     public void verifyEmail(String n1, boolean n2) {
         driver.get(LogsVars.baseURL);
         enterButton.click();
@@ -118,10 +119,10 @@ public class RegistrationPage {
         WebDriverTools.clearAndFill(inputPasswordReg, LogsVars.correctPassword).submit();
         icon.click();
         Assert.assertFalse(errorEmail.size() != 0);
-
+        Assert.assertNotNull(errorRegPopUp);
     }
 
-    @Test (dataProvider = "passwReg")
+    @Test(dataProvider = "passwReg")
     public void verifyPassw(String n1, boolean n2) throws InterruptedException {
         driver.manage().deleteAllCookies();
         driver.navigate().refresh();
@@ -135,6 +136,7 @@ public class RegistrationPage {
         Thread.sleep(2000);
         Assert.assertFalse(errorPassw.size() != 0);
         WebDriverTools.FluentWaitFunction(OKbutton);
+        Assert.assertNotNull(errorRegPopUp);
 
     }
 
@@ -172,20 +174,14 @@ public class RegistrationPage {
             if (!originalWindow.equalsIgnoreCase(newWindow)) {
                 driver.switchTo().window(newWindow);
             }
-
         }
-        driver.close(); ///In here I should close the new window
 
-        driver.switchTo().window(originalWindow);//In here I should switch back to the old window
-
-        driver.get(LogsVars.baseURL);
-        enterButton.click();
-        WebDriverTools.clearAndFill(inputUsername, LogsVars.OSSEmail);
-        WebDriverTools.clearAndFill(inputPassword, LogsVars.adminUserPassword).submit();
+        driver.close();
+        driver.switchTo().window(originalWindow);
 
     }
 
-    public void deleteUser () throws InterruptedException {
+    public void deleteUser() throws InterruptedException {
 
         driver.get(LogsVars.baseAdminURL);
         WebDriverTools.actionsForFocusElement(emailAdminSignUp, LogsVars.adminUser);
@@ -193,17 +189,21 @@ public class RegistrationPage {
         toolbarSignIn.click();
         admSignIn.click();
 
+        WebDriverTools.clickOnInvisibleElement(nextPageToolBar);
+        WebDriverTools.clickOnInvisibleElement(nextPageAdm);
+        nextPageAdm.click();
+
+        WebDriverTools.clickOnInvisibleElement(pickEmail);
 
 
-        timeFilterAdmin.click();
-        Thread.sleep(3000);
-        timeFilterUp.click();
-
-        pickEmail.click();
+        WebDriverTools.clickOnInvisibleElement(toolbarDeleteUser);
         toolbarDeleteUser.click();
 
-        deleteUser.click();
+        WebDriverTools.clickOnInvisibleElement(deleteUser);
+//        deleteUser.click();
+        WebDriverTools.clickOnInvisibleElement(deleteUserYes);
         deleteUserYes.click();
+
     }
 
 }
