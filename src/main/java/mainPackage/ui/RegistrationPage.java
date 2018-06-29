@@ -71,9 +71,11 @@ public class RegistrationPage {
     private WebElement pickEmail;
     @FindBy(css = "[class='x-toolbar-separator x-toolbar-separator-horizontal x-box-item x-toolbar-item']")
     private WebElement toolbarDeleteUser;
-    @FindBy(css = "[class='x-btn-inner x-btn-inner-default-toolbar-small']")
+    @FindBy(css = "#button-1074")
     private WebElement deleteUser;
-    @FindBy(css = "[class='x-btn-inner x-btn-inner-default-small']")
+    @FindBy(css = "[class='x-toolbar x-docked x-toolbar-footer x-box-layout-ct']")
+    private WebElement toolbardeleteUserYes;
+    @FindBy(css = "[class='x-btn-icon-el x-btn-icon-el-default-small  ']")
     private WebElement deleteUserYes;
     @FindBy(xpath = "//*[@id=\"messagelist\"]")
     private WebElement messageList;
@@ -190,19 +192,19 @@ public class RegistrationPage {
         admSignIn.click();
 
         WebDriverTools.clickOnInvisibleElement(nextPageToolBar);
+        WebDriverTools.FluentWaitFunction(nextPageAdm);
         WebDriverTools.clickOnInvisibleElement(nextPageAdm);
         nextPageAdm.click();
 
         WebDriverTools.clickOnInvisibleElement(pickEmail);
-
-
+        Thread.sleep(2000);
         WebDriverTools.clickOnInvisibleElement(toolbarDeleteUser);
-        toolbarDeleteUser.click();
+//        toolbarDeleteUser.click();
 
         WebDriverTools.clickOnInvisibleElement(deleteUser);
-//        deleteUser.click();
+        Thread.sleep(2000);
+        WebDriverTools.FluentWaitFunction(deleteUserYes);
         WebDriverTools.clickOnInvisibleElement(deleteUserYes);
-        deleteUserYes.click();
 
     }
 
