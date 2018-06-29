@@ -50,10 +50,11 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.downloadAttachmentPopUp();
     }
 
-    @Test(description = "why rejected application ", groups = {"Expertise"}, priority = 5)
-    public void whyRejectedApp() {
-        myApplicationsPage.whyRejectedApp();
-    }
+//    @Test(description = "why rejected application ", groups = {"Expertise"}, priority = 5)
+//    public void whyRejectedApp() {
+//        myApplicationsPage.logIn();
+//        myApplicationsPage.whyRejectedApp();
+//    }
 
     @Test(description = "rejected App To Archive", groups = {"Expertise"}, priority = 6)
     public void rejectedAppToArchive()  {

@@ -147,6 +147,10 @@ public class MyApplicationsPage {
     private WebElement nextButton;
     @FindBy(css = "#front404d0ca4b994575eec4661a031a130a8")
     private WebElement payAndGo;
+    @FindBy(css = "#front3c2cc487eb81783e84b98cb3bb1cd4eb")
+    private WebElement newAppTab;
+
+
     private final By roleInDoc = xpath("//*[@id=\"front15028f72ff543a7225493002142fac78\"]");
     private final By textarea = cssSelector("#front6cbe73215f7d646d4888d05f14810819");
 
@@ -164,6 +168,7 @@ public class MyApplicationsPage {
     public void createDocWaitForPay() throws InterruptedException {
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -176,12 +181,13 @@ public class MyApplicationsPage {
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePNG);
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePDF);
         nextButton.click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
     }
 
     public void createDocInWork() throws InterruptedException {
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -194,7 +200,7 @@ public class MyApplicationsPage {
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNamePDF);
         nextButton.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         String selector = "#front721c0f66c16e78c7120e829611dac8c8_242";
         String num = selector.substring(39, selector.length());   // get unique value (in this case "242")
@@ -213,6 +219,7 @@ public class MyApplicationsPage {
         profile.click();
         expertiseModule.click();
         myAppTab.click();
+        newAppTab.click();
         assertNotNull(myAppTab);
 
     }
@@ -224,6 +231,7 @@ public class MyApplicationsPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.StaleElementTools(myAppTab);
         myAppTab.click();
         actions.click();
         WebDriverTools.FluentWaitFunction(view);
@@ -253,6 +261,7 @@ public class MyApplicationsPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.StaleElementTools(myAppTab);
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();
@@ -283,15 +292,17 @@ public class MyApplicationsPage {
         myAppTab.click();
         createDocInWork();
 
+
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.StaleElementTools(myAppTab);
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(filterStatus);
         filterStatus.click();
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();
         WebDriverTools.FluentWaitFunction(view);
-        view.click();
+         WebDriverTools.clickOnInvisibleElement(view);
         WebDriverTools.FluentWaitFunction(downloadAttachment);
         WebDriverTools.clickOnInvisibleElement(downloadAttachment);
 
@@ -308,6 +319,7 @@ public class MyApplicationsPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.StaleElementTools(myAppTab);
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(filterStatus);
         filterStatus.click();
@@ -338,15 +350,19 @@ public class MyApplicationsPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.StaleElementTools(myAppTab);
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();
         WebDriverTools.FluentWaitFunction(view);
         view.click();
+        WebDriverTools.FluentWaitFunction(why);
         why.click();
         WebDriverTools.FluentWaitFunction(whyOK);
         whyOK.click();
         assertNotNull(aboutDate);
+
+        /*  ==================   need fix  attach API ===================== */
 
     }
 
@@ -354,6 +370,7 @@ public class MyApplicationsPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.StaleElementTools(myAppTab);
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();
@@ -374,6 +391,7 @@ public class MyApplicationsPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.StaleElementTools(myAppTab);
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();

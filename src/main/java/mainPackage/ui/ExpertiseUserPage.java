@@ -59,6 +59,9 @@ public class ExpertiseUserPage {
     private WebElement reestablis;
     @FindBy(css = "div[class='FileName 7568fe1cc132338520598c09a4fefbef']")
     private WebElement fileExpertise;
+    @FindBy(css = "#front3c2cc487eb81783e84b98cb3bb1cd4eb")
+    private WebElement newAppTab;
+
 
 
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > span > div.MultipleFileSelection > div > ul.FilesList > li:nth-child(21) > ul > li.Message")
@@ -89,6 +92,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -114,6 +118,7 @@ public class ExpertiseUserPage {
     public void doubleAttachment() {
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         createApplication.click();
         typeDoc.click();
         testCategoryType.click();
@@ -137,6 +142,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         createApplication.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
         radioButton3.click();
@@ -151,6 +157,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -167,6 +174,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -187,6 +195,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -203,6 +212,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -219,6 +229,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -234,6 +245,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         createApplication.click();
         typeDoc.click();
         testCategoryType.click();
@@ -255,6 +267,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -274,6 +287,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         createApplication.click();
         typeDoc.click();
         testCategoryType.click();
@@ -300,6 +314,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         createApplication.click();
         typeDoc.click();
         testCategoryType.click();
@@ -326,6 +341,7 @@ public class ExpertiseUserPage {
         APIMethods.withDrawAllMoney();
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();
@@ -355,6 +371,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         WebDriverTools.FluentWaitFunction(nextButton);
@@ -372,6 +389,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
         typeDoc.click();

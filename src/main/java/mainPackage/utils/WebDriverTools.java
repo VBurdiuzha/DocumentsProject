@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 
-
 public class WebDriverTools {
     public static WebDriver driver;
 
@@ -61,28 +60,28 @@ public class WebDriverTools {
     }
 
 
-
     public void makeScreenshot(WebDriver driver, String name) throws InterruptedException {
         Thread.sleep(1000);
         File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(screen, new File("/target/screenshots/"+ getTime() +"/"+name+".png"));
+            FileUtils.copyFile(screen, new File("/target/screenshots/" + getTime() + "/" + name + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void scrollPageUp(WebDriver driver){
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
+    public void scrollPageUp(WebDriver driver) {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("scroll(0, -250);");
     }
 
-    public String getTime(){
+    public String getTime() {
         DateFormat dateFormat = new SimpleDateFormat("(dd.MM.yyyy) HH-mm-ss");
         Date date = new Date();
         String today = dateFormat.format(date);
         return today;
     }
+
     public static void actionsForFocusElement(WebElement element, String key) {
         Actions actions = new Actions(driver);
         actions.moveToElement(element);
@@ -95,5 +94,14 @@ public class WebDriverTools {
         new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(element));
     }
 
-}
+    public static void StaleElementTools(WebElement element) {
+        new WebDriverWait(driver, 2)
+                .ignoring(StaleElementReferenceException.class)
+                .until((WebDriver d) -> {
+                    element.click();
+                    return true;
+                });
 
+
+    }
+}
