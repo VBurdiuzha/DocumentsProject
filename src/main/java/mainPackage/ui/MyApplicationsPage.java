@@ -37,7 +37,7 @@ public class MyApplicationsPage {
     private WebElement avatar;
     @FindBy(css = "#front3d6305e5e1809ea5588858bbcf65cc36")
     private WebElement profile;
-    @FindBy(css = "#sidemenu > li.li_review > a")
+    @FindBy(css = "#front29b36a788ae06325de5b6c50e83d6cc6")
     private WebElement expertiseModule;
     @FindBy(css = "#front2fcf3840290d49dd8320b34367dc760f")
     private WebElement myAppTab;
@@ -47,23 +47,23 @@ public class MyApplicationsPage {
     private WebElement view;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > ul > li.PriceItem > div")
     private WebElement numOfApplication;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.CreatedAt > div.Value")
+    @FindBy(css = "#front85c2eef0ef9fa995cdd1b001e9634c8b")
     private WebElement dateStart;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.UpdatedAt > div.Value")
+    @FindBy(css = "#front6a07130deda0f89ae4a285854a6988bd")
     private WebElement dateUpdate;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Status > div.Value")
+    @FindBy(css = "#front02b89c29205d0e3642410285dd273840")
     private WebElement status;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Document > div.Value")
+    @FindBy(css = "#frontb737612c0e93da40a675cfe470e5e612")
     private WebElement typeOfApplication;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Ownership > div.Value")
+    @FindBy(css = "#fronta145c173281b0fb34984409a1efaf895")
     private WebElement side;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Requisites > div.Value")
+    @FindBy(css = "#front3d0989f1a3d697120eb9db35dc18c42e")
     private WebElement requisiteDoc;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.Text > div.Value")
+    @FindBy(css = "#frontec6ebd9ec2bd9c1750ac205d635597eb")
     private WebElement text;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.MultipleFileSelection > div.Value > div > div > ul > li > ul > li")
+    @FindBy(css = "#frontf831f8d8a3777a0306b90072cba6bec7")
     private WebElement attachment;
-    @FindBy(css = "[class=AddButton]")
+    @FindBy(css = "#front765eeb3892cfa9942bd09d53d08c0352")
     private WebElement updateButton;
     @FindBy(css = "//div[class=DescriptionBorder]")
     private WebElement descriptionIcon;
@@ -77,14 +77,11 @@ public class MyApplicationsPage {
     private WebElement sendButton;
     @FindBy(css = "div[class='FileName 7568fe1cc132338520598c09a4fefbef']")
     private WebElement fileExpertise;
-
-
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > ul > li.Context > div > div.ListHeader > div.status")
+    @FindBy(css = "#front02b89c29205d0e3642410285dd273840")
     private WebElement filterStatus;
-
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.Property > div.Items.MultipleFileSelection > div.Value > div > div > ul > li:nth-child(1) > ul > li > div.Icon > svg")
+    @FindBy(css = "#frontf831f8d8a3777a0306b90072cba6bec7")
     private WebElement downloadAttachment;
-    @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div > div > div > div.wrapperAddContent > div > div.addBody > div > div > div > ul > li > ul > li > div.Icon")
+    @FindBy(css = "#frontf831f8d8a3777a0306b90072cba6bec7")
     private WebElement downloadAttachPopUp;
     @FindBy(css = "#fronte934dd9bb03d9f7e252f06f1c642da43")
     private WebElement editButton;
