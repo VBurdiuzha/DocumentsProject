@@ -18,6 +18,12 @@
 3. git commit -m "[example description]"
 4. git push
 
+-- Run test from terminal --
+
+Use command : mvn clean test
+
+P.S. Default run will be "Sanity Suite"
+
 
 
 
