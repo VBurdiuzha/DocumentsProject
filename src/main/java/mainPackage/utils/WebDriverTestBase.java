@@ -15,21 +15,20 @@ public class WebDriverTestBase {
     @Parameters ("platform")
     @BeforeTest
     public static void setUp(String platform) {
-        switch (platform) {
-            case "mac":
-                System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/mac/chromedriver");
-                System.out.println("Test running on mac os");
-                break;
-            case "linux":
-                System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/linux/chromedriver");
-                System.out.println("Test running on linux os");
-                break;
-            case "windows":
-                System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/windows/chromedriver.exe");
-                System.out.println("Test running on windows");
-                break;
-            default:
-                System.out.println("Something wrong ! :(");
+        if ("mac".equals(platform)) {
+            System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/mac/chromedriver");
+            System.out.println("Test running on mac os");
+
+        } else if ("linux".equals(platform)) {
+            System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/linux/chromedriver");
+            System.out.println("Test running on linux os");
+
+        } else if ("windows".equals(platform)) {
+            System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/windows/chromedriver.exe");
+            System.out.println("Test running on windows");
+
+        } else {
+            System.out.println("Something wrong ! :(");
         }
 
 

@@ -32,3 +32,7 @@
 
 
         <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/FullRun.xml -->
+
+        <!--mvn clean test -Dsurefire.suiteXmlFiles=FullRun.xml-->
+
+   <!--java -cp "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/xml/FullRun.xml" FullRun.xml-->

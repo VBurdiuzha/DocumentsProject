@@ -9,6 +9,8 @@
     <version>1</version>
     <build>
         <plugins>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -20,12 +22,8 @@
         </plugins>
     </build>
     <packaging>war</packaging>
-
     <name>File Uploader Rest Service</name>
     <url>https://javatutorial.net</url>
-
-
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.5</allure.version>
@@ -83,6 +81,7 @@
 
 
     <dependencies>
+
 
         <dependency>
             <groupId>log4j</groupId>
