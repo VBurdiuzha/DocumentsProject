@@ -24,6 +24,10 @@ Use command : mvn clean test
 
 P.S. Default run will be "Sanity Suite"
 
+-- Edit xml file with script --
 
+sed "s/<suiteXmlFile>src\/main\/resources\/xml\/FullRun.xml<\/suiteXmlFile>/<suiteXmlFile>src\/main\/resources\/xml\/LogIn.xml<\/suitmlFile>/g" pom.xml > temp.xml
+
+mv temp.xml pom.xml
 
 
