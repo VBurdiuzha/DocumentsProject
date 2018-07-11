@@ -33,6 +33,5 @@ mv temp.xml pom.xml
 
 --- From CSS )) ---
 
-cat pom.xml | sed 's/<suiteXmlFile>.*<\/suiteXmlFile>/<suiteXmlFile>src\/main\/resources\/xml\/LogInxml\.xml<\/suiteXmlFile>/' > out.xml && rm pom.xml && mv out.xml pom.xml
-
+cat pom.xml | sed 's/<suiteXmlFile>.*<\/suiteXmlFile>/<suiteXmlFile>src\/main\/resources\/xml\/LogIn.xml<\/suiteXmlFile>/' > out.xml && rm pom.xml && mv out.xml pom.xml
 
