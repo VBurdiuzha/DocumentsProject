@@ -26,8 +26,13 @@ P.S. Default run will be "Sanity Suite"
 
 -- Edit xml file with script --
 
-sed "s/<suiteXmlFile>src\/main\/resources\/xml\/FullRun.xml<\/suiteXmlFile>/<suiteXmlFile>src\/main\/resources\/xml\/LogIn.xml<\/suitmlFile>/g" pom.xml > temp.xml
+sed "s/<suiteXmlFile>src\/main\/resources\/xml\/LogIn.xml<\/suiteXmlFile>/
+<suiteXmlFile>src\/main\/resources\/xml\/FullRun.xml<\/suiteXmlFile>/g" pom.xml > temp.xml
 
 mv temp.xml pom.xml
+
+--- From CSS )) ---
+
+cat pom.xml | sed 's/<suiteXmlFile>.*<\/suiteXmlFile>/<suiteXmlFile>src\/main\/resources\/xml\/LogInxml\.xml<\/suiteXmlFile>/' > out.xml && rm pom.xml && mv out.xml pom.xml
 
 
