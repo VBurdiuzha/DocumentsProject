@@ -36,3 +36,6 @@ mv temp.xml pom.xml
 cat pom.xml | sed 's/<suiteXmlFile>.*<\/suiteXmlFile>/<suiteXmlFile>src\/main\/resources\/xml\/LogIn.xml<\/suiteXmlFile>/'
  > out.xml && rm pom.xml && mv out.xml pom.xml
 
+--- Edit FullRun file with script ---
+
+cat FullRun.xml | sed 's/<parameter name=\"platform\" value=\"mac\" /> /s/<parameter name=\"platform\" value=\"linux\" />' > out.xml && rm FullRun.xml && mv out.xml FullRun.xml

@@ -1,0 +1,1 @@
+cat FullRun.xml | sed 's/<parameter name=\"platform\" value=\"mac\" /> /s/<parameter name=\"platform\" value=\"linux\" />' > out.xml && rm FullRun.xml && mv out.xml FullRun.xml

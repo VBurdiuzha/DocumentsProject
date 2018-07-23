@@ -1,4 +1,4 @@
-FROM  java:9
+FROM  java:8
 
 MAINTAINER  Burdiuzha Villi <v.burdiuzha@ossystem.com.ua>
 COPY . /var/www/tests
