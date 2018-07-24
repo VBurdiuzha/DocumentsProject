@@ -13,11 +13,6 @@
             <class name="uiTest.DocCategory"/>
         </classes>
     </test>
-    <test name="ExpertiseUser">
-        <classes>
-            <class name="uiTest.Profile"/>
-        </classes>
-    </test>
     <test name="MyApplication">
         <classes>
             <class name="uiTest.MyApplication"/>
