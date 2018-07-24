@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Sanity Suite" >
-    <parameter name="platform" value="linux" />
-    <parameter name="selenium" value="local" />
+    <parameter name="platform" value="mac" />
     <test name="Login">
         <classes>
             <class name="uiTest.LogIn"/>
@@ -13,7 +12,7 @@
             <class name="uiTest.DocCategory"/>
         </classes>
     </test>
-    <test name="ExpertiseUser">
+    <test name="Profile">
         <classes>
             <class name="uiTest.Profile"/>
         </classes>
