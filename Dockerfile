@@ -1,40 +1,41 @@
-FROM  java:8
+FROM selenium/standalone-chrome
 MAINTAINER  Burdiuzha Villi <v.burdiuzha@ossystem.com.ua>
 WORKDIR /var/www/tests
-RUN apt-get update -qq
+USER root
+RUN apt-get update -qqy
 RUN apt-get install -y maven
 
-RUN set -xe \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates curl socat \
-    && apt-get install -y --no-install-recommends xvfb x11vnc fluxbox xterm \
-    && apt-get install -y --no-install-recommends sudo \
-    && apt-get install -y --no-install-recommends supervisor \
-    && rm -rf /var/lib/apt/lists/*
 
-RUN set -xe \
-    && curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable \
-    && rm -rf /var/lib/apt/lists/*
+ENV JAVA_VER 8
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-#========================================
-# Add normal user with passwordless sudo
-#========================================
-RUN set -xe \
-    && useradd -u 1000 -g 100 -G sudo --shell /bin/bash --no-create-home --home-dir /tmp user \
-    && echo 'ALL ALL = (ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
+# install JDK
+RUN echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list && \
+    echo 'deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C2518248EEA14886 && \
+    apt-get update && \
+    echo oracle-java${JAVA_VER}-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections && \
+    apt-get install -y --force-yes --no-install-recommends oracle-java${JAVA_VER}-installer oracle-java${JAVA_VER}-set-default && \
+    apt-get clean && \
+    rm -rf /var/cache/oracle-jdk${JAVA_VER}-installer
 
-COPY supervisord.conf /etc/
-COPY entry.sh /
 
-User user
-WORKDIR /tmp
-VOLUME /tmp/chrome-data
+RUN apt-get install -y xvfb
 
+RUN apt-get update
+RUN sudo apt-get  install -y xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
+
+ADD xvfb_init /var/www/tests/xvfb/init.d/xvfb
+RUN chmod a+x /var/www/tests/xvfb/init.d/xvfb
+ADD xvfb_daemon_run /usr/bin/xvfb-daemon-run
+RUN chmod a+x /usr/bin/xvfb-daemon-run
+
+ENV DISPLAY :99
+
+
+
+#RUN apt-cache search chrome browser
+#RUN apt-get install chrome-browser
 COPY . /var/www/tests
-
-WORKDIR /var/www/tests
-#RUN sh ./src/main/resources/bash/setFullRunPlatform.sh
+#RUN sh src/main/resources/bash/setFullRunPlatform.sh
 #RUN sh src/main/resources/bash/setPom.sh
