@@ -24,7 +24,7 @@ public class WebDriverTestBase {
             System.out.println("Test running on mac os");
 
     } else if ("linux".equals(platform)) {
-            System.setProperty("webdriver.chrome.driver", "/src/main/resources/selenium/linux/chromedriver");
+            System.setProperty("webdriver.chrome.driver", "./src/main/resources/selenium/linux/chromedriver");
             System.out.println("Test running on linux os");
 
         } else if ("windows".equals(platform)) {
