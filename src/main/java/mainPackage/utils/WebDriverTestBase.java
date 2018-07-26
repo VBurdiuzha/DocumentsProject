@@ -1,12 +1,14 @@
 package mainPackage.utils;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class WebDriverTestBase {
     protected static WebDriver driver;
@@ -36,10 +38,10 @@ public class WebDriverTestBase {
 
 
 
-           // driver = new ChromeDriver(new ChromeOptions().addArguments("--start-maximized", "--incognito"));
-//            driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-//            driver.manage().window().maximize();
-//            mainPackage.utils.WebDriverTools.setDriver(driver);
+            driver = new ChromeDriver(new ChromeOptions().addArguments("--start-maximized", "--incognito"));
+            driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+            driver.manage().window().maximize();
+            mainPackage.utils.WebDriverTools.setDriver(driver);
 ////
 
 
