@@ -1,21 +1,25 @@
 package mainPackage.utils;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 public class WebDriverTestBase {
     protected static WebDriver driver;
 
-    {
-        System.setProperty("webdriver.chrome.driver", "./src/main/resources/selenium/linux/chromedriver");
-    }
+//    {
+//        System.setProperty("webdriver.chrome.driver", "./src/main/resources/selenium/linux/chromedriver");
+//    }
 
     @Parameters("platform")
     @BeforeTest
-    public static void setUp(String platform) {
+    public static void setUp(String platform) throws IOException {
 //        if ("mac".equals(platform)) {
 //            System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/mac/chromedriver");
 //            System.out.println("Test running on mac os");
@@ -34,23 +38,30 @@ public class WebDriverTestBase {
 
 
 
-//            driver = new ChromeDriver(new ChromeOptions().addArguments("--start-maximized", "--incognito"));
-//            driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-//            driver.manage().window().maximize();
-//            mainPackage.utils.WebDriverTools.setDriver(driver);
+            driver = new ChromeDriver(new ChromeOptions().addArguments("--start-maximized", "--incognito"));
+            driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+            driver.manage().window().maximize();
+            mainPackage.utils.WebDriverTools.setDriver(driver);
 //
+
+
 //        ChromeOptions ChromeOptions = new ChromeOptions();
 //        ChromeOptions.addArguments("--headless", "window-size=1024,768", "--no-sandbox");
 //        driver = new ChromeDriver(ChromeOptions);
 
+
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+
 // Must maximize Chrome by `start-maximized`
-        options.addArguments("start-maximized");
+       // options.addArguments("start-maximized");
 
 //Dont maximize Chrome by below line, because has no display
         driver.manage().window().maximize();
-
 
 
     }
