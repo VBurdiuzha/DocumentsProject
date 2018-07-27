@@ -7,4 +7,4 @@ docker run sdtests bash -c "mvn clean test"
 rm -r ./allure-results/
 docker ps -a
 docker cp ecstatic_knuth:/var/www/tests/allure-results .
-allure-commandline\bin\allure serve
+allure-commandline/bin/allure serve

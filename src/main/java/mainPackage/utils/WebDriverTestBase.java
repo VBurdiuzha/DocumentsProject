@@ -39,7 +39,7 @@ public class WebDriverTestBase {
 
 
             ChromeOptions ChromeOptions = new ChromeOptions();
-            ChromeOptions.addArguments("--headless", "window-size=1024,768", "--no-sandbox", "--incognito");
+            ChromeOptions.addArguments("--headless", "window-size=1920,1080", "--no-sandbox", "--incognito");
 
             driver = new ChromeDriver(ChromeOptions);
             driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
