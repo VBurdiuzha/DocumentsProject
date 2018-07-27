@@ -38,35 +38,22 @@ public class WebDriverTestBase {
 
 
 
-            driver = new ChromeDriver(new ChromeOptions().addArguments("--start-maximized", "--incognito"));
+            ChromeOptions ChromeOptions = new ChromeOptions();
+            ChromeOptions.addArguments("--headless", "window-size=1024,768", "--no-sandbox", "--incognito");
+
+            driver = new ChromeDriver(ChromeOptions);
             driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
             driver.manage().window().maximize();
             mainPackage.utils.WebDriverTools.setDriver(driver);
-////
 
-
-//        ChromeOptions ChromeOptions = new ChromeOptions();
-//        ChromeOptions.addArguments("--headless", "window-size=1024,768", "--no-sandbox");
-//        driver = new ChromeDriver(ChromeOptions);
-
-
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-
-
-//Dont maximize Chrome by below line, because has no display
-       // driver.manage().window().maximize();
-
+            //Dont maximize Chrome by below line, because has no display
+            // driver.manage().window().maximize();
 
     }
 
 
     @AfterTest
     public static void finish() {
-
         driver.close();
     }
 

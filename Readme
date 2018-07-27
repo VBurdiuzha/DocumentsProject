@@ -39,3 +39,18 @@ cat pom.xml | sed 's/<suiteXmlFile>.*<\/suiteXmlFile>/<suiteXmlFile>src\/main\/r
 --- Edit FullRun file with script ---
 
 cat FullRun.xml | sed 's/<parameter name=\"platform\" value=\"mac\" /> /s/<parameter name=\"platform\" value=\"linux\" />' > out.xml && rm FullRun.xml && mv out.xml FullRun.xml
+
+
+
+--- Docker image for Java automated UI tests --
+https://github.com/markhobson/docker-maven-chrome
+
+
+--- Visual Docker Container Management on Mac & Windows ---
+https://kitematic.com/
+https://github.com/docker/kitematic
+
+
+--- Start ---
+docker build -f ./Dockerfile -t sdtests .
+docker run sdtests bash -c "mvn clean test"
