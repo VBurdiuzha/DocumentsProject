@@ -57,7 +57,7 @@ public class MyApplication extends WebDriverTestBase {
 //    }
 
     @Test(description = "rejected App To Archive", groups = {"Expertise"}, priority = 6)
-    public void rejectedAppToArchive()  {
+    public void rejectedAppToArchive() throws InterruptedException {
         myApplicationsPage.rejectedAppToArchive();
     }
 
@@ -83,7 +83,7 @@ public class MyApplication extends WebDriverTestBase {
     }
 
     @Test(description = "success Payment When Wait For Pay Doc", groups = {"Expertise"}, priority = 11)
-    public void successPaymentWhenWaitForPayDoc()  {
+    public void successPaymentWhenWaitForPayDoc() throws InterruptedException {
         myApplicationsPage.successPaymentWhenWaitForPayDoc();
     }
 
@@ -93,7 +93,7 @@ public class MyApplication extends WebDriverTestBase {
     }
 
     @Test(description = "send To Archiv When Wait For Pay", groups = {"Expertise"}, priority = 13)
-    public void sendToArchivWhenWaitForPay()  {
+    public void sendToArchivWhenWaitForPay() throws InterruptedException {
         myApplicationsPage.sendToArchivWhenWaitForPay();
     }
 

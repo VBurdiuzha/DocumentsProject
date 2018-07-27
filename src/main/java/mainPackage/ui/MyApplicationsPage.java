@@ -207,19 +207,6 @@ public class MyApplicationsPage {
 
     }
 
-    public void logIn() {
-        driver.get(LogsVars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-        expertiseModule.click();
-        myAppTab.click();
-        newAppTab.click();
-        assertNotNull(myAppTab);
-
-    }
 
     public void reviewAppInTheWork() throws InterruptedException {
         driver.navigate().refresh();
@@ -247,6 +234,21 @@ public class MyApplicationsPage {
         assertNotNull(messages);
         assertNotNull(flowApplication);
     }
+    public void logIn() {
+        driver.get(LogsVars.baseURL);
+        driver.findElement(loginButton).click();
+        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+        expertiseModule.click();
+        myAppTab.click();
+        newAppTab.click();
+        assertNotNull(myAppTab);
+
+    }
+
+
 
     public void updateAppWaitForPay() throws InterruptedException {
         driver.navigate().refresh();
@@ -363,8 +365,8 @@ public class MyApplicationsPage {
 
     }
 
-    public void rejectedAppToArchive(){
-
+    public void rejectedAppToArchive() throws InterruptedException {
+        createDocWaitForPay();
         driver.navigate().refresh();
         expertiseModule.click();
         WebDriverTools.StaleElementTools(myAppTab);
@@ -372,7 +374,7 @@ public class MyApplicationsPage {
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();
         WebDriverTools.FluentWaitFunction(archiveButton);
-        archiveButton.click();
+        WebDriverTools.clickOnInvisibleElement(archiveButton);
         String selector = "#front721c0f66c16e78c7120e829611dac8c8_242";
         String num = selector.substring(39, selector.length());
         archiveTab.click();
@@ -483,11 +485,13 @@ public class MyApplicationsPage {
 
     }
 
-    public void successPaymentWhenWaitForPayDoc(){
+    public void successPaymentWhenWaitForPayDoc() throws InterruptedException {
         driver.navigate().refresh();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
 
+
+        createDocWaitForPay();
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -506,6 +510,8 @@ public class MyApplicationsPage {
 
         APIMethods.withDrawAllMoney();
         driver.navigate().refresh();
+
+        logIn();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
 
@@ -522,7 +528,7 @@ public class MyApplicationsPage {
         APIMethods.addMoneyPOSTrequest(100);
     }
 
-    public void sendToArchivWhenWaitForPay(){
+    public void sendToArchivWhenWaitForPay() throws InterruptedException {
         driver.navigate().refresh();
         logIn();
 
@@ -532,6 +538,8 @@ public class MyApplicationsPage {
         WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
+
+        createDocWaitForPay();
 
         expertiseModule.click();
         myAppTab.click();
