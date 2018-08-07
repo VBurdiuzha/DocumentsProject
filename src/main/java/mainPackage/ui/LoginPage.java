@@ -18,7 +18,7 @@ public class LoginPage {
 
     private final WebDriver driver;
 
-    public LoginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {  // конструктор принимающий в качестве параметра объект WebDriver
 
         this.driver = driver;
     }

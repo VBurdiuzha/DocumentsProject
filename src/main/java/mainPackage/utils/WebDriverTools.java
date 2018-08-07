@@ -75,7 +75,7 @@ public class WebDriverTools {
         jse.executeScript("scroll(0, -250);");
     }
 
-    public String getTime() {
+    public static String getTime() {
         DateFormat dateFormat = new SimpleDateFormat("(dd.MM.yyyy) HH-mm-ss");
         Date date = new Date();
         String today = dateFormat.format(date);

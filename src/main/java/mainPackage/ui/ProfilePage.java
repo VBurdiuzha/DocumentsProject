@@ -209,21 +209,19 @@ public class ProfilePage {
     }
 
     @Test(dataProvider = "surName")
-    public void verifysurname(String surName, boolean n2) throws InterruptedException {
+    public void verifysurname(String surName, boolean n2)  {
         WebDriverTools.clearAndFill(SURNAME_FIELD, surName);
         driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(surnameError != null);
-        Thread.sleep(500);
 
 
     }
 
     @Test(dataProvider = "lastName")
-    public void verifylastName(String lastName, boolean n2) throws InterruptedException {
+    public void verifylastName(String lastName, boolean n2)  {
         WebDriverTools.clearAndFill(LASTNAMEFIELD, lastName);
         driver.findElement(SAVE_BUTTON).click();
         Assert.assertTrue(lastnameError != null);
-        Thread.sleep(500);
 
 
     }

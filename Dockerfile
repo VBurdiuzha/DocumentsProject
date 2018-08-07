@@ -28,3 +28,5 @@ RUN wget --no-verbose -O /tmp/chromedriver_linux64.zip https://chromedriver.stor
 
 ADD . /var/www/tests
 
+RUN mvn clean test
+
