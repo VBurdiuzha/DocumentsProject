@@ -4,8 +4,8 @@ package mainPackage.interfaceFolder;
  * Created by villiburduza on 5/25/18.
  */
 public interface FilesVars {
-  //  String attachmentFileLocation = "/var/www/tests/src/main/resources/picture/";
-    String attachmentFileLocation = "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/picture/";
+    String attachmentFileLocation = "/var/www/tests/src/main/resources/picture/";
+   // String attachmentFileLocation = "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/picture/";
 
     String attachmentFileNamePNG = "expertise.png";
     String attachmentFileNamePDF = "checklist-mobile-app-testen.pdf";
