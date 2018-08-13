@@ -47,7 +47,7 @@ public class ExpertiseUserPage {
     private WebElement nextButton;
     @FindBy(css = "#front404d0ca4b994575eec4661a031a130a8")
     private WebElement payAndGo;
-    @FindBy(xpath = "//*[@id=\"maincolumn\"]/div/div[2]/div/div/div[2]/div/button")
+    @FindBy(css = "#front21ad970067350483d2bc4f104de16594")
     private WebElement continueWork;
     @FindBy(xpath = "//*[@id=\"maincolumn\"]/div/div[2]/div/div[1]/span")
     private WebElement errorMessageTypeDoc;
@@ -61,6 +61,11 @@ public class ExpertiseUserPage {
     private WebElement fileExpertise;
     @FindBy(css = "#front3c2cc487eb81783e84b98cb3bb1cd4eb")
     private WebElement newAppTab;
+    @FindBy(css = "#front580ae12f7a3cdd40c5154ea3e11ce21a")
+    private WebElement checkboxForPay;
+
+    @FindBy(css = "#front2e6ea5229eed02638b09a5e7d6dd1794")
+    private WebElement PopUpPay;
 
 
 
@@ -301,8 +306,14 @@ public class ExpertiseUserPage {
         WebDriverTools.clickOnInvisibleElement(deleteFile);
         WebDriverTools.FluentWaitFunction(nextButton);
         nextButton.click();
+        WebDriverTools.FluentWaitFunction(checkboxForPay);
+        checkboxForPay.click();
         WebDriverTools.FluentWaitFunction(payAndGo);
         payAndGo.click();
+
+        WebDriverTools.FluentWaitFunction(PopUpPay);
+        PopUpPay.click();
+
         WebDriverTools.FluentWaitFunction(continueWork);
         continueWork.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/ul/li[1]/div/div[1]/div[2]")).isDisplayed());
