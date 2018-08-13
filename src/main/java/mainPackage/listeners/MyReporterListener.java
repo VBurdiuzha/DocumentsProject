@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class MyReporterListener extends MyReporterListenerAdapter {
 
-    private static final Logger L = Logger.getLogger(MyReporterListener.class);
+    private static final Logger L = Logger.getLogger(String.valueOf(MyReporterListener.class));
 
     // ~ Instance fields ------------------------------------------------------
 
@@ -37,7 +37,7 @@ public class MyReporterListener extends MyReporterListenerAdapter {
         try {
             m_out = createWriter(outdir);
         } catch (IOException e) {
-            L.error("output file", e);
+          //  L.error("output file", e);
             return;
         }
 
@@ -55,7 +55,7 @@ public class MyReporterListener extends MyReporterListenerAdapter {
         new File(outdir).mkdirs();
         return new PrintWriter(new BufferedWriter(new FileWriter(new File(
                 outdir, "emailable-FON-report"
-                + WebDriverTools.getTime(overview.getStartDate())
+                + WebDriverTools.getTime()
                 + ".html"))));
     }
 
@@ -454,11 +454,11 @@ public class MyReporterListener extends MyReporterListenerAdapter {
 
                 // NEW
                 summaryCell(
-                        WebDriverTools.getTime(overview.getStartDate()),
+                        WebDriverTools.getTime(),
                         true);
                 m_out.println("</td>");
                 summaryCell(
-                        DateFunctions.dateToDayAndTime(overview.getEndDate()),
+                        WebDriverTools.getTime(),
                         true);
                 m_out.println("</td>");
 
@@ -586,16 +586,9 @@ public class MyReporterListener extends MyReporterListenerAdapter {
         /** Arranges methods by classname and method name */
         @Override
         public int compare(IInvokedMethod o1, IInvokedMethod o2) {
-            // System.out.println("Comparing " + o1.getMethodName() + " " +
-            // o1.getDate()
-            // + " and " + o2.getMethodName() + " " + o2.getDate());
+
             return (int) (o1.getDate() - o2.getDate());
-            // int r = ((T) o1).getTestClass().getName().compareTo(((T)
-            // o2).getTestClass().getName());
-            // if (r == 0) {
-            // r = ((T) o1).getMethodName().compareTo(((T) o2).getMethodName());
-            // }
-            // return r;
+
         }
     }
 }

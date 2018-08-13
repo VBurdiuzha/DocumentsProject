@@ -9,16 +9,20 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
 
 @Listeners({TestListenerUI.class})
-public class LogIn extends WebDriverTestBase {
+public class LogIn extends WebDriverTestBase {   // наследование
 
+// полиморфизм
+    private LoginPage loginPage; // Ссылка на LoginPage (интерфейс)
 
-    private LoginPage loginPage;
 
     @BeforeClass
     public void initPages() {
         loginPage = PageFactory.initElements(WebDriverTools.driver, LoginPage.class);
         System.out.println("Login page init");
     }
+
+    // используем методы LoginPage, кладем туда данные не влияя на этот метод
+    // в рамках другого класса (абстрогирование данных)
 
     @Test (description = "Invalid Login", priority = -1, groups = {"LogIn"})
     public void failureLogin() {

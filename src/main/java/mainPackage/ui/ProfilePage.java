@@ -95,6 +95,7 @@ public class ProfilePage {
     private final WebDriver driver;
 
     public ProfilePage(WebDriver driver) {
+
         this.driver = driver;
     }
 

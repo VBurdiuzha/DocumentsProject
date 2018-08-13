@@ -107,7 +107,7 @@ public class DocCategoryPage {
         Assert.assertNotNull(emptyList);
     }
 
-    public void dataWithSlashAndSpace() throws InterruptedException {
+    public void dataWithSlashAndSpace()  {
         driver.navigate().refresh();
         catDocTab.click();
         inputCatDoc.sendKeys(" ");
