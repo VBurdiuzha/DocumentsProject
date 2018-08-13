@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Sanity Suite" >
     <parameter name="platform" value="linux" />
+    <listeners>
+        <listener class-name="mainPackage.listeners.RetryListener"/>
+        <listener class-name="mainPackage.listeners.TestListenerUI"/>
+    </listeners>
     <test name="Login">
         <classes>
             <class name="uiTest.LogIn"/>

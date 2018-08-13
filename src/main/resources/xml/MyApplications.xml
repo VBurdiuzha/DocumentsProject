@@ -2,10 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Expertise Suite">
     <parameter name="platform" value="mac" />
-    <listeners>
-        <listener class-name="mainPackage.listeners.RetryListener"/>
-        <listener class-name="mainPackage.listeners.TestListenerUI"/>
-    </listeners>
     <test name="Expertise">
         <classes>
             <class name="uiTest.MyApplication"/>
