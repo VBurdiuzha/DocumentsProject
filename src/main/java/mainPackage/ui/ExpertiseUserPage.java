@@ -33,7 +33,7 @@ public class ExpertiseUserPage {
     private WebElement expertiseModule;
     @FindBy(css = "#maincolumn > div > div.tabContainer > span:nth-child(1) > div > a")
     private WebElement tabNewDoc;
-    @FindBy(css = "#frontb5fbbf28a9f06b537b590d5f3b4ff32d > div")
+    @FindBy(css = "#frontb5fbbf28a9f06b537b590d5f3b4ff32d")
     private WebElement createApplication;
     @FindBy(css = "#front868dfaedd842b532f770504a740cbf47 > svg")
     private WebElement typeDoc;
@@ -61,11 +61,11 @@ public class ExpertiseUserPage {
     private WebElement fileExpertise;
     @FindBy(css = "#front3c2cc487eb81783e84b98cb3bb1cd4eb")
     private WebElement newAppTab;
-    @FindBy(css = "#front580ae12f7a3cdd40c5154ea3e11ce21a")
-    private WebElement checkboxForPay;
-
-    @FindBy(css = "#front2e6ea5229eed02638b09a5e7d6dd1794")
-    private WebElement PopUpPay;
+//    @FindBy(css = "#front580ae12f7a3cdd40c5154ea3e11ce21a")
+//    private WebElement checkboxForPay;
+//
+//    @FindBy(css = "#front2e6ea5229eed02638b09a5e7d6dd1794")
+//    private WebElement PopUpPay;
 
 
 
@@ -306,13 +306,13 @@ public class ExpertiseUserPage {
         WebDriverTools.clickOnInvisibleElement(deleteFile);
         WebDriverTools.FluentWaitFunction(nextButton);
         nextButton.click();
-        WebDriverTools.FluentWaitFunction(checkboxForPay);
-        checkboxForPay.click();
+//        WebDriverTools.FluentWaitFunction(checkboxForPay);
+//        checkboxForPay.click();
         WebDriverTools.FluentWaitFunction(payAndGo);
         payAndGo.click();
-
-        WebDriverTools.FluentWaitFunction(PopUpPay);
-        PopUpPay.click();
+//
+//        WebDriverTools.FluentWaitFunction(PopUpPay);
+//        PopUpPay.click();
 
         WebDriverTools.FluentWaitFunction(continueWork);
         continueWork.click();
