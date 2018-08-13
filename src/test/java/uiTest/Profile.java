@@ -94,19 +94,19 @@ public class Profile extends WebDriverTestBase{
 
     @Test (description = "check different Name", dataProviderClass = DataProviderParameters.class,
             dataProvider = "name", groups = {"Profile"}, priority = 15)
-    public void verifyName(String name, boolean n2) throws InterruptedException {
+    public void verifyName(String name, boolean n2)  {
         profilePage.verifyName(name, n2);
     }
 
     @Test (description = "check different Surname", dataProviderClass = DataProviderParameters.class,
             dataProvider = "surName", groups = {"Profile"}, priority = 16)
-    public void verifySurName(String surName, boolean n2) throws InterruptedException {
+    public void verifySurName(String surName, boolean n2)  {
         profilePage.verifysurname(surName ,n2);
     }
 
     @Test (description = "check different Lastname", dataProviderClass = DataProviderParameters.class,
             dataProvider = "lastName", groups = {"Profile"}, priority = 17)
-    public void verifylastName(String lastName, boolean n2) throws InterruptedException {
+    public void verifylastName(String lastName, boolean n2)  {
         profilePage.verifylastName(lastName, n2);
     }
 
@@ -117,7 +117,7 @@ public class Profile extends WebDriverTestBase{
 
     @Test (description = "check additional email address", dataProviderClass = DataProviderParameters.class,
             dataProvider = "email address",enabled = false,groups = {"Profile"}, priority = 19)
-    public void verifyEmail(String email, boolean n2) throws InterruptedException {
+    public void verifyEmail(String email, boolean n2) {
         profilePage.verifyAdditionalEmail(email, n2);
     }
 
@@ -129,7 +129,7 @@ public class Profile extends WebDriverTestBase{
 
     @Test (description = "verify Change Password", dataProviderClass = DataProviderParameters.class,
             dataProvider = "newPassword", groups = ("Profile"), priority = 21)
-    public void verifyChangePassword(String newPassword, boolean n2) throws InterruptedException {
+    public void verifyChangePassword(String newPassword, boolean n2)  {
 
         profilePage.verifyChangePassword(newPassword, n2);
     }

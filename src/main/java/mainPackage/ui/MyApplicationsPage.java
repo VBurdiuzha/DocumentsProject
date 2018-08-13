@@ -14,11 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import static org.openqa.selenium.By.cssSelector;
@@ -285,7 +281,7 @@ public class MyApplicationsPage {
                                /* need add changes to the history */
     }
 
-    public void downloadAttachment() throws NoSuchAlgorithmException, IOException, InterruptedException {
+    public void downloadAttachment() throws InterruptedException {
         driver.navigate().refresh();
         expertiseModule.click();
         myAppTab.click();
@@ -304,13 +300,13 @@ public class MyApplicationsPage {
          WebDriverTools.clickOnInvisibleElement(view);
         WebDriverTools.FluentWaitFunction(downloadAttachment);
         WebDriverTools.clickOnInvisibleElement(downloadAttachment);
-
-        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));
-        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
-
-        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
-        String actual = DatatypeConverter.printHexBinary(hash);
-        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
+//
+//        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));
+//        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
+//
+//        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
+//        String actual = DatatypeConverter.printHexBinary(hash);
+//        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
 
     }
 
@@ -330,12 +326,12 @@ public class MyApplicationsPage {
         updateButton.click();
         WebDriverTools.FluentWaitFunction(downloadAttachPopUp);
         WebDriverTools.clickOnInvisibleElement(downloadAttachPopUp);
-        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));
-        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
-
-        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
-        String actual = DatatypeConverter.printHexBinary(hash);
-        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
+//        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));
+//        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
+//
+//        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
+//        String actual = DatatypeConverter.printHexBinary(hash);
+//        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
 
     }
 
@@ -425,12 +421,12 @@ public class MyApplicationsPage {
         WebDriverTools.clickOnInvisibleElement(editButton);
         WebDriverTools.FluentWaitFunction(downloadAtachWhenEdit);
         WebDriverTools.clickOnInvisibleElement(downloadAtachWhenEdit);
-        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));
-        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
-
-        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
-        String actual = DatatypeConverter.printHexBinary(hash);
-        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
+//        byte[] b = Files.readAllBytes(Paths.get("/Users/villiburduza/Downloads/expertise.png"));  // for local
+//        byte[] hash = MessageDigest.getInstance("MD5").digest(b);
+//
+//        String expected = "BB4EA20ADCE262FCCC4685A929FB5104";
+//        String actual = DatatypeConverter.printHexBinary(hash);
+//        System.out.println(expected.equalsIgnoreCase(actual) ? " Download attachment test. Hash pass" : "Hash failed");
 
     }
 
