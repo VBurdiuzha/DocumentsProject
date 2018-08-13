@@ -51,5 +51,37 @@ https://github.com/docker/kitematic
 
 
 --- Start ---
-docker build -f ./Dockerfile -t sdtests .
-docker run sdtests bash -c "mvn clean test"
+
+Запуск автотестов на докоре
+
+1. Установить докер
+
+  sudo apt-get install docker
+
+2. Если ранее были созданы образы удалить их
+
+ docker images (docker ps -a) - просмотр образов
+ docker system prune -a - удаление всех образов
+
+3. Собрать образ
+
+ docker build -f ./Dockerfile -t sdtests . - где sdtets  это название образа
+После сброки докер файла, запуститься ряд команд описанных в нем. Крайняя из которых выполняет
+команду docker run sdtests bash -c "mvn clean test" , которая запускает тесты.
+
+4. Отобразить список образов, чтобы использовать имя для сохранения репортов
+
+docker ps -a
+
+5. Сохранить репорты на локальную машину, для запуска
+
+docker cp ecstatic_knuth:/var/www/tests/allure-results .
+docker cp ecstatic_knuth:/var/www/tests/target .
+
+6. Дать права на запуск репорта (если необходимо)
+
+chmod +x allure-commandline/bin/allure
+
+7. Генерация репортов
+
+allure serve

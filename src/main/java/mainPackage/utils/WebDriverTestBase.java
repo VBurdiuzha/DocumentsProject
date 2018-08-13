@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +16,7 @@ public class WebDriverTestBase {
 //        System.setProperty("webdriver.chrome.driver", "./src/main/resources/selenium/linux/chromedriver");
 //    }
 
-//    @Parameters("platform")
+   @Parameters("platform")
     @BeforeTest
     public static void setUp(String platform)  {
 //        if ("mac".equals(platform)) {
@@ -40,11 +41,9 @@ public class WebDriverTestBase {
             ChromeOptions.addArguments("--headless", "window-size=1920,1080", "--no-sandbox", "--incognito");
             driver = new ChromeDriver(ChromeOptions);
             driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-            driver.manage().window().maximize();
+        //    driver.manage().window().maximize();
             mainPackage.utils.WebDriverTools.setDriver(driver);
 
-            //Dont maximize Chrome by below line, because has no display
-            // driver.manage().window().maximize();
 
     }
 
