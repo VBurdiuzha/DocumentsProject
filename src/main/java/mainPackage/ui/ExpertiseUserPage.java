@@ -21,10 +21,10 @@ public class ExpertiseUserPage {
 
     private final By inputUsername = cssSelector("#front480616263a00926a515c2aaf34b53fcc");
     private final By inputPassword = cssSelector("#front75da0a9226c31d6d56e327f558c4ccd8");
-    private final By loginButton = cssSelector("#front64fbd75d07ec519ac1c34bbf3c93e41b");
     private final By roleInDoc = xpath("//*[@id=\"front15028f72ff543a7225493002142fac78\"]");
     private final By textarea = cssSelector("#front6cbe73215f7d646d4888d05f14810819");
-
+    @FindBy(css = "#front64fbd75d07ec519ac1c34bbf3c93e41b")
+    private WebElement loginButton;
     @FindBy(xpath = "//*[@id=\"fronta0e5a7b36e788e511ab810fb77be3bc2\"]")
     private WebElement avatar;
     @FindBy(css = "#front3d6305e5e1809ea5588858bbcf65cc36")
@@ -83,7 +83,7 @@ public class ExpertiseUserPage {
 
     public void logIn() {
         driver.get(LogsVars.baseURL);
-        driver.findElement(loginButton).click();
+        loginButton.click();
         WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
         WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
@@ -349,9 +349,16 @@ public class ExpertiseUserPage {
 
     public void haveNotMoney() {
         driver.navigate().refresh();
-
         APIMethods.withDrawAllMoney();
         driver.navigate().refresh();
+
+        loginButton.click();
+
+        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
+        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
+        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
+        profile.click();
+
         expertiseModule.click();
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
@@ -375,7 +382,7 @@ public class ExpertiseUserPage {
 
     public void emptyAllField() {
         driver.get(LogsVars.baseURL);
-        driver.findElement(loginButton).click();
+        loginButton.click();
         WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
         WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();

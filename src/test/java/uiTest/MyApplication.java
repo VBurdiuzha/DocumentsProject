@@ -88,7 +88,7 @@ public class MyApplication extends WebDriverTestBase {
     }
 
     @Test(description = "have Not Money When Wait For Pay Doc", groups = {"Expertise"}, priority = 12)
-    public void haveNotMoneyWhenWaitForPayDoc()  {
+    public void haveNotMoneyWhenWaitForPayDoc() throws InterruptedException {
         myApplicationsPage.haveNotMoneyWhenWaitForPayDoc();
     }
 

@@ -99,7 +99,6 @@ public class MyApplicationsPage {
     private WebElement downloadAtachWhenEdit;
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > div.Finalizer > div > button.Cancel")
     private WebElement cancelButton;
-
     @FindBy(css = "#maincolumn > div > div.ReviewServicesContent > div > div > span > div.MultipleFileSelection > div > ul.FilesList > li > ul > li > div.ButtonRemove > svg")
     private WebElement deleteAllAttachments;
 
@@ -501,7 +500,7 @@ public class MyApplicationsPage {
 
     }
 
-    public void haveNotMoneyWhenWaitForPayDoc(){
+    public void haveNotMoneyWhenWaitForPayDoc() throws InterruptedException {
 
         APIMethods.withDrawAllMoney();
         driver.navigate().refresh();
@@ -510,6 +509,8 @@ public class MyApplicationsPage {
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
 
+        expertiseModule.click();
+        createDocWaitForPay();
         expertiseModule.click();
         myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
