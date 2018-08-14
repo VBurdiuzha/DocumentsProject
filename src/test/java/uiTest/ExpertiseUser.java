@@ -72,33 +72,33 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.attachment21();}
 
     @Test(description =  "test case with file more than 50 MB", groups = {"Expertise"}, priority = 11)
-    public void fileMoreThen50MB() throws InterruptedException {
+    public void fileMoreThen50MB() {
         expertiseUserPage.fileMoreThen50MB();
     }
 
     @Test(description =  "test case with delete One Of Uploaded Files", groups = {"Expertise"}, priority = 12)
-    public void deleteOneOfUploudedFiles() throws InterruptedException {
+    public void deleteOneOfUploudedFiles() {
         expertiseUserPage.deleteOneOfUploadedFiles();
     }
 
     @Test(description =  "test case with reestablish Uploaded Files", groups = {"Expertise"}, priority = 13)
-    public void reestablishUploadedFiles() throws InterruptedException {
+    public void reestablishUploadedFiles() {
         expertiseUserPage.reestablishUploadedFiles();
     }
 
     @Test(description =  "test case have not money", groups = {"Expertise"}, priority = 15)
-    public void haveNotMoney() throws InterruptedException {
+    public void haveNotMoney() {
         expertiseUserPage.haveNotMoney();
     }
 
     @Test(description =  "test case with empty all fields", groups = {"Expertise"}, priority = 16)
-    public void emptyAllField() throws InterruptedException {
+    public void emptyAllField() {
         expertiseUserPage.emptyAllField();
     }
 
-    @Test(description =  "test case with incorrect Format File", groups = {"Expertise"}, priority = 17)
-    public void incorrectFormatFile() throws InterruptedException {
-        expertiseUserPage.incorrectFormatFile();
-    }
+//    @Test(description =  "test case with incorrect Format File", groups = {"Expertise"}, priority = 17)
+//    public void incorrectFormatFile() {
+//        expertiseUserPage.incorrectFormatFile();
+//    }
 
 }

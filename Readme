@@ -65,10 +65,14 @@ https://github.com/docker/kitematic
 
 3. Собрать образ
 
- docker build -f ./Dockerfile -t sdtests . - где sdtets  это название образа
+ docker build --shm-size=512M -f ./Dockerfile -t sdtests .
+
+sdtets - это название образа
+--shm-size=512M - задаем shared memory (со временем возможно нужно будет увеличить), в случае нехватки
+памяти, будут ошибки про chrome.
+
 После сброки докер файла, запуститься ряд команд описанных в нем. Крайняя из которых выполняет
 команду docker run sdtests bash -c "mvn clean test" , которая запускает тесты.
-
 4. Отобразить список образов, чтобы использовать имя для сохранения репортов
 
 docker ps -a

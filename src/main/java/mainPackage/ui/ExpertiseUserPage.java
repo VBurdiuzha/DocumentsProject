@@ -217,6 +217,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -412,6 +413,8 @@ public class ExpertiseUserPage {
         attachFile.sendKeys(FilesVars.attachmentFileLocation + FilesVars.attachmentFileNameXML);
         nextButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"maincolumn\"]/div/div[2]/div/span/div[2]/div/ul[2]/li/ul/li[2]")).isDisplayed());
+
+        // has disabled by OS
 
     }
 

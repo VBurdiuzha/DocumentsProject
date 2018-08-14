@@ -97,10 +97,10 @@ public class MyApplication extends WebDriverTestBase {
         myApplicationsPage.sendToArchivWhenWaitForPay();
     }
 
-    @Test(description = "send To Archiv When Wait For Pay", groups = {"Expertise"}, priority = 14)
-    public void answerForOperatorWhenWaitForPayDoc() throws Exception {
-        myApplicationsPage.answerForOperatorWhenWaitForPayDoc();
-    }
+//    @Test(description = "answer for operator", groups = {"Expertise"}, priority = 14)
+//    public void answerForOperatorWhenWaitForPayDoc() throws Exception {
+//        myApplicationsPage.answerForOperatorWhenWaitForPayDoc();
+//    }
 
 
 }

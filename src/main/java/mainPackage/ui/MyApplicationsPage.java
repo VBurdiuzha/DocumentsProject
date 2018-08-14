@@ -310,7 +310,7 @@ public class MyApplicationsPage {
 
     }
 
-    public void downloadAttachmentPopUp() throws IOException, NoSuchAlgorithmException {
+    public void downloadAttachmentPopUp()  {
 
         driver.navigate().refresh();
         expertiseModule.click();
@@ -491,7 +491,6 @@ public class MyApplicationsPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
-        myAppTab.click();
         WebDriverTools.FluentWaitFunction(actions);
         actions.click();
         WebDriverTools.FluentWaitFunction(pay);
@@ -525,16 +524,6 @@ public class MyApplicationsPage {
     }
 
     public void sendToArchivWhenWaitForPay() throws InterruptedException {
-        driver.navigate().refresh();
-        logIn();
-
-        driver.get(LogsVars.baseURL);
-        driver.findElement(loginButton).click();
-        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
-        profile.click();
-
         createDocWaitForPay();
 
         expertiseModule.click();
@@ -559,6 +548,9 @@ public class MyApplicationsPage {
        APIMethods.simpleFileUploading();
 //        APIMethods.payDoc();
 //        APIMethods.setDocFromDOperToOper();
+
+
+        // need continue...
 
 
     }
