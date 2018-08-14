@@ -86,7 +86,7 @@ public class ExpertiseUser extends WebDriverTestBase {
         expertiseUserPage.reestablishUploadedFiles();
     }
 
-    @Test(description =  "test case have not money", groups = {"Expertise"}, priority = 15)
+    @Test(description =  "have not money", groups = {"Expertise"}, priority = 15)
     public void haveNotMoney() {
         expertiseUserPage.haveNotMoney();
     }

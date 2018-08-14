@@ -162,6 +162,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.FluentWaitFunction(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -351,7 +352,7 @@ public class ExpertiseUserPage {
         driver.navigate().refresh();
         APIMethods.withDrawAllMoney();
         driver.navigate().refresh();
-
+        driver.get(LogsVars.baseURL);
         loginButton.click();
 
         WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
@@ -376,15 +377,12 @@ public class ExpertiseUserPage {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"app\"]/div/div[1]/div[3]/div/div/div[2]/button")).isDisplayed());
 
 
-        APIMethods.addMoneyPOSTrequest(100);
+        APIMethods.addMoneyPOSTrequest(1000);
 
     }
 
     public void emptyAllField() {
         driver.get(LogsVars.baseURL);
-        loginButton.click();
-        WebDriverTools.clearAndFill(inputUsername, LogsVars.regularUser);
-        WebDriverTools.clearAndFill(inputPassword, LogsVars.regularUserPassword).submit();
         new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(avatar)).click();
         profile.click();
 

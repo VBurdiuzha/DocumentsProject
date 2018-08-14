@@ -1,0 +1,15 @@
+/var/www/tests/src/main/java/mainPackage/listeners/TestListenerUI.java
+/var/www/tests/src/main/java/mainPackage/ui/ExpertiseUserPage.java
+/var/www/tests/src/main/java/mainPackage/utils/WebDriverTestBase.java
+/var/www/tests/src/main/java/mainPackage/api/APIMethods.java
+/var/www/tests/src/main/java/mainPackage/ui/MyApplicationsPage.java
+/var/www/tests/src/main/java/mainPackage/utils/DataProviderParameters.java
+/var/www/tests/src/main/java/mainPackage/ui/LoginPage.java
+/var/www/tests/src/main/java/mainPackage/ui/DocCategoryPage.java
+/var/www/tests/src/main/java/mainPackage/utils/WebDriverTools.java
+/var/www/tests/src/main/java/mainPackage/listeners/RetryListener.java
+/var/www/tests/src/main/java/mainPackage/listeners/Retry.java
+/var/www/tests/src/main/java/mainPackage/interfaceFolder/FilesVars.java
+/var/www/tests/src/main/java/mainPackage/interfaceFolder/LogsVars.java
+/var/www/tests/src/main/java/mainPackage/ui/RegistrationPage.java
+/var/www/tests/src/main/java/mainPackage/ui/ProfilePage.java

@@ -1,0 +1,16 @@
+mainPackage/api/APIMethods.class
+mainPackage/ui/ProfilePage.class
+mainPackage/ui/MyApplicationsPage.class
+mainPackage/listeners/TestListenerUI.class
+mainPackage/utils/DataProviderParameters.class
+mainPackage/ui/RegistrationPage.class
+mainPackage/utils/WebDriverTestBase.class
+mainPackage/ui/ExpertiseUserPage.class
+mainPackage/interfaceFolder/FilesVars.class
+mainPackage/ui/DocCategoryPage.class
+mainPackage/utils/WebDriverTools.class
+mainPackage/listeners/RetryListener.class
+mainPackage/interfaceFolder/LogsVars.class
+mainPackage/ui/LoginPage.class
+mainPackage/utils/WebDriverTools$1.class
+mainPackage/listeners/Retry.class
