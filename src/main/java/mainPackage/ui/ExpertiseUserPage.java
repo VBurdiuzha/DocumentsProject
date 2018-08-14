@@ -97,6 +97,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -123,6 +124,7 @@ public class ExpertiseUserPage {
     public void doubleAttachment() {
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         createApplication.click();
         typeDoc.click();
@@ -147,6 +149,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         createApplication.click();
         WebDriverTools.clearAndFill(roleInDoc, "test role").click();
@@ -162,7 +165,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
-        WebDriverTools.FluentWaitFunction(newAppTab);
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -180,6 +183,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -201,6 +205,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -218,7 +223,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
-        WebDriverTools.FluentWaitFunction(newAppTab);
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -236,6 +241,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -252,6 +258,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         createApplication.click();
         typeDoc.click();
@@ -274,6 +281,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -294,6 +302,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         createApplication.click();
         typeDoc.click();
@@ -327,6 +336,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         createApplication.click();
         typeDoc.click();
@@ -361,6 +371,7 @@ public class ExpertiseUserPage {
         profile.click();
 
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
@@ -388,6 +399,7 @@ public class ExpertiseUserPage {
 
         driver.navigate().refresh();
         expertiseModule.click();
+        WebDriverTools.waitForElementClickable(newAppTab);
         newAppTab.click();
         WebDriverTools.FluentWaitFunction(createApplication);
         createApplication.click();
