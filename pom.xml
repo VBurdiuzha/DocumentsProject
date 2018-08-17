@@ -29,7 +29,7 @@
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>./allure.results</value>
+                            <value>./allure-report</value>
                         </property>
                     </systemProperties>
                     <argLine>
