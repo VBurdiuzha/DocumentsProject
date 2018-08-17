@@ -9,6 +9,10 @@
     <version>1</version>
 
     <build>
+        <testResources>
+            <testResource> <directory>${basedir}/src/test/resources/allure-properties</directory>
+            </testResource>
+        </testResources>
 
 
         <plugins>
