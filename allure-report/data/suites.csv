@@ -1,0 +1,3 @@
+"Status","Name","Duration in ms","Description"
+"passed","uiTest.LogIn.failureLogin","8895",""
+"passed","uiTest.LogIn.successfulLogin","6261",""
