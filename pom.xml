@@ -102,7 +102,7 @@
                     <webResources>
                         <resource>
                             <!-- this is relative to the pom.xml directory -->
-                            <directory>${project.basedir}/src/main/resources
+                            <directory>${project.basedir}/src/main/resources/allure-results
                             </directory>
                         </resource>
                     </webResources>
