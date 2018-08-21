@@ -31,3 +31,4 @@ ADD . /var/www/tests
 
 RUN mvn clean test
 
+RUN pwd
