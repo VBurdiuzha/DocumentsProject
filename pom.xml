@@ -64,12 +64,15 @@
                         <suiteXmlFiles>
                             <suiteXmlFile>src/main/resources/xml/FullRun.xml</suiteXmlFile>
                         </suiteXmlFiles>
-                    <systemProperties>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>${project.basedir}/allure-results</value>
-                        </property>
-                    </systemProperties>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
+                    <!--<systemProperties>-->
+                        <!--<property>-->
+                            <!--<name>allure.results.directory</name>-->
+                            <!--<value>${project.basedir}/allure-results</value>-->
+                        <!--</property>-->
+                    <!--</systemProperties>-->
                 </configuration>
                 <dependencies>
                     <dependency>
