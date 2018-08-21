@@ -63,7 +63,7 @@
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>/allure-results</value>
+                            <value>/var/www/tests/allure-results</value>
                         </property>
                     </systemProperties>
 
