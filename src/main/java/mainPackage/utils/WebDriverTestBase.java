@@ -16,24 +16,24 @@ public class WebDriverTestBase {
         System.setProperty("webdriver.chrome.driver", "./src/main/resources/selenium/linux/chromedriver");
     }
 
-//   @Parameters("platform")
+   @Parameters("platform")
     @BeforeTest
     public static void setUp(String platform)  {
-//        if ("mac".equals(platform)) {
-//            System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/mac/chromedriver");
-//            System.out.println("Test running on mac os");
-//
-//    } else if ("linux".equals(platform)) {
-//            System.setProperty("webdriver.chrome.driver", "./src/main/resources/selenium/linux/chromedriver");
-//            System.out.println("Test running on linux os");
-//
-//        } else if ("windows".equals(platform)) {
-//            System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/windows/chromedriver.exe");
-//            System.out.println("Test running on windows");
-//
-//        } else {
-//            System.out.println("Something wrong ! :(");
-//        }
+        if ("mac".equals(platform)) {
+            System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/mac/chromedriver");
+            System.out.println("Test running on mac os");
+
+    } else if ("linux".equals(platform)) {
+            System.setProperty("webdriver.chrome.driver", "./src/main/resources/selenium/linux/chromedriver");
+            System.out.println("Test running on linux os");
+
+        } else if ("windows".equals(platform)) {
+            System.setProperty("webdriver.chrome.driver", "/Users/villiburduza/IdeaProjects/ServiceDoc/qa/src/main/resources/selenium/windows/chromedriver.exe");
+            System.out.println("Test running on windows");
+
+        } else {
+            System.out.println("Something wrong ! :(");
+        }
 
 
 
