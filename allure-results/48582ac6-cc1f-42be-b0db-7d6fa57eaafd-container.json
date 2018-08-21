@@ -1,1 +1,0 @@
-{"uuid":"48582ac6-cc1f-42be-b0db-7d6fa57eaafd","name":"uiTest.LogIn","start":1534512173199,"stop":1534512187567,"children":["60281929-45ee-4093-bec9-77756de1d213","f60c364e-561c-44f8-8293-c76a7e78dc8c"],"befores":[{"name":"initPages","status":"passed","stage":"finished","description":"","start":1534512174967,"stop":1534512174976}]}
