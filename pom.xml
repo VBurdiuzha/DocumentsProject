@@ -64,15 +64,12 @@
                         <suiteXmlFiles>
                             <suiteXmlFile>src/main/resources/xml/FullRun.xml</suiteXmlFile>
                         </suiteXmlFiles>
-                    <systemPropertyVariables>
-                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-                    </systemPropertyVariables>
-                    <!--<systemProperties>-->
-                        <!--<property>-->
-                            <!--<name>allure.results.directory</name>-->
-                            <!--<value>${project.basedir}/allure-results</value>-->
-                        <!--</property>-->
-                    <!--</systemProperties>-->
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>/var/jenkins_home/workspace/servicedoc/Autotests_serviceDoc/allure-results</value>
+                        </property>
+                    </systemProperties>
                 </configuration>
                 <dependencies>
                     <dependency>
