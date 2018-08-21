@@ -63,7 +63,7 @@
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>/var/www/tests/allure-results</value>
+                            <value>/var/jenkins_home/workspace/servicedoc/Autotests_serviceDoc/allure-results</value>
                         </property>
                     </systemProperties>
 
