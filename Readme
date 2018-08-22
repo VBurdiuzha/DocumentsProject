@@ -1,1 +1,91 @@
-test
+-- Working with Git --
+
+1. Create branch (name should be like name task)
+2. Commit it
+3. git checkout dev
+4. git pull
+5. git checkout [name of branch]
+6. git merge dev
+7. git checkout dev
+8. git merge [name of branch]
+9. git push origin dev
+
+
+-- Add local branch to the dev --
+
+1. git checkout dev
+2. git merge --squash [name of branch]
+3. git commit -m "[example description]"
+4. git push
+
+-- Run test from terminal --
+
+Use command : mvn clean test
+
+P.S. Default run will be "Sanity Suite"
+
+-- Edit xml file with script --
+
+sed "s/<suiteXmlFile>src\/main\/resources\/xml\/LogIn.xml<\/suiteXmlFile>/
+<suiteXmlFile>src\/main\/resources\/xml\/FullRun.xml<\/suiteXmlFile>/g" pom.xml > temp.xml
+
+mv temp.xml pom.xml
+
+--- From CSS )) ---
+
+cat pom.xml | sed 's/<suiteXmlFile>.*<\/suiteXmlFile>/<suiteXmlFile>src\/main\/resources\/xml\/LogIn.xml<\/suiteXmlFile>/'
+ > out.xml && rm pom.xml && mv out.xml pom.xml
+
+--- Edit FullRun file with script ---
+
+cat FullRun.xml | sed 's/<parameter name=\"platform\" value=\"mac\" /> /s/<parameter name=\"platform\" value=\"linux\" />' > out.xml && rm FullRun.xml && mv out.xml FullRun.xml
+
+
+--- Docker image for Java automated UI tests --
+https://github.com/markhobson/docker-maven-chrome
+
+
+--- Visual Docker Container Management on Mac & Windows ---
+https://kitematic.com/
+https://github.com/docker/kitematic
+
+
+--- Start ---
+
+Запуск автотестов на докоре
+
+1. Установить докер
+
+  sudo apt-get install docker
+
+2. Если ранее были созданы образы удалить их
+
+ docker images (docker ps -a) - просмотр образов
+ docker system prune -a - удаление всех образов
+
+3. Собрать образ
+
+ docker build --shm-size=512M -f ./Dockerfile -t sdtests .
+
+sdtets - это название образа
+--shm-size=512M - задаем shared memory (со временем возможно нужно будет увеличить), в случае нехватки
+памяти, будут ошибки про chrome.
+
+После сброки докер файла, запуститься ряд команд описанных в нем. Крайняя из которых выполняет
+команду docker run sdtests bash -c "mvn clean test" , которая запускает тесты.
+4. Отобразить список образов, чтобы использовать имя для сохранения репортов
+
+docker ps -a
+
+5. Сохранить репорты на локальную машину, для запуска
+
+docker cp ecstatic_knuth:/var/www/tests/allure-results .
+docker cp ecstatic_knuth:/var/www/tests/target .
+
+6. Дать права на запуск репорта (если необходимо)
+
+chmod +x allure-commandline/bin/allure
+
+7. Генерация репортов
+
+allure serve

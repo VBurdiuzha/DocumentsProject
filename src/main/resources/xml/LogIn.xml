@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="UI tests">
+    <parameter name="platform" value="linux" />
+    <listeners>
+        <listener class-name="mainPackage.listeners.RetryListener"/>
+        <listener class-name="mainPackage.listeners.TestListenerUI"/>
+    </listeners>
+    <test name="LogIn">
+        <classes>
+            <class name="uiTest.LogIn"/>
+        </classes>
+    </test>
+</suite>
+
+        <!-- mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/xml/LogIn.xml -->

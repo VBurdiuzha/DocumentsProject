@@ -1,47 +1,46 @@
 package mainPackage.ui;
 
-import mainPackage.Vars;
+import mainPackage.interfaceFolder.LogsVars;
 import mainPackage.utils.WebDriverTools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import java.util.List;
-
 import static org.openqa.selenium.By.cssSelector;
+import static org.openqa.selenium.By.xpath;
 
 public class LoginPage {
-    private final By inputUsername = cssSelector("input[name=email]");
-    private final By inputPassword = cssSelector("input[name=password]");
-    @FindBy(css = "#app > div > div.container > div.ModalWindow > div > div > div > div > div > div > form > div.recoverPassword > div > div")
-    private List<WebElement> messageError;
+    private final By inputUsername = cssSelector("#front480616263a00926a515c2aaf34b53fcc");
+    private final By inputPassword = cssSelector("#front75da0a9226c31d6d56e327f558c4ccd8");
+    private final By loginBotton = By.id("front64fbd75d07ec519ac1c34bbf3c93e41b");
+    private final By messNotification = xpath("//div[@class=\"messageNotification\"]");
+    private final By menuButton = By.id("fronta0e5a7b36e788e511ab810fb77be3bc2");
 
+    private final WebDriver driver;
 
-    private final WebDriver browser;
+    public LoginPage(WebDriver driver) {  // конструктор принимающий в качестве параметра объект WebDriver
 
-    public LoginPage(WebDriver browser) {
-
-        this.browser = browser;
+        this.driver = driver;
     }
 
-    public void successfulLogin() {
-
-        login(Vars.password);
-    }
-
-    public void failureLogin() {
-        login("badPassword");
-        Assert.assertTrue(messageError.size() != 0);
-    }
-
-    private void login(String password) {
-        browser.get(Vars.baseURL);
-        browser.findElement(cssSelector("#app > div > div.container > div > div > div.headerRight > div:nth-child(2) > button > div > div > span")).click();
-
-        WebDriverTools.clearAndFill(inputUsername, Vars.username);
+    private void login(String user, String password) {
+        driver.get(LogsVars.baseURL);
+        driver.findElement(loginBotton).click();
+        WebDriverTools.clearAndFill(inputUsername, user);
         WebDriverTools.clearAndFill(inputPassword, password).submit();
+        Assert.assertNotNull(menuButton);
     }
+
+    public void successfulLogin(String user, String password) {
+
+        login(user, password);
+        Assert.assertNotNull(menuButton);
+    }
+
+    public void failureLogin(String user, String password) {
+        login (user, password);
+        Assert.assertNotNull(messNotification);
+    }
+
 
 }
